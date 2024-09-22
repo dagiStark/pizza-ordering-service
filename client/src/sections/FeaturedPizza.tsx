@@ -1,4 +1,5 @@
 import { Box, Typography, Button } from "@mui/material";
+import OrderBanner from "../components/OrderBanner";
 
 function FeaturedPizza() {
   return (
@@ -12,7 +13,6 @@ function FeaturedPizza() {
         background: "#FFF8F1",
       }}
     >
-      {/* Your content here */}
       <Box
         sx={{
           display: "flex",
@@ -22,7 +22,6 @@ function FeaturedPizza() {
           gap: "25px",
         }}
       >
-        {/* Inner content here */}
         <Typography
           sx={{
             alignSelf: "stretch",
@@ -36,6 +35,23 @@ function FeaturedPizza() {
         >
           Featured pizza
         </Typography>
+
+        <Box
+          sx={{
+            width: "1266px",
+            height: "431px",
+          }}
+        >
+          <Box
+            sx={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "29px",
+            }}
+          >
+            <OrderBanner />
+          </Box>
+        </Box>
       </Box>
     </Box>
   );
