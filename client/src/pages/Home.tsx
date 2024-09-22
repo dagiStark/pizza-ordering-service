@@ -12,12 +12,12 @@ const Home = () => {
   return (
     <Box>
       <Stack>
-        <About />
-        {/* <FeaturedPizza />
-        <TopRestaurants />
+        {/* <About /> */}
+         <FeaturedPizza />
+        {/* <TopRestaurants />
         <PopularPizzas />
         <Fasting />
-        <ContactUs /> */}
+        <ContactUs />  */}
       </Stack>
     </Box>
   );
