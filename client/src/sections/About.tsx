@@ -7,12 +7,31 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import NavBar from "../components/NavBar";
-import { Pizza } from "../assets";
+import { Pizza, Image1 } from "../assets";
 
 function About() {
   return (
-    <Box>
+    <Box
+      sx={{
+        height: "937px",
+        alignSelf: "stretch",
+        background:
+          "linear-gradient(180deg, #FFF 0%, #FFC993 76%, #FFF8F1 100%)",
+      }}
+    >
       <NavBar />
+      <Box
+        component="img"
+        src={Image1}
+        alt="Styled Sample"
+        sx={{
+          width: "214px", // Set the width
+          height: "239px", // Set the height
+          transform: "rotate(176.733deg)", // Rotate the image
+          flexShrink: 0, // Prevent shrinking
+          background: `url(${Image1}) lightgray -582.102px -168.096px / 504.246% 297.365% no-repeat`,
+        }}
+      />
       <Box
         sx={{
           display: "flex",

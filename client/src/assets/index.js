@@ -1,5 +1,5 @@
 import logo from "./logo.png";
-import leafImage from "./leafImage.png";
 import Pizza from "./Pizza.png";
+import Image1 from './Image1.png'
 
-export { logo, leafImage, Pizza };
+export { logo, Image1, Pizza };
