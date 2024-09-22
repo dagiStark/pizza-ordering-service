@@ -25,9 +25,15 @@ const NavBar = () => {
 
       {/* Navigation Links */}
       <Box sx={{ display: "flex", justifyContent: "center", flexGrow: 2 }}>
-        <Typography sx={{ margin: "0 1rem", cursor: "pointer" }}>Home</Typography>
-        <Typography sx={{ margin: "0 1rem", cursor: "pointer" }}>Who We Are</Typography>
-        <Typography sx={{ margin: "0 1rem", cursor: "pointer" }}>Contact Us</Typography>
+        <Typography sx={{ margin: "0 1rem", cursor: "pointer" }}>
+          Home
+        </Typography>
+        <Typography sx={{ margin: "0 1rem", cursor: "pointer" }}>
+          Who We Are
+        </Typography>
+        <Typography sx={{ margin: "0 1rem", cursor: "pointer" }}>
+          Contact Us
+        </Typography>
       </Box>
 
       {/* Register Button */}
