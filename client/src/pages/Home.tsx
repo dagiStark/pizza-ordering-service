@@ -5,7 +5,6 @@ import NavBar from "../components/NavBar";
 const Home = () => {
   return (
     <Box>
-      <Typography>Home</Typography>
       <NavBar/>
     </Box>
   )
