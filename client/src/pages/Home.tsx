@@ -17,7 +17,7 @@ const Home = () => {
         <TopRestaurants />
         <PopularPizzas />
         <Fasting />
-        {/* <ContactUs />  */}
+        <ContactUs /> 
       </Stack>
     </Box>
   );
