@@ -15,7 +15,7 @@ const PizzaCard = () => {
     >
       <Box
         component="img"
-        src="https://example.com/pizza.jpg" // Replace with the actual pizza image
+        src={Image2}
         alt="Margherita"
         sx={{
           width: "150px",
@@ -24,67 +24,93 @@ const PizzaCard = () => {
           margin: "0 auto",
         }}
       />
-      <Typography variant="h6" sx={{ fontWeight: "bold", marginTop: "16px" }}>
-        Margherita
-      </Typography>
-      <Typography
-        variant="body2"
-        color="textSecondary"
-        sx={{ marginBottom: "8px" }}
-      >
-        Tomato, Mozzarella, Bell Peppers, Onions, Olives
-      </Typography>
 
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: "8px",
+          flexDirection: "column",
         }}
       >
-        <Typography variant="h4" sx={{ color: "green", fontWeight: "bold" }}>
-          150
-        </Typography>
-        <Typography variant="body1">Birr</Typography>
-      </Box>
-
-      <Button
-        variant="contained"
-        sx={{
-          backgroundColor: "#FF8100",
-          color: "#fff",
-          fontWeight: "bold",
-          borderRadius: "16px",
-          marginTop: "16px",
-          width: "100%",
-          "&:hover": {
-            backgroundColor: "#e0780c",
-          },
-        }}
-      >
-        Order
-      </Button>
-
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          marginTop: "16px",
-        }}
-      >
-        <Avatar
-          alt="Azmera Pizza"
-          src="https://example.com/avatar.jpg"
-          sx={{ width: 40, height: 40 }}
-        />
-        <Typography
-          variant="body1"
-          sx={{ marginLeft: "8px", fontWeight: "bold" }}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+          }}
         >
-          Azmera Pizza
-        </Typography>
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Margherita
+          </Typography>
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            sx={{ marginBottom: "8px" }}
+          >
+            Tomato, Mozzarella, Bell Peppers, Onions, Olives
+          </Typography>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "8px",
+            }}
+          >
+            <Typography
+              variant="h4"
+              sx={{ color: "green", fontWeight: "bold" }}
+            >
+              150
+            </Typography>
+            <Typography variant="body1">Birr</Typography>
+          </Box>
+
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#FF8100",
+              color: "#fff",
+              fontWeight: "bold",
+              borderRadius: "16px",
+              marginTop: "16px",
+              "&:hover": {
+                backgroundColor: "#e0780c",
+              },
+            }}
+          >
+            Order
+          </Button>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginTop: "16px",
+          }}
+        >
+          <Avatar
+            alt="Azmera Pizza"
+            src="https://example.com/avatar.jpg"
+            sx={{ width: 40, height: 40 }}
+          />
+          <Typography
+            variant="body1"
+            sx={{ marginLeft: "8px", fontWeight: "bold" }}
+          >
+            Azmera Pizza
+          </Typography>
+        </Box>
       </Box>
     </Box>
   );
