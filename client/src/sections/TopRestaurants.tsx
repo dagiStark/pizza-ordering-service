@@ -5,23 +5,20 @@ function TopRestaurants() {
     <Box
       sx={{
         display: "flex",
-        paddingBottom: "150px",
+        padding: "65px 87px 110px 87px",
         justifyContent: "center",
         alignItems: "center",
-        background: "#FFF8F1",
+        alignSelf: "stretch",
+        background: "linear-gradient(180deg, rgba(250, 126, 0, 0.00) 0%, rgba(250, 126, 0, 0.20) 60.5%, rgba(148, 74, 0, 0.00) 100%)",
       }}
     >
       <Box
         sx={{
-          background:
-            "linear-gradient(180deg, rgba(250, 126, 0, 0.00) 0%, rgba(250, 126, 0, 0.20) 60.5%, rgba(148, 74, 0, 0.00) 100%)",
           display: "flex",
-          width: "1440px",
-          padding: "94px 48px 94px 47px",
-          justifyContent: "center",
-          alignItems: "center",
-          flexShrink: 0,
-          alignSelf: "stretch",
+          width: "1266px",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          gap: "25px",
         }}
       >
         <Typography
@@ -37,6 +34,11 @@ function TopRestaurants() {
         >
           Top Restaurants
         </Typography>
+
+        <Box>
+          to add animates component here
+        </Box>
+
       </Box>
     </Box>
   );

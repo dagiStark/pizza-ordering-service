@@ -24,7 +24,7 @@ function About() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-
+          
         }}
       >
         <Box
@@ -34,7 +34,7 @@ function About() {
             alignItems: "flex-start",
             alignSelf: "stretch",
             width: "60%",
-            gap: '20px'
+            gap: "20px",
           }}
         >
           <Typography
@@ -64,7 +64,7 @@ function About() {
               lineHeight: "144.687%", // 36.172px
               letterSpacing: "0.75px",
               opacity: 0.9,
-              marginBottom: '50px'
+              marginBottom: "50px",
             }}
           >
             In publishing and graphic design, Lorem ipsum is a placeholder text
