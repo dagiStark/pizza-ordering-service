@@ -15,7 +15,7 @@ const Home = () => {
         <About />
         <FeaturedPizza />
         <TopRestaurants />
-        {/* <PopularPizzas /> */}
+        <PopularPizzas />
         {/* <Fasting /> */}
         {/* <ContactUs />  */}
       </Stack>
