@@ -16,7 +16,7 @@ const Home = () => {
         <FeaturedPizza />
         <TopRestaurants />
         <PopularPizzas />
-        {/* <Fasting /> */}
+        <Fasting />
         {/* <ContactUs />  */}
       </Stack>
     </Box>
