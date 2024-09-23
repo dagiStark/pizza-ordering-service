@@ -13,19 +13,18 @@ function About() {
   return (
     <Box
       sx={{
-        height: "937px",
         alignSelf: "stretch",
         background:
           "linear-gradient(180deg, #FFF 0%, #FFC993 76%, #FFF8F1 100%)",
       }}
     >
+      <NavBar />
       <Box
         sx={{
           display: "flex",
-          width: "766px",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          gap: "50px",
+          alignItems: "center",
+          justifyContent: "center",
+
         }}
       >
         <Box
@@ -34,6 +33,8 @@ function About() {
             flexDirection: "column",
             alignItems: "flex-start",
             alignSelf: "stretch",
+            width: "60%",
+            gap: '20px'
           }}
         >
           <Typography
@@ -55,7 +56,6 @@ function About() {
 
           <Typography
             sx={{
-              width: "766px",
               color: "#050505",
               fontFamily: "Roboto",
               fontSize: "25px",
@@ -64,6 +64,7 @@ function About() {
               lineHeight: "144.687%", // 36.172px
               letterSpacing: "0.75px",
               opacity: 0.9,
+              marginBottom: '50px'
             }}
           >
             In publishing and graphic design, Lorem ipsum is a placeholder text
@@ -103,6 +104,10 @@ function About() {
               },
             }}
           />
+        </Box>
+
+        <Box>
+          <img src={Image2} alt="circle pizza" />
         </Box>
       </Box>
     </Box>
