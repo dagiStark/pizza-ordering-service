@@ -13,11 +13,11 @@ const Home = () => {
     <Box>
       <Stack>
         <About />
-         {/* <FeaturedPizza /> */}
-        {/* <TopRestaurants />
-        <PopularPizzas />
-        <Fasting />
-        <ContactUs />  */}
+        <FeaturedPizza />
+        <TopRestaurants />
+        {/* <PopularPizzas /> */}
+        {/* <Fasting /> */}
+        {/* <ContactUs />  */}
       </Stack>
     </Box>
   );
