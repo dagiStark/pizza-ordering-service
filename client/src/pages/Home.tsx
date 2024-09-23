@@ -12,8 +12,8 @@ const Home = () => {
   return (
     <Box>
       <Stack>
-        {/* <About /> */}
-         <FeaturedPizza />
+        <About />
+         {/* <FeaturedPizza /> */}
         {/* <TopRestaurants />
         <PopularPizzas />
         <Fasting />

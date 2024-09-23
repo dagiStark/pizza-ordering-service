@@ -21,57 +21,6 @@ function About() {
     >
       <Box
         sx={{
-          width: "214px",
-          height: "239px",
-          transform: "rotate(176.733deg)",
-          flexShrink: 0,
-          background: `url(${Image1})) lightgray -582.102px -168.096px / 504.246% 297.365% no-repeat`,
-        }}
-      />
-      <Box
-        sx={{
-          width: "1440px",
-          height: "75px",
-          flexShrink: 0,
-          boxShadow: "0px 0px 15px 0px rgba(255, 129, 0, 0.20)",
-        }}
-      ></Box>
-
-      <Box
-        sx={{
-          display: "flex",
-          width: "794px",
-          height: "400px",
-          paddingBottom: "0px",
-          justifyContent: "center",
-          alignItems: "center",
-          flexShrink: 0,
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            width: "794px",
-            height: "400px",
-            justifyContent: "center",
-            alignItems: "center",
-            flexShrink: 0,
-          }}
-        >
-          <Box
-            sx={{
-              width: "794px",
-              height: "806px",
-              transform: "rotate(-150deg)",
-              flexShrink: 0,
-              background: `url(${Image2}) lightgray -155.215px -119.285px / 125.693% 123.797% no-repeat`,
-            }}
-          />
-        </Box>
-      </Box>
-
-      <Box
-        sx={{
           display: "flex",
           width: "766px",
           flexDirection: "column",
@@ -121,58 +70,41 @@ function About() {
             commonly used to demonstrate the visual form of a document or a
             typeface without.
           </Typography>
-        </Box>
-        <Box
-          sx={{
-            width: "748px",
-            height: "118px",
-            filter: "drop-shadow(0px 5px 50px rgba(0, 0, 0, 0.15))",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center", // Center the TextField horizontally
-          }}
-        >
+
           <TextField
             variant="outlined"
             fullWidth
+            placeholder="Search"
             sx={{
-              height: "118px",
-              flexShrink: 0,
-              borderRadius: "100px",
-              background: "var(--Main-Color-White, #FFF)",
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "transparent", // Remove default border
-                },
-                "&:hover fieldset": {
-                  borderColor: "transparent", // Remove border on hover
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "transparent", // Remove border when focused
-                },
-              },
+              borderRadius: "50px",
+              background: "#fff",
             }}
-            placeholder="Search..."
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <SearchIcon sx={{ color: "#FF890F" }} />
+                  <IconButton
+                    sx={{
+                      backgroundColor: "#FF890F",
+                      color: "#fff",
+                      "&:hover": {
+                        backgroundColor: "#e0780c",
+                      },
+                      borderRadius: "50%",
+                      padding: "10px",
+                    }}
+                  >
+                    <SearchIcon />
+                  </IconButton>
                 </InputAdornment>
               ),
+              sx: {
+                borderRadius: "50px",
+                paddingRight: "10px",
+              },
             }}
           />
         </Box>
       </Box>
-      <Box
-        sx={{
-          width: "214px",
-          height: "239px",
-          transform: "rotate(30deg)",
-          flexShrink: 0,
-          background:
-            "url(<path-to-image>) lightgray -780.74px -210.435px / 504.246% 297.365% no-repeat",
-        }}
-      />
     </Box>
   );
 }
