@@ -4,7 +4,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const { sequelize } = require("./src/models/index.js"); // Sequelize instance for PostgreSQL connection
 
-const authRoutes = require("./src/routes/auth.js");
+const authRoutes = require("./src/routes/authRoutes.js");
 // const restaurantRoutes = require("./routes/restaurants");
 // const pizzaRoutes = require("./routes/pizzas");
 // const orderRoutes = require("./routes/orders");
@@ -21,7 +21,7 @@ app.use(morgan("dev")); // Logger for HTTP requests
 // app.use(abilityMiddleware); // Apply CASL authorization abilities
 
 // Routes
-app.use("/auth", authRoutes); // Routes for user registration and login
+app.use("api/auth", authRoutes); // Routes for user registration and login
 app.get("/", (req, res) => res.send("Welcome"))
 // app.use("/restaurants", restaurantRoutes); // Routes for restaurant management
 // app.use("/pizzas", pizzaRoutes); // Routes for pizza and toppings management

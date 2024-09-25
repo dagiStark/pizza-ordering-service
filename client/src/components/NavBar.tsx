@@ -1,8 +1,6 @@
 import { Box, Typography, Button, Link as LinkBase } from "@mui/material";
 import { Logo } from "../assets";
-import SignUp from "../pages/auth/SignUp";
-import LogIn from "../pages/auth/LogIn";
-import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 
 const NavBar = () => {

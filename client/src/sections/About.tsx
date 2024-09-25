@@ -6,7 +6,6 @@ import {
   IconButton,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import NavBar from "../components/NavBar";
 import { Image1, Image2 } from "../assets";
 
 function About() {
@@ -18,7 +17,6 @@ function About() {
           "linear-gradient(180deg, #FFF 0%, #FFC993 76%, #FFF8F1 100%)",
       }}
     >
-      <NavBar />
       <Box
         sx={{
           display: "flex",
