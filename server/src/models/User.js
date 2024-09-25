@@ -2,10 +2,13 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   const User = sequelize.define("User", {
-    name: { type: DataTypes.STRING },
+    fullName: { type: DataTypes.STRING },
     email: { type: DataTypes.STRING, unique: true },
     password: { type: DataTypes.STRING },
-    role: { type: DataTypes.STRING }, // ['customer', 'restaurant-manager', 'super-admin']
+    role: {
+      type: DataTypes.STRING,
+      defaultValue: "customer",
+    }, // ['customer', 'restaurant-manager', 'super-admin']
     restaurantId: { type: DataTypes.INTEGER, allowNull: true }, // For restaurant users
   });
 

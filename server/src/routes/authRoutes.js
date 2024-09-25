@@ -10,8 +10,8 @@ const { registerSchema } = require("../utils/validators");
 
 const router = express.Router();
 
-router.post("/signup", validate(registerSchema), register);
-router.post("/register", signup);
+router.post("/register", validate(registerSchema), register);
+router.post("/sign-up", signup);
 router.post("/login", login);
 router.post("/logout", logout);
 

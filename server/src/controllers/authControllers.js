@@ -6,38 +6,35 @@ import generateTokenAndSetCookie from "../utils/generateToken.js";
 export const signup = async (req, res) => {
   // TO DO latter
   try {
-    const { fullName, username, password, confirmPassword, gender } = req.body;
+    const { fullName, email, password, confirmPassword, restaurantId } = req.body;      // remember to add restaurantId while sending the request
     if (password !== confirmPassword) {
       return res.status(400).json({ error: "password didn't match!" });
     }
-    const user = await User.find({ username });
+    const user = await models.User.findOne({ where: { email } });
+
     if (user.length >= 1) {
       return res.status(400).json({ error: "username already exists!" });
     }
 
-    const boyProfilePic = `https://avatar.iran.liara.run/public/boy?username=${username}`;
-    const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${username}`;
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newUser = new User({
+    const newUser = await models.User.create({
       fullName,
-      username,
+      email,
       password: hashedPassword,
-      gender,
-      profilePic: gender === "male" ? boyProfilePic : girlProfilePic,
+      restaurantId,
     });
 
     if (newUser) {
-      generateTokenAndSetCookie(newUser._id, res);
-      await newUser.save();
+      generateTokenAndSetCookie(newUser.id, res);
       res.status(201).json({
-        _id: newUser._id,
+        id: newUser.id,
         fullName: newUser.fullName,
-        username: newUser.username,
-        gender: newUser.gender,
-        profilePic: newUser.profilePic,
+        email: newUser.email,
+        role: newUser.role,
+        restaurantId: newUser.restaurantId,
       });
     } else {
       res.status(400).json({ Error: "Failed to create new user" });
