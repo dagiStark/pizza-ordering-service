@@ -1,7 +1,13 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, Link as LinkBase } from "@mui/material";
 import { Logo } from "../assets";
+import SignUp from "../pages/auth/SignUp";
+import LogIn from "../pages/auth/LogIn";
+import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
+import { useAuthContext } from "../context/AuthContext";
 
 const NavBar = () => {
+  const { authUser } = useAuthContext();
+
   return (
     <Box
       sx={{
@@ -28,6 +34,16 @@ const NavBar = () => {
         <Typography sx={{ margin: "0 1rem", cursor: "pointer" }}>
           Home
         </Typography>
+        <LinkBase
+          component={Link}
+          sx={{
+            backgroundColor: "#FF8100",
+            color: "#fff",
+          }}
+          to={authUser ? "/orders" : "sign-up"}
+        >
+          Orders
+        </LinkBase>
         <Typography sx={{ margin: "0 1rem", cursor: "pointer" }}>
           Who We Are
         </Typography>
