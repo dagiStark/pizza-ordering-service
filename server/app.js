@@ -2,15 +2,15 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const { sequelize } = require("./models"); // Sequelize instance for PostgreSQL connection
+const { sequelize } = require("./src/models/index.js"); // Sequelize instance for PostgreSQL connection
 
-const authRoutes = require("./routes/auth");
-const restaurantRoutes = require("./routes/restaurants");
-const pizzaRoutes = require("./routes/pizzas");
-const orderRoutes = require("./routes/orders");
+const authRoutes = require("./src/routes/auth.js");
+// const restaurantRoutes = require("./routes/restaurants");
+// const pizzaRoutes = require("./routes/pizzas");
+// const orderRoutes = require("./routes/orders");
 
-const { abilityMiddleware } = require("./middlewares/authorization"); // CASL middleware for role-based actions
-const errorHandler = require("./middlewares/errorHandler"); // Global error handling middleware
+// const { abilityMiddleware } = require("./middlewares/authorization"); // CASL middleware for role-based actions
+const errorHandler = require("./src/middlewares/errorHandler.js"); // Global error handling middleware
 
 const app = express();
 
@@ -18,13 +18,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(morgan("dev")); // Logger for HTTP requests
-app.use(abilityMiddleware); // Apply CASL authorization abilities
+// app.use(abilityMiddleware); // Apply CASL authorization abilities
 
 // Routes
 app.use("/auth", authRoutes); // Routes for user registration and login
-app.use("/restaurants", restaurantRoutes); // Routes for restaurant management
-app.use("/pizzas", pizzaRoutes); // Routes for pizza and toppings management
-app.use("/orders", orderRoutes); // Routes for order management
+// app.use("/restaurants", restaurantRoutes); // Routes for restaurant management
+// app.use("/pizzas", pizzaRoutes); // Routes for pizza and toppings management
+// app.use("/orders", orderRoutes); // Routes for order management
 
 // Global error handling middleware
 app.use(errorHandler);
