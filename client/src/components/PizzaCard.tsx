@@ -1,4 +1,11 @@
-import { Box, Typography, Button, Avatar } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  Avatar,
+  Link as LinkBase,
+} from "@mui/material";
+import { Link } from "react-router-dom";
 import { Image2 } from "../assets";
 
 const PizzaCard = () => {
@@ -74,8 +81,8 @@ const PizzaCard = () => {
             <Typography variant="body1">Birr</Typography>
           </Box>
 
-          <Button
-            variant="contained"
+          <LinkBase
+            component={Link}
             sx={{
               backgroundColor: "#FF8100",
               color: "#fff",
@@ -86,9 +93,10 @@ const PizzaCard = () => {
                 backgroundColor: "#e0780c",
               },
             }}
+            to="/sign-up"
           >
             Order
-          </Button>
+          </LinkBase>
         </Box>
 
         <Box

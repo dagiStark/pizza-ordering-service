@@ -1,5 +1,5 @@
 import { Box, Typography, Button } from "@mui/material";
-import { logo } from "../assets";
+import { Logo } from "../assets";
 
 const NavBar = () => {
   return (
@@ -18,7 +18,7 @@ const NavBar = () => {
       <Box sx={{ flexGrow: 1 }}>
         <img
           style={{ maxWidth: "150px", height: "auto" }} // max width for responsiveness
-          src={logo}
+          src={Logo}
           alt="pizza logo"
         />
       </Box>
