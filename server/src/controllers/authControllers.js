@@ -1,12 +1,11 @@
-import User from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 const { models } = require("../models");
 import generateTokenAndSetCookie from "../utils/generateToken.js";
 
 export const signup = async (req, res) => {
-  // TO DO latter
   try {
-    const { fullName, email, password, confirmPassword, restaurantId } = req.body;      // remember to add restaurantId while sending the request
+    const { fullName, email, password, confirmPassword, restaurantId } =
+      req.body; // remember to add restaurantId while sending the request
     if (password !== confirmPassword) {
       return res.status(400).json({ error: "password didn't match!" });
     }
@@ -15,7 +14,6 @@ export const signup = async (req, res) => {
     if (user.length >= 1) {
       return res.status(400).json({ error: "username already exists!" });
     }
-
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -44,6 +42,7 @@ export const signup = async (req, res) => {
   }
 };
 
+// TO DO latter
 export const register = async (req, res) => {
   const { name, email, password, role, restaurantId } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);

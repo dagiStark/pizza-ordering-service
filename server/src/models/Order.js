@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   const Order = sequelize.define("Order", {
     status: {
-      type: DataTypes.ENUM("Preparing", "Delivered"),
+      type: DataTypes.ENUM("Preparing", "Ready", "Delivered"),
       defaultValue: "Preparing",
     },
     customerId: { type: DataTypes.INTEGER },
