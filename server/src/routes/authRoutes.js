@@ -5,8 +5,8 @@ const {
   logout,
   register,
 } = require("../controllers/authControllers.js");
-const { validate } = require("../middlewares/validate");
-const { registerSchema, restaurantSchema } = require("../utils/validators");
+const { validate } = require("../middlewares/validate.js");
+const { restaurantSchema } = require("../utils/validators.js");
 
 const router = express.Router();
 
@@ -15,4 +15,4 @@ router.post("/sign-up", signup);
 router.post("/login", login);
 router.post("/logout", logout);
 
-export default router;
+module.exports = router;

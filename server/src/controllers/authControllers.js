@@ -1,8 +1,8 @@
-import bcrypt from "bcryptjs";
+const bcrypt = require("bcrypt");
 const { models } = require("../models");
-import generateTokenAndSetCookie from "../utils/generateToken.js";
+const generateTokenAndSetCookie = require("../utils/generateToken.js");
 
-export const signup = async (req, res) => {
+const signup = async (req, res) => {
   try {
     const { fullName, email, password, confirmPassword, restaurantId } =
       req.body; // remember to add restaurantId while sending the request
@@ -44,7 +44,7 @@ export const signup = async (req, res) => {
 
 // TO DO latter
 
-export const register = async (req, res) => {
+const register = async (req, res) => {
   const { name, location, superAdmin, password, confirmPassword } = req.body;
   if (password !== confirmPassword) {
     return res.status(400).json({ error: "password didn't match!" });
@@ -83,7 +83,7 @@ export const register = async (req, res) => {
   }
 };
 
-export const login = async (req, res) => {
+const login = async (req, res) => {
   // finished login
   try {
     const { email, password } = req.body;
@@ -109,7 +109,7 @@ export const login = async (req, res) => {
   }
 };
 
-export const logout = async (req, res) => {
+const logout = async (req, res) => {
   // finished logout
   try {
     res.cookie("jwt", "", { maxAge: 0 });
@@ -118,3 +118,5 @@ export const logout = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+module.exports = { signup, register, login, logout };
