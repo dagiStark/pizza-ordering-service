@@ -18,7 +18,6 @@ const restaurantSchema = z.object({
 });
 
 const userSchema = z.object({
-  id: z.number().int().positive().optional(), // Optional, since it's auto-incremented
   fullName: z.string().min(1, { message: "Full name is required" }), // Must not be empty
   email: z.string().email({ message: "Invalid email address" }), // Valid email format
   password: z

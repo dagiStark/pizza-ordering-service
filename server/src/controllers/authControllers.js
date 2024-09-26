@@ -11,8 +11,8 @@ const signup = async (req, res) => {
     }
     const user = await models.User.findOne({ where: { email } });
 
-    if (user.length >= 1) {
-      return res.status(400).json({ error: "username already exists!" });
+    if (user) {
+      return res.status(400).json({ error: "user already exists!" });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -38,10 +38,10 @@ const signup = async (req, res) => {
       res.status(400).json({ Error: "Failed to create new user" });
     }
   } catch (error) {
+    console.log(error);
     res.status(500).json({ Error: "Internal server error" });
   }
 };
-
 
 const register = async (req, res) => {
   const { name, location, superAdmin, password, confirmPassword } = req.body;
