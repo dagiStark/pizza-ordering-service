@@ -108,7 +108,6 @@ const login = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-  // finished logout
   try {
     res.cookie("jwt", "", { maxAge: 0 });
     res.status(200).json({ message: "Logged out successfully" });
