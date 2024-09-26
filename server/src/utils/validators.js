@@ -12,6 +12,7 @@ const restaurantSchema = z.object({
   name: z.string().min(1, { message: "Name is required" }), // Must not be empty
   location: z.string().optional(), // Can be null or optional
   superAdmin: z.string().min(1, { message: "superAdmin is required" }), // Cannot be empty
+  email: z.string().email({ message: "Invalid email address" }), // Valid email format
   password: z
     .string()
     .min(4, { message: "Password must be at least 4 characters long" }), // Minimum 8 characters for the password

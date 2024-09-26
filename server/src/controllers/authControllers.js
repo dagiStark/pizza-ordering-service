@@ -44,7 +44,8 @@ const signup = async (req, res) => {
 };
 
 const register = async (req, res) => {
-  const { name, location, superAdmin, password, confirmPassword } = req.body;
+  const { name, location, superAdmin, email, password, confirmPassword } =
+    req.body;
   if (password !== confirmPassword) {
     return res.status(400).json({ error: "password didn't match!" });
   }
@@ -59,6 +60,12 @@ const register = async (req, res) => {
         .status(400)
         .json({ message: "Restaurant with this name already exists" });
     }
+    // Check if a user with the same email already exists
+    const user = await models.User.findOne({ where: { email } });
+
+    if (user) {
+      return res.status(400).json({ error: "user already exists!" });
+    }
     // Hash the password for superAdmin
     const hashedPassword = await bcrypt.hash(password, 10);
     // Create a new restaurant
@@ -66,6 +73,7 @@ const register = async (req, res) => {
       name,
       location,
       superAdmin,
+      email,
       password: hashedPassword, // Store hashed password for superAdmin
     });
 
@@ -74,6 +82,7 @@ const register = async (req, res) => {
       id: restaurant.id,
       name: restaurant.name,
       location: restaurant.location,
+      email: restaurant.email,
       message: "Restaurant created successfully!",
     });
   } catch (error) {
