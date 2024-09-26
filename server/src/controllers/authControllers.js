@@ -43,18 +43,44 @@ export const signup = async (req, res) => {
 };
 
 // TO DO latter
-export const register = async (req, res) => {
-  const { name, email, password, role, restaurantId } = req.body;
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const user = await models.User.create({
-    name,
-    email,
-    password: hashedPassword,
-    role,
-    restaurantId,
-  });
 
-  res.status(201).send(user);
+export const register = async (req, res) => {
+  const { name, location, superAdmin, password, confirmPassword } = req.body;
+  if (password !== confirmPassword) {
+    return res.status(400).json({ error: "password didn't match!" });
+  }
+
+  try {
+    // Check if a restaurant with the same name already exists
+    const existingRestaurant = await models.Restaurant.findOne({
+      where: { name },
+    });
+    if (existingRestaurant) {
+      return res
+        .status(400)
+        .json({ message: "Restaurant with this name already exists" });
+    }
+    // Hash the password for superAdmin
+    const hashedPassword = await bcrypt.hash(password, 10);
+    // Create a new restaurant
+    const restaurant = await models.Restaurant.create({
+      name,
+      location,
+      superAdmin,
+      password: hashedPassword, // Store hashed password for superAdmin
+    });
+
+    // Send back the created restaurant details (excluding password)
+    return res.status(201).json({
+      id: restaurant.id,
+      name: restaurant.name,
+      location: restaurant.location,
+      message: "Restaurant created successfully!",
+    });
+  } catch (error) {
+    console.error("Error during restaurant registration:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
 };
 
 export const login = async (req, res) => {
