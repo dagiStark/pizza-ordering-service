@@ -42,7 +42,6 @@ const signup = async (req, res) => {
   }
 };
 
-// TO DO latter
 
 const register = async (req, res) => {
   const { name, location, superAdmin, password, confirmPassword } = req.body;
