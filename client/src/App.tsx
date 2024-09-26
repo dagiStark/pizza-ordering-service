@@ -3,7 +3,6 @@ import Home from "./pages/Home";
 import "./App.css";
 import SignUp from "./pages/auth/SignUp";
 import LogIn from "./pages/auth/LogIn";
-import NavBar from "./components/NavBar";
 
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuthContext } from "./context/AuthContext";
@@ -14,7 +13,6 @@ function App() {
   return (
     <>
       <Box>
-        <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route

@@ -48,6 +48,19 @@ const NavBar = () => {
         <Typography sx={{ margin: "0 1rem", cursor: "pointer" }}>
           Contact Us
         </Typography>
+
+        {authUser && authUser.role !== "customer" && (
+          <LinkBase
+            component={Link}
+            sx={{
+              backgroundColor: "#FF8100",
+              color: "#fff",
+            }}
+            to={"/dashboard"}
+          >
+            Dashboard
+          </LinkBase>
+        )}
       </Box>
 
       {/* Register Button */}
