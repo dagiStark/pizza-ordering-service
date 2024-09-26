@@ -23,11 +23,15 @@ const userSchema = z.object({
   password: z
     .string()
     .min(4, { message: "Password must be at least 4 characters long" }), // Minimum length for password
-  role: z
-    .string()
-    .optional()
-    .default("customer"), // Optional with default value
+  role: z.string().optional().default("customer"), // Optional with default value
   restaurantId: z.number().int().positive().optional(), // Optional for restaurant users
+});
+
+const loginSchema = z.object({
+  email: z.string().email({ message: "Invalid email address" }), // Valid email format
+  password: z
+    .string()
+    .min(4, { message: "Password must be at least 4 characters long" }), // Minimum length for password
 });
 
 const pizzaSchema = z.object({
@@ -48,4 +52,5 @@ module.exports = {
   orderSchema,
   restaurantSchema,
   userSchema,
+  loginSchema,
 };
