@@ -18,8 +18,9 @@ module.exports = (sequelize) => {
     },
     superAdmin: {
       type: DataTypes.STRING,
-      allowNull: false, 
+      allowNull: false,
     },
+    password: { type: DataTypes.STRING },
   });
 
   Restaurant.associate = (models) => {
