@@ -8,9 +8,20 @@ import {
   Link,
 } from "@mui/material";
 import PizzaIcon from "@mui/icons-material/LocalPizza";
-import { Logo, EmojiPizza } from "../../assets";
+import { EmojiPizza } from "../../assets";
+import { useState } from "react";
+import useLogin from "../../hooks/useLogin";
 
 const LogIn = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { login, loading } = useLogin();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await login(email, password);
+  };
+
   return (
     <Box
       sx={{
@@ -80,38 +91,48 @@ const LogIn = () => {
           </Box>
 
           {/* Form */}
-          <TextField
-            fullWidth
-            label="Email address"
-            type="email"
-            margin="normal"
-          />
-          <TextField
-            fullWidth
-            label="Password"
-            type="password"
-            margin="normal"
-          />
+          <form onSubmit={handleSubmit}>
+            <TextField
+              fullWidth
+              label="Email address"
+              type="email"
+              margin="normal"
+              value={email} // Bind email to state
+              onChange={(e) => setEmail(e.target.value)} // Update state on change
+              required
+            />
+            <TextField
+              fullWidth
+              label="Password"
+              type="password"
+              margin="normal"
+              value={password} // Bind password to state
+              onChange={(e) => setPassword(e.target.value)} // Update state on change
+              required
+            />
 
-          {/* keep logging */}
-          <FormControlLabel control={<Checkbox />} label="Remember me" />
+            {/* Keep Logging */}
+            <FormControlLabel control={<Checkbox />} label="Remember me" />
 
-          {/* LogIn Button */}
-          <Button
-            fullWidth
-            variant="contained"
-            sx={{
-              backgroundColor: "#FF8100",
-              color: "#FFF",
-              padding: "12px",
-              marginTop: "16px",
-              "&:hover": {
-                backgroundColor: "#e0780c",
-              },
-            }}
-          >
-            Log In
-          </Button>
+            {/* LogIn Button */}
+            <Button
+              fullWidth
+              type="submit" // Make the button submit the form
+              variant="contained"
+              sx={{
+                backgroundColor: "#FF8100",
+                color: "#FFF",
+                padding: "12px",
+                marginTop: "16px",
+                "&:hover": {
+                  backgroundColor: "#e0780c",
+                },
+              }}
+              disabled={loading} // Optionally disable the button when loading
+            >
+              {loading ? "Logging In..." : "Log In"}
+            </Button>
+          </form>
 
           {/* SignUp Option */}
           <Box

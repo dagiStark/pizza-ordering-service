@@ -13,8 +13,9 @@ import NavBar from "./components/NavBar";
 function App() {
   const { authUser } = useAuthContext();
   const location = useLocation();
+  const hiddenNavRoutes = ["/dashboard", "/sign-up", "/login", "/register"];
 
-  const shouldShowNavbar = !location.pathname.includes("/dashboard");
+  const shouldShowNavbar = !hiddenNavRoutes.includes(location.pathname);
 
   return (
     <>

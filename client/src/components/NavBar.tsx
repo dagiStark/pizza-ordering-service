@@ -1,6 +1,5 @@
-import { Box, Typography, Button, Link as LinkBase } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { Logo } from "../assets";
-import { Link } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
 import { Link as RouterLink, useNavigate, useLocation } from "react-router-dom";
 import { scroller } from "react-scroll"; // For smooth scrolling
@@ -64,8 +63,7 @@ const NavBar = () => {
         {/* Home link */}
         <Typography
           sx={{ margin: "0 1rem", cursor: "pointer" }}
-          component={RouterLink}
-          to="/"
+          onClick={() => handleScrollToSection("about")}
         >
           Home
         </Typography>
@@ -122,6 +120,24 @@ const NavBar = () => {
           </Box>
         )}
       </Box>
+
+      {!authUser && (
+        <Box
+          component={RouterLink}
+          to={"/login"}
+          sx={{
+            backgroundColor: "#FF8100",
+            color: "#fff",
+            margin: "0 1rem",
+            padding: "0.5rem 1rem",
+            borderRadius: "4px",
+            textDecoration: "none",
+            cursor: "pointer",
+          }}
+        >
+          logIn
+        </Box>
+      )}
 
       {/* Register Button */}
       <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "flex-end" }}>

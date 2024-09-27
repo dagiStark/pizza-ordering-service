@@ -17,9 +17,7 @@ const Home = () => {
         <TopRestaurants />
         <PopularPizzas />
         <Fasting />
-        <section id="contact-us">
-          <ContactUs />
-        </section>
+        <ContactUs />
       </Stack>
     </Box>
   );
