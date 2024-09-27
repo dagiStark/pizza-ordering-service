@@ -36,9 +36,15 @@ const loginSchema = z.object({
 });
 
 const pizzaSchema = z.object({
-  name: z.string(),
-  defaultToppings: z.array(z.number()), // Array of Topping IDs
-  restaurantId: z.number(),
+  name: z.string().min(1, "Name is required"),
+  restaurantId: z
+    .number()
+    .int("Restaurant ID must be an integer")
+    .positive("Restaurant ID must be positive"),
+  price: z.number().positive("Price must be a positive number").optional(),
+  image: z
+    .instanceof(Buffer, { message: "Image must be a valid Buffer" })
+    .optional(),
 });
 
 const orderSchema = z.object({
