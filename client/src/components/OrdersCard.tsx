@@ -10,7 +10,7 @@ type Packages = {
   name: string;
   topping: string;
   quantity: string;
-  email: string;
+  phoneNo: string;
   createdAt: string;
   status: string;
 };
@@ -34,8 +34,8 @@ const OrdersCard = () => {
         size: 150,
       },
       {
-        accessorKey: "email",
-        header: "Email",
+        accessorKey: "phoneNo",
+        header: "Customer No",
         size: 150,
       },
       {
@@ -70,7 +70,7 @@ const data: Packages[] = [
     name: "Pizza",
     topping: "Tommato",
     quantity: "4",
-    email: "example@gmail.com",
+    phoneNo: "+251-95-64-52",
     createdAt: "sep 35, 2023",
     status: "delivered",
   },
@@ -78,7 +78,7 @@ const data: Packages[] = [
     name: "Pizza",
     topping: "Tommato",
     quantity: "4",
-    email: "example@gmail.com",
+    phoneNo: "+251-95-64-52",
     createdAt: "sep 35, 2023",
     status: "delivered",
   },
@@ -86,7 +86,7 @@ const data: Packages[] = [
     name: "Pizza",
     topping: "Tommato",
     quantity: "4",
-    email: "example@gmail.com",
+    phoneNo: "+251-95-64-52",
     createdAt: "sep 35, 2023",
     status: "delivered",
   },
@@ -94,7 +94,7 @@ const data: Packages[] = [
     name: "Pizza",
     topping: "Tommato",
     quantity: "4",
-    email: "example@gmail.com",
+    phoneNo: "+251-95-64-52",
     createdAt: "sep 35, 2023",
     status: "delivered",
   },

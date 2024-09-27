@@ -6,43 +6,29 @@ import {
 } from "material-react-table";
 import { useMemo } from "react";
 
-type Person = {
-  name: {
-    firstName: string;
-    lastName: string;
-  };
-  address: string;
-  city: string;
-  state: string;
+type Role = {
+  roleName: string;
+  createdAt: string;
+  actions: string;
 };
 
 const RoleCard = () => {
-  const columns = useMemo<MRT_ColumnDef<Person>[]>(
+  const columns = useMemo<MRT_ColumnDef<Role>[]>(
     () => [
       {
-        accessorKey: "name.firstName", //access nested data with dot notation
-        header: "First Name",
+        accessorKey: "roleName", //access nested data with dot notation
+        header: "Role Name",
         size: 150,
       },
       {
-        accessorKey: "name.lastName",
-        header: "Last Name",
+        accessorKey: "createdAt",
+        header: "Created At",
         size: 150,
       },
       {
-        accessorKey: "address", //normal accessorKey
-        header: "Address",
+        accessorKey: "actions", //normal accessorKey
+        header: "Actions",
         size: 200,
-      },
-      {
-        accessorKey: "city",
-        header: "City",
-        size: 150,
-      },
-      {
-        accessorKey: "state",
-        header: "State",
-        size: 150,
       },
     ],
     []
@@ -61,50 +47,31 @@ const RoleCard = () => {
 
 export default RoleCard;
 
-const data: Person[] = [
+const data: Role[] = [
   {
-    name: {
-      firstName: "John",
-      lastName: "Doe",
-    },
-    address: "261 Erdman Ford",
-    city: "East Daphne",
-    state: "Kentucky",
+    roleName:"kitchen Manager",
+    createdAt: "2/5/08",
+    actions: "active",
   },
   {
-    name: {
-      firstName: "Jane",
-      lastName: "Doe",
-    },
-    address: "769 Dominic Grove",
-    city: "Columbus",
-    state: "Ohio",
+    roleName:"kitchen Manager",
+    createdAt: "2/5/08",
+    actions: "active",
   },
   {
-    name: {
-      firstName: "Joe",
-      lastName: "Doe",
-    },
-    address: "566 Brakus Inlet",
-    city: "South Linda",
-    state: "West Virginia",
+    roleName:"kitchen Manager",
+    createdAt: "2/5/08",
+    actions: "active",
   },
   {
-    name: {
-      firstName: "Kevin",
-      lastName: "Vandy",
-    },
-    address: "722 Emie Stream",
-    city: "Lincoln",
-    state: "Nebraska",
+    roleName:"kitchen Manager",
+    createdAt: "2/5/08",
+    actions: "active",
   },
   {
-    name: {
-      firstName: "Joshua",
-      lastName: "Rolluffs",
-    },
-    address: "32188 Larkin Turnpike",
-    city: "Omaha",
-    state: "Nebraska",
+    roleName:"kitchen Manager",
+    createdAt: "2/5/08",
+    actions: "active",
   },
+ 
 ];
