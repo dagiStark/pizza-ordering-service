@@ -33,11 +33,11 @@ function App() {
           />
           <Route
             path="/dashboard"
-            element={!authUser ? <Dashboard /> : <Navigate to={"/sign-up"} />}
+            element={authUser ? <Dashboard /> : <Navigate to={"/sign-up"} />}
           />
           <Route
             path="/orders"
-            element={!authUser ? <Orders /> : <Navigate to={"/sign-up"} />}
+            element={authUser ? <Orders /> : <Navigate to={"/sign-up"} />}
           />
         </Routes>
       </Box>
