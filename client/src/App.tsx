@@ -4,16 +4,22 @@ import "./App.css";
 import SignUp from "./pages/auth/SignUp";
 import LogIn from "./pages/auth/LogIn";
 
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useAuthContext } from "./context/AuthContext";
 import Dashboard from "./pages/Dashboard";
+import Orders from "./pages/Orders";
+import NavBar from "./components/NavBar";
 
 function App() {
   const { authUser } = useAuthContext();
+  const location = useLocation();
+
+  const shouldShowNavbar = !location.pathname.includes("/dashboard");
 
   return (
     <>
       <Box>
+        {shouldShowNavbar && <NavBar />}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
@@ -27,6 +33,10 @@ function App() {
           <Route
             path="/dashboard"
             element={!authUser ? <Dashboard /> : <Navigate to={"/sign-up"} />}
+          />
+          <Route
+            path="/orders"
+            element={!authUser ? <Orders /> : <Navigate to={"/sign-up"} />}
           />
         </Routes>
       </Box>

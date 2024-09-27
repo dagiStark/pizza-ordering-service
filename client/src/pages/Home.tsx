@@ -7,19 +7,19 @@ import {
   Fasting,
   ContactUs,
 } from "../sections";
-import NavBar from "../components/NavBar";
 
 const Home = () => {
   return (
     <Box>
       <Stack>
-        <NavBar />
         <About />
         <FeaturedPizza />
         <TopRestaurants />
         <PopularPizzas />
         <Fasting />
-        <ContactUs />
+        <section id="contact-us">
+          <ContactUs />
+        </section>
       </Stack>
     </Box>
   );
