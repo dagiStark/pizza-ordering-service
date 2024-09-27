@@ -98,6 +98,4 @@ const data: Packages[] = [
     createdAt: "sep 35, 2023",
     status: "delivered",
   },
-  
-
 ];
