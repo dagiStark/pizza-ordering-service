@@ -6,12 +6,10 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { EmojiPizza } from "../assets";
 import MenuCard from "../components/MenuCard";
 import OrdersCard from "../components/OrdersCard";
-
-
+import RoleCard from "../components/RoleCard";
+import UserCard from "../components/UserCard";
 
 function Dashboard() {
- 
-
   return (
     <Box>
       {/* sidebar */}
@@ -64,6 +62,8 @@ function Dashboard() {
         <Box>
           <MenuCard />
           <OrdersCard />
+          <RoleCard />
+          <UserCard />
         </Box>
       </Box>
     </Box>
