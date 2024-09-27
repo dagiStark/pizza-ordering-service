@@ -41,27 +41,48 @@ function Dashboard() {
       <Box
         sx={{
           width: "250px",
-          backgroundColor: "#FFEAD9", // Light beige background for sidebar
           padding: "20px",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
           height: "100vh",
+          gap: "50px"
         }}
       >
         <Box>
-          <Box display="flex" alignItems="center" marginBottom="20px">
+          <Box
+            display="flex"
+            alignItems="center"
+            marginBottom="20px"
+            justifyContent={"space-between"}
+          >
+            <Typography variant="h5" fontWeight="bold">
+              PIZZA
+            </Typography>
+            <NotesIcon sx={{ marginRight: "10px" }} />
+          </Box>
+
+          <Box
+            display="flex"
+            alignItems="center"
+            marginBottom="20px"
+            justifyContent={"center"}
+            sx={{
+              backgroundColor: "#FFEAD9", // Light beige background for Pizza
+            }}
+          >
             <img
               src={EmojiPizza}
               alt="pizza"
               style={{ width: "40px", marginRight: "10px" }}
             />
-            <Typography variant="h5" fontWeight="bold">
-              PIZZA
-            </Typography>
           </Box>
 
-          <Stack spacing={2}>
+          <Stack
+            spacing={2}
+            display={"flex"}
+            flexDirection={"column"}
+            marginLeft={"10%"}
+          >
             <Box
               display="flex"
               alignItems="center"
