@@ -10,6 +10,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { EmojiPizza } from "../assets";
+import MenuCard from "../components/MenuCard";
 
 type Person = {
   name: {
@@ -109,6 +110,7 @@ function Dashboard() {
 
         <Box>
           <MaterialReactTable table={table} />
+          <MenuCard />
         </Box>
       </Box>
     </Box>
