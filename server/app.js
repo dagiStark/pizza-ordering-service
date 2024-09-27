@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
+
 const { sequelize } = require("./src/models/index.js"); // Sequelize instance for PostgreSQL connection
 
 const authRoutes = require("./src/routes/authRoutes.js");

@@ -37,11 +37,14 @@ const loginSchema = z.object({
 
 const pizzaSchema = z.object({
   name: z.string().min(1, "Name is required"),
-  restaurantId: z
+  restaurantId: z.coerce
     .number()
     .int("Restaurant ID must be an integer")
     .positive("Restaurant ID must be positive"),
-  price: z.number().positive("Price must be a positive number").optional(),
+  price: z.coerce
+    .number()
+    .positive("Price must be a positive number")
+    .optional(),
   image: z
     .instanceof(Buffer, { message: "Image must be a valid Buffer" })
     .optional(),
