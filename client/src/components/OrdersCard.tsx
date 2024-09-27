@@ -6,42 +6,46 @@ import {
 } from "material-react-table";
 import { useMemo } from "react";
 
-type Person = {
-  name: {
-    firstName: string;
-    lastName: string;
-  };
-  address: string;
-  city: string;
-  state: string;
+type Packages = {
+  name: string;
+  topping: string;
+  quantity: string;
+  email: string;
+  createdAt: string;
+  status: string;
 };
 
 const OrdersCard = () => {
-  const columns = useMemo<MRT_ColumnDef<Person>[]>(
+  const columns = useMemo<MRT_ColumnDef<Packages>[]>(
     () => [
       {
-        accessorKey: "name.firstName", //access nested data with dot notation
-        header: "First Name",
+        accessorKey: "name", //access nested data with dot notation
+        header: "Name",
         size: 150,
       },
       {
-        accessorKey: "name.lastName",
-        header: "Last Name",
-        size: 150,
-      },
-      {
-        accessorKey: "address", //normal accessorKey
-        header: "Address",
+        accessorKey: "topping", //normal accessorKey
+        header: "Topping",
         size: 200,
       },
       {
-        accessorKey: "city",
-        header: "City",
+        accessorKey: "quantity",
+        header: "Quantity",
         size: 150,
       },
       {
-        accessorKey: "state",
-        header: "State",
+        accessorKey: "email",
+        header: "Email",
+        size: 150,
+      },
+      {
+        accessorKey: "createdAt",
+        header: "Created At",
+        size: 150,
+      },
+      {
+        accessorKey: "status",
+        header: "Status",
         size: 150,
       },
     ],
@@ -61,50 +65,39 @@ const OrdersCard = () => {
 
 export default OrdersCard;
 
-const data: Person[] = [
+const data: Packages[] = [
   {
-    name: {
-      firstName: "John",
-      lastName: "Doe",
-    },
-    address: "261 Erdman Ford",
-    city: "East Daphne",
-    state: "Kentucky",
+    name: "Pizza",
+    topping: "Tommato",
+    quantity: "4",
+    email: "example@gmail.com",
+    createdAt: "sep 35, 2023",
+    status: "delivered",
   },
   {
-    name: {
-      firstName: "Jane",
-      lastName: "Doe",
-    },
-    address: "769 Dominic Grove",
-    city: "Columbus",
-    state: "Ohio",
+    name: "Pizza",
+    topping: "Tommato",
+    quantity: "4",
+    email: "example@gmail.com",
+    createdAt: "sep 35, 2023",
+    status: "delivered",
   },
   {
-    name: {
-      firstName: "Joe",
-      lastName: "Doe",
-    },
-    address: "566 Brakus Inlet",
-    city: "South Linda",
-    state: "West Virginia",
+    name: "Pizza",
+    topping: "Tommato",
+    quantity: "4",
+    email: "example@gmail.com",
+    createdAt: "sep 35, 2023",
+    status: "delivered",
   },
   {
-    name: {
-      firstName: "Kevin",
-      lastName: "Vandy",
-    },
-    address: "722 Emie Stream",
-    city: "Lincoln",
-    state: "Nebraska",
+    name: "Pizza",
+    topping: "Tommato",
+    quantity: "4",
+    email: "example@gmail.com",
+    createdAt: "sep 35, 2023",
+    status: "delivered",
   },
-  {
-    name: {
-      firstName: "Joshua",
-      lastName: "Rolluffs",
-    },
-    address: "32188 Larkin Turnpike",
-    city: "Omaha",
-    state: "Nebraska",
-  },
+  
+
 ];

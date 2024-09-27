@@ -60,8 +60,8 @@ function Dashboard() {
         </Box>
 
         <Box>
-          <MenuCard />
           <OrdersCard />
+          <MenuCard />
           <RoleCard />
           <UserCard />
         </Box>
