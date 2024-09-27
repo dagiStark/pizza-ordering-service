@@ -3,6 +3,7 @@ import { Logo } from "../assets";
 import { useAuthContext } from "../context/AuthContext";
 import { Link as RouterLink, useNavigate, useLocation } from "react-router-dom";
 import { scroller } from "react-scroll"; // For smooth scrolling
+import useLogout from "../hooks/useLogout";
 import { useEffect, useState } from "react";
 
 const NavBar = () => {
@@ -12,6 +13,7 @@ const NavBar = () => {
   const location = useLocation();
 
   const [sectionToScroll, setSectionToScroll] = useState(null);
+  const { logout } = useLogout();
 
   useEffect(() => {
     if (sectionToScroll && location.pathname === "/") {
@@ -121,7 +123,7 @@ const NavBar = () => {
         )}
       </Box>
 
-      {!authUser && (
+      {!authUser ? (
         <Box
           component={RouterLink}
           to={"/login"}
@@ -137,6 +139,18 @@ const NavBar = () => {
         >
           logIn
         </Box>
+      ) : (
+        <Button
+          variant="contained"
+          sx={{
+            padding: "10px 30px",
+            borderRadius: "5px",
+            background: "#FF890F",
+          }}
+          onClick={logout}
+        >
+          logout
+        </Button>
       )}
 
       {/* Register Button */}

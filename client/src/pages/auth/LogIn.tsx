@@ -130,7 +130,7 @@ const LogIn = () => {
               }}
               disabled={loading} // Optionally disable the button when loading
             >
-              {loading ? "Logging In..." : "Log In"}
+              {loading ? "Logging In..." : "LogIn"}
             </Button>
           </form>
 
