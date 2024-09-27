@@ -6,9 +6,10 @@ import {
   type MRT_ColumnDef,
 } from "material-react-table";
 import NotesIcon from "@mui/icons-material/Notes";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { EmojiPizza } from "../assets";
-
 
 type Person = {
   name: {
@@ -59,6 +60,7 @@ function Dashboard() {
 
   return (
     <Box>
+      {/* sidebar */}
       <Box>
         <Box>
           <Typography>PIZZA</Typography>
@@ -94,11 +96,21 @@ function Dashboard() {
         </Box>
       </Box>
 
+      {/* main content */}
+
       <Box>
-        <Box></Box>
-        <Box></Box>
+        <Box>
+          <Typography>Orders</Typography>
+          <Box>
+            <NotificationsIcon />
+            <AccountCircleIcon />
+          </Box>
+        </Box>
+
+        <Box>
+          <MaterialReactTable table={table} />
+        </Box>
       </Box>
-      <MaterialReactTable table={table} />
     </Box>
   );
 }
