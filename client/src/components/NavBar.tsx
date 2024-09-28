@@ -2,7 +2,7 @@ import { Box, Typography, Button } from "@mui/material";
 import { PizzaDeliver } from "../assets";
 import { useAuthContext } from "../context/AuthContext";
 import { Link as RouterLink, useNavigate, useLocation } from "react-router-dom";
-import { scroller } from "react-scroll"; // For smooth scrolling
+import { scroller } from "react-scroll"; 
 import useLogout from "../hooks/useLogout";
 import { useEffect, useState } from "react";
 
@@ -101,9 +101,9 @@ const NavBar = () => {
           sx={{
             margin: "0 1rem",
             cursor: "pointer",
-            fontSize: "1.2rem", // Larger size
-            color: activeLink === "home" ? "#FF8100" : "inherit", // Active state color
-            fontWeight: activeLink === "home" ? "bold" : "normal", // Bold if active
+            fontSize: "1.3rem",
+            color: activeLink === "home" ? "#FF8100" : "inherit",
+            fontWeight: activeLink === "home" ? "bold" : "normal",
           }}
           onClick={() => {
             handleScrollToSection("about");
@@ -121,9 +121,9 @@ const NavBar = () => {
             margin: "0 1rem",
             cursor: "pointer",
             textDecoration: "none",
-            fontSize: "1.2rem", // Larger size
-            color: activeLink === "orders" ? "#FF8100" : "inherit", // Active state color
-            fontWeight: activeLink === "orders" ? "bold" : "normal", // Bold if active
+            fontSize: "1.3rem",
+            color: activeLink === "orders" ? "#FF8100" : "inherit",
+            fontWeight: activeLink === "orders" ? "bold" : "normal",
           }}
           onClick={() => handleLinkClick("orders")}
         >
@@ -135,9 +135,9 @@ const NavBar = () => {
           sx={{
             margin: "0 1rem",
             cursor: "pointer",
-            fontSize: "1.2rem", // Larger size
-            color: activeLink === "who-we-are" ? "#FF8100" : "inherit", // Active state color
-            fontWeight: activeLink === "who-we-are" ? "bold" : "normal", // Bold if active
+            fontSize: "1.3rem",
+            color: activeLink === "who-we-are" ? "#FF8100" : "inherit",
+            fontWeight: activeLink === "who-we-are" ? "bold" : "normal",
           }}
           onClick={() => {
             handleScrollToSection("who-we-are");
@@ -152,9 +152,9 @@ const NavBar = () => {
           sx={{
             margin: "0 1rem",
             cursor: "pointer",
-            fontSize: "1.2rem", // Larger size
-            color: activeLink === "contact-us" ? "#FF8100" : "inherit", // Active state color
-            fontWeight: activeLink === "contact-us" ? "bold" : "normal", // Bold if active
+            fontSize: "1.3rem",
+            color: activeLink === "contact-us" ? "#FF8100" : "inherit",
+            fontWeight: activeLink === "contact-us" ? "bold" : "normal",
           }}
           onClick={() => {
             handleScrollToSection("contact-us");
@@ -177,7 +177,7 @@ const NavBar = () => {
               borderRadius: "4px",
               textDecoration: "none",
               cursor: "pointer",
-              fontSize: "1.2rem", // Larger size
+              fontSize: "1.3rem",
               fontWeight: "bold",
             }}
           >
@@ -201,26 +201,35 @@ const NavBar = () => {
             sx={{
               backgroundColor: "#FF8100",
               color: "#fff",
-              margin: "0 1rem",
-              padding: "0.5rem 1rem",
-              borderRadius: "4px",
+              padding: "0.6rem 1.5rem", 
+              borderRadius: "50px", 
               textDecoration: "none",
               cursor: "pointer",
+              fontWeight: "bold", 
+              transition: "background-color 0.3s ease", 
+              "&:hover": {
+                backgroundColor: "#E67600",
+              },
             }}
           >
-            logIn
+            Log In
           </Box>
         ) : (
           <Button
             variant="contained"
             sx={{
               padding: "10px 30px",
-              borderRadius: "5px",
+              borderRadius: "50px", 
               background: "#FF890F",
+              fontWeight: "bold",
+              transition: "background-color 0.3s ease", 
+              "&:hover": {
+                backgroundColor: "#E67A0F", 
+              },
             }}
             onClick={logout}
           >
-            logout
+            Log Out
           </Button>
         )}
 
@@ -230,8 +239,13 @@ const NavBar = () => {
             variant="contained"
             sx={{
               padding: "10px 30px",
-              borderRadius: "5px",
+              borderRadius: "50px", 
               background: "#FF890F",
+              fontWeight: "bold",
+              transition: "background-color 0.3s ease", 
+              "&:hover": {
+                backgroundColor: "#E67A0F", 
+              },
             }}
             onClick={() => {
               alert("clicked");
