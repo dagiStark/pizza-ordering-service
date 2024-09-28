@@ -48,6 +48,7 @@ const pizzaSchema = z.object({
   image: z
     .instanceof(Buffer, { message: "Image must be a valid Buffer" })
     .optional(),
+  topping: z.array(z.string().min(1, "Topping name is required")).optional(),
 });
 
 const orderSchema = z.object({

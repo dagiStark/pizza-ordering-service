@@ -7,7 +7,7 @@ const { sequelize } = require("./src/models/index.js"); // Sequelize instance fo
 
 const authRoutes = require("./src/routes/authRoutes.js");
 // const restaurantRoutes = require("./routes/restaurants");
-const pizzaRoutes = require("./routes/pizzaRoutes");
+const pizzaRoutes = require("./src/routes/pizzaRoutes");
 // const orderRoutes = require("./routes/orders");
 
 // const { abilityMiddleware } = require("./middlewares/authorization"); // CASL middleware for role-based actions

@@ -13,4 +13,4 @@ router.post(
   upload
 );
 
-model.exports = router;
+module.exports = router;
