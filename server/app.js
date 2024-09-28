@@ -26,7 +26,6 @@ app.use("/auth", authRoutes);
 app.use("/pizza", pizzaRoutes);
 app.use("/role", roleRoutes);
 app.use("/order", orderRoutes);
-app.get("/", (req, res) => res.send("Welcome"));
 
 // Global error handling middleware
 app.use(errorHandler);
