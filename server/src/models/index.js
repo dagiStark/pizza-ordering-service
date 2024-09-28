@@ -18,7 +18,7 @@ const models = {
   Pizza: require("./Pizza")(sequelize),
   Topping: require("./Topping")(sequelize),
   Order: require("./Order")(sequelize),
-  Role: require('./Role')(sequelize)
+  Role: require("./Role")(sequelize),
 };
 
 module.exports = { sequelize, models };

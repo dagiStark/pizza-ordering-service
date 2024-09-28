@@ -51,20 +51,22 @@ const pizzaSchema = z.object({
   topping: z.array(z.string().min(1, "Topping name is required")).optional(),
 });
 
-const orderSchema = z.object({
-  pizzaId: z.number(),
-  selectedToppings: z.array(z.number()), // Array of Topping IDs
-  restaurantId: z.number(),
-});
 
 const roleSchema = z.object({
   roleName: z
-    .string()
-    .min(1, { message: "Role name is required" }),
+  .string()
+  .min(1, { message: "Role name is required" }),
   
   permissions: z
-    .array(z.string().min(1, { message: "Permission must be a valid string" }))
-    .nonempty({ message: "Permissions array cannot be empty" }),
+  .array(z.string().min(1, { message: "Permission must be a valid string" }))
+  .nonempty({ message: "Permissions array cannot be empty" }),
+});
+
+const orderSchema = z.object({
+  status: z.enum(["Preparing", "Ready", "Delivered"]).optional(), // Default is "Preparing"
+  customerId: z.coerce.number().int("Customer ID must be an integer").positive("Customer ID must be positive"),
+  pizzaId: z.coerce.number().int("Pizza ID must be an integer").positive("Pizza ID must be positive"),
+  restaurantId: z.coerce.number().int("Restaurant ID must be an integer").positive("Restaurant ID must be positive"),
 });
 
 module.exports = {

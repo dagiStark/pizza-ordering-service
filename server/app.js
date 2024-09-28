@@ -5,11 +5,10 @@ const morgan = require("morgan");
 
 const { sequelize } = require("./src/models/index.js"); // Sequelize instance for PostgreSQL connection
 
-const authRoutes = require("./src/routes/authRoutes.js");
-// const restaurantRoutes = require("./routes/restaurants");
+const authRoutes = require("./src/routes/authRoutes");
 const pizzaRoutes = require("./src/routes/pizzaRoutes");
-// const orderRoutes = require("./routes/orders");
 const roleRoutes = require("./src/routes/roleRoutes");
+const orderRoutes = require("./src/routes/orderRoutes");
 
 // const { abilityMiddleware } = require("./middlewares/authorization"); // CASL middleware for role-based actions
 const errorHandler = require("./src/middlewares/errorHandler.js"); // Global error handling middleware
@@ -26,10 +25,8 @@ app.use(morgan("dev")); // Logger for HTTP requests
 app.use("/auth", authRoutes);
 app.use("/pizza", pizzaRoutes);
 app.use("/role", roleRoutes);
+app.use("/order", orderRoutes);
 app.get("/", (req, res) => res.send("Welcome"));
-// app.use("/restaurants", restaurantRoutes); // Routes for restaurant management
-// app.use("/pizzas", pizzaRoutes); // Routes for pizza and toppings management
-// app.use("/orders", orderRoutes); // Routes for order management
 
 // Global error handling middleware
 app.use(errorHandler);
