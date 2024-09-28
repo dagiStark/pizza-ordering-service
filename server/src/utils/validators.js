@@ -57,6 +57,16 @@ const orderSchema = z.object({
   restaurantId: z.number(),
 });
 
+const roleSchema = z.object({
+  roleName: z
+    .string()
+    .min(1, { message: "Role name is required" }),
+  
+  permissions: z
+    .array(z.string().min(1, { message: "Permission must be a valid string" }))
+    .nonempty({ message: "Permissions array cannot be empty" }),
+});
+
 module.exports = {
   registerSchema,
   pizzaSchema,
@@ -64,4 +74,5 @@ module.exports = {
   restaurantSchema,
   userSchema,
   loginSchema,
+  roleSchema
 };
