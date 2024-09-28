@@ -138,7 +138,9 @@ function ContactUs() {
         sx={{
           background: "#000",
           color: "#fff",
-          padding: "20px",
+          padding: { xs: "20px", md: "40px" },
+          paddingLeft: { md: "15%" },
+          paddingRight: { md: "15%" },
         }}
       >
         <Box
@@ -153,22 +155,33 @@ function ContactUs() {
           }}
         >
           {/* Left: Copyright Text */}
-          <Typography
-            sx={{
-              fontSize: "14px",
-            }}
-          >
-            ©2024 Pizza All Rights Reserved.
-          </Typography>
 
-          {/* Center: Terms and Conditions */}
-          <Typography
+          <Box
             sx={{
+              color: "#999",
               fontSize: "14px",
+              fontWeight: "400",
+              display: "flex",
+              gap: "1rem",
             }}
           >
-            Terms & Conditions
-          </Typography>
+            <Typography
+              sx={{
+                fontSize: "14px",
+              }}
+            >
+              ©2024 Pizza All Rights Reserved.
+            </Typography>
+
+            {/* Center: Terms and Conditions */}
+            <Typography
+              sx={{
+                fontSize: "14px",
+              }}
+            >
+              Terms & Conditions
+            </Typography>
+          </Box>
 
           {/* Right: Social Media Icons */}
           <Box sx={{ display: "flex", gap: "10px" }}>
@@ -179,12 +192,27 @@ function ContactUs() {
                 height: { md: "50px" },
               }}
             />
-            <LinkedInIcon sx={{ color: "#fff", width: { md: "50px" },
-                height: { md: "50px" }, }} />
-            <TwitterIcon sx={{ color: "#fff", width: { md: "50px" },
-                height: { md: "50px" }, }} />
-            <YouTubeIcon sx={{ color: "#fff", width: { md: "50px" },
-                height: { md: "50px" }, }} />
+            <LinkedInIcon
+              sx={{
+                color: "#fff",
+                width: { md: "50px" },
+                height: { md: "50px" },
+              }}
+            />
+            <TwitterIcon
+              sx={{
+                color: "#fff",
+                width: { md: "50px" },
+                height: { md: "50px" },
+              }}
+            />
+            <YouTubeIcon
+              sx={{
+                color: "#fff",
+                width: { md: "50px" },
+                height: { md: "50px" },
+              }}
+            />
           </Box>
         </Box>
       </Box>
