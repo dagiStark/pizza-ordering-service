@@ -89,7 +89,6 @@ function FeaturedPizza() {
             Featured pizza
           </Typography>
 
-
           <Box
             sx={{
               position: "relative",
@@ -109,7 +108,6 @@ function FeaturedPizza() {
 
           {/* Render the dots below the animated cards */}
           {renderDots()}
-          
         </Box>
       </Box>
     </section>

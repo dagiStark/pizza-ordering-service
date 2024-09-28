@@ -1,4 +1,5 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import RestaurantsCard from "../components/RestaurantsCard";
 
 function TopRestaurants() {
   return (
@@ -17,7 +18,7 @@ function TopRestaurants() {
         <Box
           sx={{
             display: "flex",
-            width: "1266px",
+            width: "100%",
             flexDirection: "column",
             alignItems: "flex-start",
             gap: "25px",
@@ -37,7 +38,29 @@ function TopRestaurants() {
             Top Restaurants
           </Typography>
 
-          <Box>to add animates component here</Box>
+          <Box
+            sx={{
+              overflow: "hidden", // Hide overflow for smooth scrolling
+              width: "100%", // Ensure it takes up the full width
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                gap: "20px",
+                animation: "scroll 15s linear infinite", // Smooth scrolling animation
+                "@keyframes scroll": {
+                  "0%": { transform: "translateX(100%)" },
+                  "100%": { transform: "translateX(-100%)" },
+                },
+              }}
+            >
+              {/* Duplicate the cards for smooth continuous scrolling */}
+              <RestaurantsCard />
+              <RestaurantsCard />
+              <RestaurantsCard />
+            </Box>
+          </Box>
         </Box>
       </Box>
     </section>
