@@ -103,7 +103,14 @@ const NavBar = () => {
 
       {/* Navigation Links for Desktop */}
       <Box sx={{ display: { xs: "none", md: "flex" }, flexGrow: 2 }}>
-        <Box sx={{ display: "flex", justifyContent: "center",alignItems: "center", flexGrow: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexGrow: 2,
+          }}
+        >
           {/* Home link */}
           <Typography
             sx={{
@@ -364,7 +371,7 @@ const NavBar = () => {
             alignItems: "center",
             padding: "1rem",
             gap: "2rem",
-            flexDirection: "column"
+            flexDirection: "column",
           }}
         >
           {!authUser ? (

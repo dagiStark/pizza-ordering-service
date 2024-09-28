@@ -20,9 +20,10 @@ function About() {
       >
         <Box
           sx={{
-            display: "flex",
+            display: { xs: "block", md: "flex" }, // Stack on mobile, flex on larger screens
             alignItems: "center",
             justifyContent: "center",
+            padding: "2rem",
           }}
         >
           <Box
@@ -30,15 +31,14 @@ function About() {
               display: "flex",
               flexDirection: "column",
               alignItems: "flex-start",
-              alignSelf: "stretch",
-              width: "60%",
+              width: { xs: "100%", md: "60%" }, // Full width on mobile, 60% on larger screens
               gap: "20px",
             }}
           >
             <Typography
               sx={{
                 fontFamily: "Inter",
-                fontSize: "150px",
+                fontSize: { xs: "50px", md: "150px" }, // Responsive font size
                 fontStyle: "normal",
                 fontWeight: 700,
                 lineHeight: "150%", // 225px
@@ -56,7 +56,7 @@ function About() {
               sx={{
                 color: "#050505",
                 fontFamily: "Roboto",
-                fontSize: "25px",
+                fontSize: { xs: "16px", md: "25px" }, // Responsive font size
                 fontStyle: "normal",
                 fontWeight: 400,
                 lineHeight: "144.687%", // 36.172px
@@ -104,8 +104,24 @@ function About() {
             />
           </Box>
 
-          <Box>
-            <img src={Image2} alt="circle pizza" />
+          <Box
+            sx={{
+              display: { xs: "block", md: "block" }, // Show on all devices
+              width: { xs: "100%", md: "40%" }, // Full width on mobile, 40% on larger screens
+              textAlign: { xs: "center", md: "left" }, // Center text on mobile, left align on larger screens
+              paddingTop: { xs: "1rem", md: "0" }, // Add padding on top for mobile
+              overflow: "hidden"
+            }}
+          >
+            <img
+              src={Image2}
+              alt="circle pizza"
+              style={{
+                width: "80%", // Set to 80% of the container width
+                height: "auto",
+                maxHeight: "300px", // Set a maximum height
+              }}
+            />
           </Box>
         </Box>
       </Box>

@@ -1,7 +1,60 @@
-import { Box, Typography, Button } from "@mui/material";
-import OrderBanner from "../components/OrderBanner";
+import { Box, Typography } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { useTransition, animated } from "@react-spring/web";
+import {
+  FirstCard,
+  SecondCard,
+  ThirdCard,
+} from "../components/FeaturedPizzaCards";
 
 function FeaturedPizza() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const components = [<FirstCard />, <SecondCard />, <ThirdCard />];
+
+  // React-spring transition
+  const transitions = useTransition(currentIndex, {
+    from: { opacity: 0, transform: "translate3d(100%, 0, 0)" }, // Start outside (right)
+    enter: { opacity: 1, transform: "translate3d(0%, 0, 0)" }, // Move to center
+    leave: { opacity: 0, transform: "translate3d(-50%, 0, 0)" }, // Move to left
+    config: { mass: 1, tension: 280, friction: 30 }, // Smooth animation config
+  });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % components.length);
+    }, 3000); // Change every 3 seconds
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [components.length]);
+
+  // Dots component for navigation indication
+  const renderDots = () => {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          mt: 2,
+        }}
+      >
+        {components.map((_, index) => (
+          <Box
+            key={index}
+            sx={{
+              width: "20px",
+              height: "20px",
+              borderRadius: "50%",
+              backgroundColor: currentIndex === index ? "#FF8100" : "#E0E0E0",
+              margin: "0 10px",
+              transition: "background-color 0.3s ease",
+            }}
+          />
+        ))}
+      </Box>
+    );
+  };
+
   return (
     <section id="featured-pizza">
       <Box
@@ -19,7 +72,6 @@ function FeaturedPizza() {
             display: "flex",
             width: "1266px",
             flexDirection: "column",
-            alignItems: "flex-start",
             gap: "25px",
           }}
         >
@@ -37,22 +89,27 @@ function FeaturedPizza() {
             Featured pizza
           </Typography>
 
+
           <Box
             sx={{
-              width: "1266px",
-              height: "431px",
+              position: "relative",
+              width: "100%",
+              height: "400px", // Adjust height as per content
+              overflow: "hidden",
             }}
           >
-            <Box
-              sx={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "29px",
-              }}
-            >
-              <OrderBanner />
-            </Box>
+            {transitions((style, index) => (
+              <animated.div
+                style={{ ...style, position: "absolute", width: "100%" }}
+              >
+                {components[index]}
+              </animated.div>
+            ))}
           </Box>
+
+          {/* Render the dots below the animated cards */}
+          {renderDots()}
+          
         </Box>
       </Box>
     </section>
