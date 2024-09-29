@@ -22,7 +22,8 @@ function App() {
       <Box>
         {shouldShowNavbar && <NavBar />}
         <Routes>
-          <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Home />} />
           <Route
             path="/sign-up"
             element={authUser ? <Navigate to={"/"} /> : <SignUp />}

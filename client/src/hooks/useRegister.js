@@ -13,6 +13,7 @@ const useRegister = () => {
     email,
     password,
     confirmPassword,
+    phoneNo
   }) => {
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
@@ -30,6 +31,7 @@ const useRegister = () => {
           email,
           password,
           confirmPassword,
+          phoneNo
         }),
       });
 

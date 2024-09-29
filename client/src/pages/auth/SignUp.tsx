@@ -20,20 +20,20 @@ const SignUp = () => {
   const [location, setLocation] = useState("");
   const [phoneNo, setPhoneNo] = useState("");
   const [restaurantId, setRestaurantId] = useState(1);
-  
+
   const { signUp, loading } = useSignUp();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signUp(
+    await signUp({
       fullName,
       email,
       password,
       confirmPassword,
       location,
       phoneNo,
-      restaurantId
-    );
+      restaurantId,
+    });
   };
 
   return (

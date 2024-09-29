@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const { models } = require("../models");
+const { models, sequelize } = require("../models");
 const generateTokenAndSetCookie = require("../utils/generateToken.js");
 
 const signup = async (req, res) => {
@@ -55,12 +55,22 @@ const signup = async (req, res) => {
 };
 
 const register = async (req, res) => {
-  const { name, location, superAdmin, email, password, confirmPassword } =
-    req.body;
+  const {
+    name,
+    location,
+    superAdmin,
+    email,
+    password,
+    confirmPassword,
+    phoneNo,
+  } = req.body;
+
   if (password !== confirmPassword) {
-    return res.status(400).json({ error: "password didn't match!" });
+    return res.status(400).json({ error: "Passwords didn't match!" });
   }
 
+  // Transaction block
+  const transaction = await sequelize.transaction();
   try {
     // Check if a restaurant with the same name already exists
     const existingRestaurant = await models.Restaurant.findOne({
@@ -71,32 +81,64 @@ const register = async (req, res) => {
         .status(400)
         .json({ message: "Restaurant with this name already exists" });
     }
-    // Check if a user with the same email already exists
-    const user = await models.User.findOne({ where: { email } });
 
-    if (user) {
-      return res.status(400).json({ error: "user already exists!" });
+    // Check if a user with the same email already exists
+    const existingUser = await models.User.findOne({ where: { email } });
+    if (existingUser) {
+      return res.status(400).json({ error: "User already exists!" });
     }
+
     // Hash the password for superAdmin
     const hashedPassword = await bcrypt.hash(password, 10);
-    // Create a new restaurant
-    const restaurant = await models.Restaurant.create({
-      name,
-      location,
-      superAdmin,
-      email,
-      password: hashedPassword, // Store hashed password for superAdmin
-    });
 
-    // Send back the created restaurant details (excluding password)
+    // Create a new restaurant
+    const restaurant = await models.Restaurant.create(
+      {
+        name,
+        location,
+        superAdmin,
+        email,
+        password: hashedPassword, // Store hashed password for superAdmin
+      },
+      { transaction }
+    );
+
+    // Create a superAdmin user in the User table
+    const user = await models.User.create(
+      {
+        fullName: superAdmin,
+        email,
+        password: hashedPassword,
+        location,
+        phoneNo,
+        role: "admin", // Assign the role to super admin
+        restaurantId: restaurant.id, // Link the user to the restaurant
+      },
+      { transaction }
+    );
+
+    // Commit the transaction if both restaurant and user were created successfully
+    await transaction.commit();
+
+    // Send back the created restaurant and user details (excluding password)
     return res.status(201).json({
-      id: restaurant.id,
-      name: restaurant.name,
-      location: restaurant.location,
-      email: restaurant.email,
-      message: "Restaurant created successfully!",
+      restaurant: {
+        id: restaurant.id,
+        name: restaurant.name,
+        location: restaurant.location,
+        email: restaurant.email,
+      },
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+      message: "Restaurant and super admin created successfully!",
     });
   } catch (error) {
+    // Rollback the transaction in case of an error
+    await transaction.rollback();
     console.error("Error during restaurant registration:", error);
     return res.status(500).json({ message: "Internal server error" });
   }
