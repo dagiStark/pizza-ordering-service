@@ -5,6 +5,7 @@ import vippng1 from "./vippng1.png";
 import EmojiPizza from "./EmojiPizza.png";
 import HotWheelPizzas from "./HotWheelPizzas.png";
 import PizzaDeliver from "./PizzaDeliver.png";
+import Ellipse from "./Ellipse.png"
 
 export {
   Logo,
@@ -14,4 +15,5 @@ export {
   EmojiPizza,
   HotWheelPizzas,
   PizzaDeliver,
+  Ellipse
 };

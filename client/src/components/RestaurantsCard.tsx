@@ -1,5 +1,6 @@
 import { Box, Typography, Avatar } from "@mui/material";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import { Ellipse } from "../assets";
 
 function RestaurantsCard() {
   return (
@@ -45,7 +46,7 @@ function RestaurantsCard() {
           }}
         >
           <Avatar
-            src="/path-to-image" // Change to appropriate image path
+            src={Ellipse} // Change to appropriate image path
             alt="Azmera Pizza"
             sx={{
               width: 50,

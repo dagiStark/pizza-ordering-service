@@ -13,6 +13,7 @@ function TopRestaurants() {
           alignSelf: "stretch",
           background:
             "linear-gradient(180deg, rgba(250, 126, 0, 0.00) 0%, rgba(250, 126, 0, 0.20) 60.5%, rgba(148, 74, 0, 0.00) 100%)",
+          overflow: "hidden",
         }}
       >
         <Box
@@ -29,7 +30,7 @@ function TopRestaurants() {
               alignSelf: "stretch",
               color: "rgba(0, 0, 0, 0.50)",
               fontFamily: "Inter",
-              fontSize: "50px",
+              fontSize: { xs: "40px", md: "50px" },
               fontStyle: "normal",
               fontWeight: 500,
               lineHeight: "150%", // 75px

@@ -22,7 +22,7 @@ function FeaturedPizza() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % components.length);
-    }, 3000); // Change every 3 seconds
+    }, 2000); // Change every 3 seconds
 
     return () => clearInterval(interval); // Cleanup on unmount
   }, [components.length]);
@@ -36,6 +36,7 @@ function FeaturedPizza() {
           justifyContent: "center",
           alignItems: "center",
           mt: 2,
+          overflow: "hidden",
         }}
       >
         {components.map((_, index) => (
@@ -80,7 +81,7 @@ function FeaturedPizza() {
               alignSelf: "stretch",
               color: "rgba(0, 0, 0, 0.50)",
               fontFamily: "Inter",
-              fontSize: "50px",
+              fontSize: { xs: "40px", md: "50px" },
               fontStyle: "normal",
               fontWeight: 500,
               lineHeight: "150%", // 75px

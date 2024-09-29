@@ -14,6 +14,7 @@ function ContactUs() {
         sx={{
           background: "#CCB691",
           padding: "50px",
+          overflow: "hidden",
         }}
       >
         <Box

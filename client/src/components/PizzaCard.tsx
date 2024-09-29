@@ -6,7 +6,7 @@ import {
   Link as LinkBase,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Image2 } from "../assets";
+import { Image2, Ellipse } from "../assets";
 
 const PizzaCard = () => {
   return (
@@ -21,16 +21,30 @@ const PizzaCard = () => {
       }}
     >
       <Box
-        component="img"
-        src={Image2}
-        alt="Margherita"
         sx={{
-          width: "150px",
-          height: "150px",
+          width: "160px", // Adjust size for the circle slightly larger than the image
+          height: "160px",
+          backgroundColor: "pink", // Pink background for the circle
           borderRadius: "50%",
+          position: "relative", // Position the image relative to the circle
+          display: "flex",
+          justifyContent: "center", // Centering the image
+          alignItems: "center",
           margin: "0 auto",
         }}
-      />
+      >
+        <Box
+          component="img"
+          src={Image2}
+          alt="Margherita"
+          sx={{
+            width: "150px", // Image is smaller than the circle
+            height: "150px",
+            borderRadius: "50%",
+            position: "relative", // Ensures image is positioned within the circle
+          }}
+        />
+      </Box>
 
       <Box
         sx={{
@@ -45,13 +59,16 @@ const PizzaCard = () => {
             alignItems: "flex-start",
           }}
         >
-          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: "bold", textAlign: "left" }}
+          >
             Margherita
           </Typography>
           <Typography
             variant="body2"
             color="textSecondary"
-            sx={{ marginBottom: "8px" }}
+            sx={{ marginBottom: "8px", textAlign: "left" }}
           >
             Tomato, Mozzarella, Bell Peppers, Onions, Olives
           </Typography>
@@ -62,6 +79,8 @@ const PizzaCard = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            borderBottom: "2px solid rgba(0, 0, 0, 0.2)",
+            paddingBottom: "15px",
           }}
         >
           <Box
@@ -73,8 +92,11 @@ const PizzaCard = () => {
             }}
           >
             <Typography
-              variant="h4"
-              sx={{ color: "green", fontWeight: "bold" }}
+              sx={{
+                color: "green",
+                fontWeight: "bold",
+                fontSize: { md: "45px" },
+              }}
             >
               150
             </Typography>
@@ -92,6 +114,12 @@ const PizzaCard = () => {
               "&:hover": {
                 backgroundColor: "#e0780c",
               },
+              paddingLeft: "20px",
+              paddingRight: "20px",
+              paddingTop: "10px",
+              paddingBottom: "10px",
+              fontSize: { md: "30px" },
+              textDecoration: "none",
             }}
             to="/sign-up"
           >
@@ -109,12 +137,16 @@ const PizzaCard = () => {
         >
           <Avatar
             alt="Azmera Pizza"
-            src="https://example.com/avatar.jpg"
-            sx={{ width: 40, height: 40 }}
+            src={Ellipse}
+            sx={{ width: { xs: 40, md: 70 }, height: { xs: 40, md: 70 } }}
           />
           <Typography
             variant="body1"
-            sx={{ marginLeft: "8px", fontWeight: "bold" }}
+            sx={{
+              marginLeft: "8px",
+              fontWeight: "bold",
+              fontSize: { md: "20px" },
+            }}
           >
             Azmera Pizza
           </Typography>

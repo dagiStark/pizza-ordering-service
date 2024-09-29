@@ -16,6 +16,7 @@ function About() {
           alignSelf: "stretch",
           background:
             "linear-gradient(180deg, #FFF 0%, #FFC993 76%, #FFF8F1 100%)",
+          overflow: "hidden"
         }}
       >
         <Box

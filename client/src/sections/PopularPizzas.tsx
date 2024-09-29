@@ -12,6 +12,7 @@ function PopularPizzas() {
           alignItems: "center",
           alignSelf: "stretch",
           background: "#FFF8F1",
+          overflow: "hidden",
         }}
       >
         <Box
@@ -28,7 +29,7 @@ function PopularPizzas() {
               alignSelf: "stretch",
               color: "rgba(0, 0, 0, 0.50)",
               fontFamily: "Inter",
-              fontSize: "50px",
+              fontSize: { xs: "40px", md: "50px" },
               fontStyle: "normal",
               fontWeight: 500,
               lineHeight: "150%", // 75px
