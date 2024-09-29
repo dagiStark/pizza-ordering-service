@@ -1,5 +1,5 @@
 import { Box, Typography, Button } from "@mui/material";
-import { Image2 } from "../assets";
+import { Image2, vippng1, Image4, Image5 } from "../assets";
 
 const FirstCard = () => {
   return (
@@ -11,7 +11,7 @@ const FirstCard = () => {
         justifyContent: "space-between",
         backgroundColor: "#3E3E3E",
         borderRadius: "35px",
-        padding: "1.5rem",
+        paddingLeft: "4rem",
         margin: "1rem 0",
         boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)",
       }}
@@ -60,14 +60,12 @@ const FirstCard = () => {
         }}
       >
         <img
-          src={Image2}
+          src={vippng1}
           alt="Pizza"
           style={{
             maxWidth: "100%",
             height: "auto",
             borderRadius: "15px",
-            // maxHeight: { xs: "200px", md: "300px" },
-            // width: { xs: "80%", md: "50%" },
           }}
         />
       </Box>
@@ -85,7 +83,7 @@ const SecondCard = () => {
         justifyContent: "space-between",
         backgroundColor: "#50482B",
         borderRadius: "35px",
-        padding: "1.5rem",
+        paddingLeft: "4rem",
         margin: "1rem 0",
         boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)",
       }}
@@ -134,7 +132,7 @@ const SecondCard = () => {
         }}
       >
         <img
-          src={Image2}
+          src={Image4}
           alt="Pizza"
           style={{
             maxWidth: "100%",
@@ -159,7 +157,7 @@ const ThirdCard = () => {
         justifyContent: "space-between",
         backgroundColor: "#296D60",
         borderRadius: "35px",
-        padding: "1.5rem",
+        paddingLeft: "4rem",
         margin: "1rem 0",
         boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)",
       }}
@@ -208,14 +206,12 @@ const ThirdCard = () => {
         }}
       >
         <img
-          src={Image2}
+          src={Image5}
           alt="Pizza"
           style={{
             maxWidth: "100%",
             height: "auto",
             borderRadius: "15px",
-            // maxHeight: { xs: "200px", md: "300px" },
-            // width: { xs: "80%", md: "50%" },
           }}
         />
       </Box>

@@ -16,15 +16,16 @@ function About() {
           alignSelf: "stretch",
           background:
             "linear-gradient(180deg, #FFF 0%, #FFC993 76%, #FFF8F1 100%)",
-          overflow: "hidden"
+          overflow: "hidden",
         }}
       >
         <Box
           sx={{
-            display: { xs: "block", md: "flex" }, // Stack on mobile, flex on larger screens
+            display: { xs: "block", md: "flex" },
             alignItems: "center",
-            justifyContent: "center",
+            justifyContent: "space-between",
             padding: "2rem",
+            position: "relative",
           }}
         >
           <Box
@@ -32,8 +33,9 @@ function About() {
               display: "flex",
               flexDirection: "column",
               alignItems: "flex-start",
-              width: { xs: "100%", md: "60%" }, // Full width on mobile, 60% on larger screens
+              width: { xs: "100%", md: "60%", lg: "40%" },
               gap: "20px",
+              paddingLeft: "60px",
             }}
           >
             <Typography
@@ -76,8 +78,11 @@ function About() {
               fullWidth
               placeholder="Search"
               sx={{
+                width: { md: "648px" },
+                height: { md: "90px" }, // Set height
                 borderRadius: "50px",
                 background: "#fff",
+                paddingRight: "0px", // Prevents extra padding in the container
               }}
               InputProps={{
                 endAdornment: (
@@ -90,16 +95,19 @@ function About() {
                           backgroundColor: "#e0780c",
                         },
                         borderRadius: "50%",
-                        padding: "10px",
+                        padding: "20px", // Adjust padding for proper alignment
+                        marginRight: "-4px", // Adds space between icon and the border
                       }}
                     >
-                      <SearchIcon />
+                      <SearchIcon sx={{ fontSize: "30px" }} />{" "}
+                      {/* Adjust icon size if needed */}
                     </IconButton>
                   </InputAdornment>
                 ),
                 sx: {
                   borderRadius: "50px",
-                  paddingRight: "10px",
+                  height: { md: "118px" }, // Ensures the input height matches
+                  padding: "0 20px", // Aligns text and icon inside
                 },
               }}
             />
@@ -107,20 +115,44 @@ function About() {
 
           <Box
             sx={{
-              display: { xs: "block", md: "block" }, // Show on all devices
-              width: { xs: "100%", md: "40%" }, // Full width on mobile, 40% on larger screens
-              textAlign: { xs: "center", md: "left" }, // Center text on mobile, left align on larger screens
-              paddingTop: { xs: "1rem", md: "0" }, // Add padding on top for mobile
-              overflow: "hidden"
+              position: "absolute",
+              zIndex: 1,
+              right: { md: "22%" },
+              top: { md: 5 },
+              rotate: "-150deg",
+            }}
+          >
+            <img src={Image1} alt="pizza leaf" />
+          </Box>
+          <Box
+            sx={{
+              position: "absolute",
+              right: { md: "15%" },
+              bottom: { md: 10 },
+            }}
+          >
+            <img src={Image1} alt="pizza leaf" />
+          </Box>
+
+          <Box
+            sx={{
+              display: { xs: "block", md: "block" },
+              width: { xs: "100%", md: "40%" },
+              textAlign: { xs: "center", md: "left" },
+              paddingTop: { xs: "1rem", md: "0" },
+              overflow: "hidden",
+              position: { lg: "absolute" },
+              right: { lg: -300 },
+              transform: { lg: "scale(1.2)" },
+              transformOrigin: { lg: "center" },
             }}
           >
             <img
               src={Image2}
               alt="circle pizza"
               style={{
-                width: "80%", // Set to 80% of the container width
-                height: "auto",
-                maxHeight: "300px", // Set a maximum height
+                transformOrigin: "center", // Keeps the scaling centered
+                width: "100%", // Ensure it scales based on the container's width
               }}
             />
           </Box>

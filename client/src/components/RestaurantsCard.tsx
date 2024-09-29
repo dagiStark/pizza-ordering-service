@@ -69,7 +69,7 @@ function RestaurantsCard() {
           <Typography
             sx={{
               fontSize: "14px",
-              color: "rgba(0, 0, 0, 0.6)",
+              color: "rgba(0, 0, 0, 0.5)",
               maxWidth: "300px", // Limit text width
               "@media (max-width: 768px)": {
                 textAlign: "center", // Center text on mobile
