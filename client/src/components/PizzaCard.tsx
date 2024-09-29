@@ -22,13 +22,14 @@ const PizzaCard = () => {
     >
       <Box
         sx={{
-          width: "160px", // Adjust size for the circle slightly larger than the image
-          height: "160px",
-          backgroundColor: "pink", // Pink background for the circle
+          width: { xs: "160px", md: "220px" },
+          height: { xs: "160px", md: "220px" },
+
+          backgroundColor: "rgba(234, 129, 0, 0.20)",
           borderRadius: "50%",
-          position: "relative", // Position the image relative to the circle
+          position: "relative",
           display: "flex",
-          justifyContent: "center", // Centering the image
+          justifyContent: "center",
           alignItems: "center",
           margin: "0 auto",
         }}
@@ -38,10 +39,10 @@ const PizzaCard = () => {
           src={Image2}
           alt="Margherita"
           sx={{
-            width: "150px", // Image is smaller than the circle
-            height: "150px",
+            width: { xs: "150px", md: "210px" },
+            height: { xs: "150px", md: "210px" },
             borderRadius: "50%",
-            position: "relative", // Ensures image is positioned within the circle
+            position: "relative",
           }}
         />
       </Box>

@@ -14,7 +14,7 @@ function RestaurantsCard() {
         backgroundColor: "#fff",
         boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
         maxWidth: "100%",
-        width: "700px", // Default width for larger screens
+        minWidth: { md: "500px" },
         transition: "0.3s ease", // Transition for shrinking on mobile
         "@media (max-width: 768px)": {
           flexDirection: "column", // Column layout on mobile
@@ -46,7 +46,7 @@ function RestaurantsCard() {
           }}
         >
           <Avatar
-            src={Ellipse} // Change to appropriate image path
+            src={Ellipse}
             alt="Azmera Pizza"
             sx={{
               width: 50,
@@ -95,18 +95,40 @@ function RestaurantsCard() {
           },
         }}
       >
-        <ShoppingBagIcon
+        <Box
           sx={{
-            fontSize: "40px",
-            color: "#FF8100",
-            marginRight: "12px",
+            width: { xs: "20px", md: "80px" },
+            height: { xs: "20px", md: "80px" },
+
+            backgroundColor: "rgba(234, 129, 0, 0.20)",
+            borderRadius: "50%",
+            position: "relative",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginRight: "20px",
           }}
-        />
-        <Box>
+        >
+          <ShoppingBagIcon
+            sx={{
+              fontSize: { md: "60px" },
+              color: "#FF8100",
+              position: "relative",
+            }}
+          />
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <Typography
             sx={{
-              fontSize: "14px",
+              fontSize: { md: "10px" },
               color: "rgba(0, 0, 0, 0.6)",
+              whiteSpace: "nowrap", // Prevent text from breaking into multiple lines
               "@media (max-width: 768px)": {
                 textAlign: "center", // Center text on mobile
               },
@@ -116,9 +138,10 @@ function RestaurantsCard() {
           </Typography>
           <Typography
             sx={{
-              fontSize: "28px",
+              fontSize: { md: "60px" },
               fontWeight: "bold",
               color: "#FF8100",
+              whiteSpace: "nowrap", // Prevent "2K" from breaking
               "@media (max-width: 768px)": {
                 textAlign: "center", // Center text on mobile
               },
