@@ -93,8 +93,6 @@ const OrdersCard = () => {
                   : "#28a745",
               color: "#fff",
               borderRadius: 2,
-              padding: "4px 8px",
-              fontWeight: "bold",
             }}
           >
             <MenuItem value="Preparing">Preparing</MenuItem>
