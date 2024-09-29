@@ -75,6 +75,10 @@ const orderSchema = z.object({
     .number()
     .int("Restaurant ID must be an integer")
     .positive("Restaurant ID must be positive"),
+  quantity: z.coerce
+    .number()
+    .int("quantity must be an integer")
+    .positive("quantity must be positive"),
 });
 
 module.exports = {

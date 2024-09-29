@@ -122,7 +122,7 @@ const PizzaCard = () => {
               fontSize: { md: "30px" },
               textDecoration: "none",
             }}
-            to="/sign-up"
+            to="/make-order"
           >
             Order
           </LinkBase>
