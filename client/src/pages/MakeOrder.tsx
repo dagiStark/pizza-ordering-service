@@ -11,11 +11,11 @@ import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
-import { Image2, Image4, Image5 } from "../assets";
+import { Image2, Image6 } from "../assets";
 
 const pizzaImages = [
   { src: Image2, name: "Margherita" },
-  { src: Image4, name: "Pepperoni" },
+  { src: Image6, name: "Pepperoni" },
 ];
 
 const MakeOrder = () => {
@@ -45,49 +45,71 @@ const MakeOrder = () => {
         sx={{
           display: "flex",
           justifyContent: "center",
-          alignItems: "flex-start", // Align items at the start
-          gap: "30px", // Add gap between the main image and thumbnails
+          alignItems: "flex-start",
+          gap: "30px",
         }}
       >
-        {/* Main Pizza Image */}
+        {/* Main Pizza Image with Background Circle */}
         <Box
-          component="img"
-          src={selectedPizza.src}
-          alt={selectedPizza.name}
           sx={{
-            width: { xs: "250px", md: "350px" }, // Increase size
-            height: "auto",
+            backgroundColor: "rgba(255, 165, 0, 0.40)",
             borderRadius: "50%",
-            transition: "transform 0.3s ease",
-            transform: "scale(1.2)", // Scale up the main image
+            padding: "24px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
-        />
+        >
+          <Box
+            component="img"
+            src={selectedPizza.src}
+            alt={selectedPizza.name}
+            sx={{
+              width: { xs: "250px", md: "350px" },
+              height: "auto",
+              borderRadius: "50%",
+              transition: "transform 0.3s ease",
+              transform: "scale(1.2)",
+            }}
+          />
+        </Box>
 
-        {/* Pizza Thumbnails */}
+        {/* Pizza Thumbnails with Background Circle */}
         <Stack direction="column" spacing={4}>
           {pizzaImages.map((image, index) => (
             <Box
               key={index}
-              component="img"
-              src={image.src}
-              alt={image.name}
-              onClick={() => handleImageClick(image)}
               sx={{
-                width: "100px", // Increase thumbnail size
-                height: "auto",
-                cursor: "pointer",
+                backgroundColor: "rgba(255, 165, 0, 0.40)",
                 borderRadius: "50%",
-                border:
-                  selectedPizza.name === image.name
-                    ? "2px solid orange"
-                    : "none",
-                transition: "transform 0.3s ease",
-                transform: "scale(1.1)", // Scale up thumbnails slightly
-                "&:hover": {
-                  transform: "scale(1.2)", // Slightly enlarge on hover
-                },
+                padding: "16px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
-            />
+            >
+              <Box
+                component="img"
+                src={image.src}
+                alt={image.name}
+                onClick={() => handleImageClick(image)}
+                sx={{
+                  width: "100px", // Thumbnail size
+                  height: "auto",
+                  cursor: "pointer",
+                  borderRadius: "50%",
+                  border:
+                    selectedPizza.name === image.name
+                      ? "2px solid orange"
+                      : "none",
+                  transition: "transform 0.3s ease",
+                  transform: "scale(1.1)",
+                  "&:hover": {
+                    transform: "scale(1.2)",
+                  },
+                }}
+              />
+            </Box>
           ))}
         </Stack>
       </Box>
@@ -167,16 +189,30 @@ const MakeOrder = () => {
           <Stack direction="row" alignItems="center" spacing={2}>
             <IconButton
               onClick={handleDecrease}
-              sx={{ borderColor: "#FF8100" }}
+              sx={{
+                borderColor: "#FF8100",
+                width: "48px",
+                height: "48px",
+                border: "2px solid #FF8100",
+              }}
             >
-              <RemoveIcon />
+              <RemoveIcon fontSize="large" />
             </IconButton>
-            <Typography>{quantity}</Typography>
-            <IconButton onClick={handleIncrease}>
-              <AddIcon />
+            <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+              {quantity}
+            </Typography>{" "}
+            <IconButton
+              onClick={handleIncrease}
+              sx={{
+                width: "48px",
+                height: "48px",
+                border: "2px solid #FF8100",
+              }}
+            >
+              <AddIcon fontSize="large" />
             </IconButton>
             <Typography
-              variant="h5"
+              variant="h4"
               sx={{ color: "#01C550", fontWeight: "bold" }}
             >
               {price * quantity} Birr
