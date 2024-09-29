@@ -9,11 +9,19 @@ import { useAuthContext } from "./context/AuthContext";
 import Dashboard from "./pages/Dashboard";
 import Orders from "./pages/Orders";
 import NavBar from "./components/NavBar";
+import Register from "./pages/auth/Register";
+import MakeOrder from "./pages/MakeOrder";
 
 function App() {
   const { authUser } = useAuthContext();
   const location = useLocation();
-  const hiddenNavRoutes = ["/dashboard", "/sign-up", "/login", "/register", ""];
+  const hiddenNavRoutes = [
+    "/dashboard",
+    "/sign-up",
+    "/login",
+    "/register",
+    "/make-order",
+  ];
 
   const shouldShowNavbar = !hiddenNavRoutes.includes(location.pathname);
 
@@ -22,8 +30,8 @@ function App() {
       <Box>
         {shouldShowNavbar && <NavBar />}
         <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
           <Route
             path="/sign-up"
             element={authUser ? <Navigate to={"/"} /> : <SignUp />}
@@ -49,7 +57,7 @@ function App() {
           />
           <Route
             path="/make-order"
-            element={authUser ? <Orders /> : <Navigate to={"/sign-up"} />}
+            element={authUser ? <MakeOrder /> : <Navigate to={"/sign-up"} />}
           />
         </Routes>
       </Box>

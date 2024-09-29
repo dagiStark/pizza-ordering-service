@@ -13,6 +13,7 @@ const NavBar = () => {
   const location = useLocation();
   const { logout } = useLogout();
 
+
   const [sectionToScroll, setSectionToScroll] = useState(null);
   const [activeLink, setActiveLink] = useState("home");
   const [drawerOpen, setDrawerOpen] = useState(false); // State for the Drawer
@@ -265,7 +266,7 @@ const NavBar = () => {
                 },
               }}
               onClick={() => {
-                alert("clicked");
+                navigate("/register")
               }}
             >
               Register
