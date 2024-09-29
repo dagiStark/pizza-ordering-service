@@ -1,5 +1,6 @@
 import { Box, Typography, Button } from "@mui/material";
 import PizzaCard from "../components/PizzaCard";
+import OrderedPizzaCard from "../components/OrderedPizzaCard";
 
 function Orders() {
   return (
@@ -37,7 +38,7 @@ function Orders() {
             Order History
           </Typography>
 
-          <PizzaCard />
+          <OrderedPizzaCard />
         </Box>
       </Box>
     </>

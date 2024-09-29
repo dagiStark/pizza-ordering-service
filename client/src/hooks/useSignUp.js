@@ -11,6 +11,8 @@ const useSignUp = () => {
     email,
     password,
     confirmPassword,
+    location,
+    phoneNo,
     restaurantId,
   }) => {
     if (password !== confirmPassword) {
@@ -19,7 +21,7 @@ const useSignUp = () => {
     }
     setLoading(true);
     try {
-      const res = await fetch("/api/auth/sign-up", {
+      const res = await fetch("/auth/sign-up", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -27,6 +29,8 @@ const useSignUp = () => {
           email,
           password,
           confirmPassword,
+          location,
+          phoneNo,
           restaurantId,
         }),
       });

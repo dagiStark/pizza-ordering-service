@@ -13,7 +13,7 @@ import NavBar from "./components/NavBar";
 function App() {
   const { authUser } = useAuthContext();
   const location = useLocation();
-  const hiddenNavRoutes = ["/dashboard", "/sign-up", "/login", "/register"];
+  const hiddenNavRoutes = ["/dashboard", "/sign-up", "/login", "/register", ""];
 
   const shouldShowNavbar = !hiddenNavRoutes.includes(location.pathname);
 
@@ -44,6 +44,10 @@ function App() {
           />
           <Route
             path="/orders"
+            element={authUser ? <Orders /> : <Navigate to={"/sign-up"} />}
+          />
+          <Route
+            path="/make-order"
             element={authUser ? <Orders /> : <Navigate to={"/sign-up"} />}
           />
         </Routes>

@@ -4,8 +4,15 @@ const generateTokenAndSetCookie = require("../utils/generateToken.js");
 
 const signup = async (req, res) => {
   try {
-    const { fullName, email, password, confirmPassword, restaurantId } =
-      req.body; // remember to add restaurantId while sending the request
+    const {
+      fullName,
+      email,
+      password,
+      confirmPassword,
+      location,
+      phoneNo,
+      restaurantId,
+    } = req.body; // remember to add restaurantId while sending the request
     if (password !== confirmPassword) {
       return res.status(400).json({ error: "password didn't match!" });
     }
@@ -22,6 +29,8 @@ const signup = async (req, res) => {
       fullName,
       email,
       password: hashedPassword,
+      location,
+      phoneNo,
       restaurantId,
     });
 
@@ -31,6 +40,8 @@ const signup = async (req, res) => {
         id: newUser.id,
         fullName: newUser.fullName,
         email: newUser.email,
+        location: newUser.location,
+        phoneNo: newUser.phoneNo,
         role: newUser.role,
         restaurantId: newUser.restaurantId,
       });

@@ -5,6 +5,8 @@ module.exports = (sequelize) => {
     fullName: { type: DataTypes.STRING },
     email: { type: DataTypes.STRING, unique: true },
     password: { type: DataTypes.STRING },
+    location: { type: DataTypes.STRING },
+    phoneNo: { type: DataTypes.STRING },
     role: {
       type: DataTypes.STRING,
       defaultValue: "customer",

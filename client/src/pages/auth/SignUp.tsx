@@ -8,9 +8,34 @@ import {
   Link,
 } from "@mui/material";
 import PizzaIcon from "@mui/icons-material/LocalPizza";
-import { Logo, EmojiPizza } from "../../assets";
+import { EmojiPizza } from "../../assets";
+import { useState } from "react";
+import useSignUp from "../../hooks/useSignUp";
 
 const SignUp = () => {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [location, setLocation] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
+  const [restaurantId, setRestaurantId] = useState(1);
+  
+  const { signUp, loading } = useSignUp();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await signUp(
+      fullName,
+      email,
+      password,
+      confirmPassword,
+      location,
+      phoneNo,
+      restaurantId
+    );
+  };
+
   return (
     <Box
       sx={{
@@ -80,54 +105,86 @@ const SignUp = () => {
           </Box>
 
           {/* Form */}
-          <TextField
-            fullWidth
-            label="Email address"
-            type="email"
-            margin="normal"
-          />
-          <TextField
-            fullWidth
-            label="Password"
-            type="password"
-            margin="normal"
-          />
-          <TextField
-            fullWidth
-            label="Confirm Password"
-            type="password"
-            margin="normal"
-          />
-          <TextField fullWidth label="Location" margin="normal" />
-          <TextField
-            fullWidth
-            label="Phone Number"
-            type="tel"
-            margin="normal"
-          />
+          <form action="" onSubmit={handleSubmit}>
+            <TextField
+              fullWidth
+              label="Full Name"
+              margin="normal"
+              value={fullName} // Bind email to state
+              onChange={(e) => setFullName(e.target.value)} // Update state on change
+              required
+            />
+            <TextField
+              fullWidth
+              label="Email address"
+              type="email"
+              margin="normal"
+              value={email} // Bind email to state
+              onChange={(e) => setEmail(e.target.value)} // Update state on change
+              required
+            />
+            <TextField
+              fullWidth
+              label="Password"
+              type="password"
+              margin="normal"
+              value={password} // Bind email to state
+              onChange={(e) => setPassword(e.target.value)} // Update state on change
+              required
+            />
+            <TextField
+              fullWidth
+              label="Confirm Password"
+              type="password"
+              margin="normal"
+              value={confirmPassword} // Bind email to state
+              onChange={(e) => setConfirmPassword(e.target.value)} // Update state on change
+              required
+            />
+            <TextField
+              fullWidth
+              label="Location"
+              margin="normal"
+              value={location} // Bind email to state
+              onChange={(e) => setLocation(e.target.value)} // Update state on change
+              required
+            />
+            <TextField
+              fullWidth
+              label="Phone Number"
+              type="tel"
+              margin="normal"
+              value={phoneNo} // Bind email to state
+              onChange={(e) => setPhoneNo(e.target.value)} // Update state on change
+              required
+            />
 
-          {/* Terms and Conditions */}
-          <FormControlLabel
-            control={<Checkbox />}
-            label="I accept the Terms and Conditions"
-          />
+            {/* Terms and Conditions */}
+            <FormControlLabel
+              control={<Checkbox />}
+              label="I accept the Terms and Conditions"
+              required
+            />
 
-          {/* SignUp Button */}
-          <Button
-            fullWidth
-            variant="contained"
-            sx={{
-              backgroundColor: "#FF8100",
-              color: "#FFF",
-              padding: "12px",
-              marginTop: "16px",
-              "&:hover": {
-                backgroundColor: "#e0780c",
-              },
-            }}
-          >
-            SIGN UP
-          </Button>
+            {/* SignUp Button */}
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{
+                backgroundColor: "#FF8100",
+                color: "#FFF",
+                padding: "12px",
+                marginTop: "16px",
+                "&:hover": {
+                  backgroundColor: "#e0780c",
+                },
+              }}
+              disabled={loading}
+            >
+              {loading ? "Signing up.." : "Sign Up"}
+            </Button>
+          </form>
 
           {/* Login Option */}
           <Box

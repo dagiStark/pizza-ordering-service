@@ -24,6 +24,8 @@ const userSchema = z.object({
   password: z
     .string()
     .min(4, { message: "Password must be at least 4 characters long" }), // Minimum length for password
+  location: z.string().min(1, { message: "Full name is required" }), // Must not be empty
+  phoneNo: z.string().min(1, { message: "Full name is required" }), // Must not be empty
   role: z.string().optional().default("customer"), // Optional with default value
   restaurantId: z.number().int().positive().optional(), // Optional for restaurant users
 });
@@ -51,22 +53,28 @@ const pizzaSchema = z.object({
   topping: z.array(z.string().min(1, "Topping name is required")).optional(),
 });
 
-
 const roleSchema = z.object({
-  roleName: z
-  .string()
-  .min(1, { message: "Role name is required" }),
-  
+  roleName: z.string().min(1, { message: "Role name is required" }),
+
   permissions: z
-  .array(z.string().min(1, { message: "Permission must be a valid string" }))
-  .nonempty({ message: "Permissions array cannot be empty" }),
+    .array(z.string().min(1, { message: "Permission must be a valid string" }))
+    .nonempty({ message: "Permissions array cannot be empty" }),
 });
 
 const orderSchema = z.object({
   status: z.enum(["Preparing", "Ready", "Delivered"]).optional(), // Default is "Preparing"
-  customerId: z.coerce.number().int("Customer ID must be an integer").positive("Customer ID must be positive"),
-  pizzaId: z.coerce.number().int("Pizza ID must be an integer").positive("Pizza ID must be positive"),
-  restaurantId: z.coerce.number().int("Restaurant ID must be an integer").positive("Restaurant ID must be positive"),
+  customerId: z.coerce
+    .number()
+    .int("Customer ID must be an integer")
+    .positive("Customer ID must be positive"),
+  pizzaId: z.coerce
+    .number()
+    .int("Pizza ID must be an integer")
+    .positive("Pizza ID must be positive"),
+  restaurantId: z.coerce
+    .number()
+    .int("Restaurant ID must be an integer")
+    .positive("Restaurant ID must be positive"),
 });
 
 module.exports = {
@@ -76,7 +84,5 @@ module.exports = {
   restaurantSchema,
   userSchema,
   loginSchema,
-  roleSchema
+  roleSchema,
 };
-
-
