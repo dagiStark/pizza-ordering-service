@@ -1,20 +1,7 @@
-import React, { useState } from "react";
-import { Button, Modal, Box, TextField, Typography } from "@mui/material";
+import { useState } from "react";
+import { Modal, Box, TextField, Button, Typography } from "@mui/material";
 
-// Modal styling
-const modalStyle = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  borderRadius: 2,
-  boxShadow: 24,
-  p: 4,
-};
-
-const UserModal = ({ open, handleClose, onAddUser }) => {
+const UserModal = ({ open, onClose, onSubmit }) => {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -34,90 +21,82 @@ const UserModal = ({ open, handleClose, onAddUser }) => {
   };
 
   const handleSubmit = () => {
-    onAddUser(formData); // Callback to send data
-    handleClose(); // Close modal after submission
+    if (!formData.password || formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    onSubmit(formData); // Call the parent component's onSubmit handler
   };
 
   return (
-    <Modal open={open} onClose={handleClose}>
-      <Box sx={modalStyle}>
-        <Typography variant="h6" component="h2" gutterBottom>
-          Add New User
-        </Typography>
+    <Modal open={open} onClose={onClose}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+          width: 400,
+          p: 4,
+          margin: "auto",
+          marginTop: "10%",
+          bgcolor: "background.paper",
+        }}
+      >
+        <Typography variant="h6">Add New User</Typography>
         <TextField
-          label="Full Name"
           name="fullName"
-          fullWidth
-          margin="normal"
+          label="Full Name"
           value={formData.fullName}
           onChange={handleChange}
         />
         <TextField
-          label="Email"
           name="email"
-          fullWidth
-          margin="normal"
+          label="Email"
           value={formData.email}
           onChange={handleChange}
         />
         <TextField
-          label="Password"
           name="password"
+          label="Password"
           type="password"
-          fullWidth
-          margin="normal"
           value={formData.password}
           onChange={handleChange}
         />
         <TextField
-          label="Confirm Password"
           name="confirmPassword"
+          label="Confirm Password"
           type="password"
-          fullWidth
-          margin="normal"
           value={formData.confirmPassword}
           onChange={handleChange}
         />
         <TextField
-          label="Location"
           name="location"
-          fullWidth
-          margin="normal"
+          label="Location"
           value={formData.location}
           onChange={handleChange}
         />
         <TextField
-          label="Phone Number"
           name="phoneNo"
-          fullWidth
-          margin="normal"
+          label="Phone Number"
           value={formData.phoneNo}
           onChange={handleChange}
         />
         <TextField
-          label="Restaurant ID"
           name="restaurantId"
-          fullWidth
-          margin="normal"
+          label="Restaurant ID"
           value={formData.restaurantId}
           onChange={handleChange}
         />
         <TextField
-          label="Role"
           name="role"
-          fullWidth
-          margin="normal"
+          label="Role"
           value={formData.role}
           onChange={handleChange}
         />
-        <Button
-          variant="contained"
-          color="primary"
-          fullWidth
-          onClick={handleSubmit}
-          sx={{ mt: 2 }}
-        >
-          Add
+
+        <Button variant="contained" color="primary" onClick={handleSubmit}>
+          Add User
         </Button>
       </Box>
     </Modal>

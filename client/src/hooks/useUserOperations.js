@@ -24,20 +24,40 @@ const useUserOperations = () => {
 
   // Add a new user
   const addUser = async (userDetails) => {
+    const {
+      fullName,
+      email,
+      password,
+      confirmPassword,
+      location,
+      phoneNo,
+      restaurantId,
+    } = userDetails;
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return false;
+    }
+
     setLoading(true);
     try {
-      const res = await fetch("/api/users/add", {
+      const res = await fetch("api/auth/sign-up", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userDetails),
+        body: JSON.stringify({
+          fullName,
+          email,
+          password,
+          confirmPassword,
+          location,
+          phoneNo,
+          restaurantId,
+        }),
       });
 
       const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.message || "Failed to add user");
+      if (data.error) {
+        throw new Error(data.error);
       }
-
-      // Update the users state after adding the new user
       setUsers((prevUsers) => [...prevUsers, data]);
       toast.success("User added successfully");
     } catch (error) {
