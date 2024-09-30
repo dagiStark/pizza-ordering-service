@@ -7,7 +7,7 @@ const useAddRole = () => {
   const addRole = async ({ roleName, permissions }) => {
     setLoading(true);
     try {
-      const res = await fetch("/api/roles", {
+      const res = await fetch("/api/role/create-role", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

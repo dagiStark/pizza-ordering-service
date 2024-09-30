@@ -22,4 +22,9 @@ const createRole = async (req, res) => {
   }
 };
 
-module.exports = { createRole };
+
+const getRole = async (req, res) => {
+
+}
+
+module.exports = { createRole, getRole };

@@ -15,6 +15,7 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import ViewColumnIcon from "@mui/icons-material/ViewColumn";
 import { MaterialReactTable, type MRT_ColumnDef } from "material-react-table";
 import { useMemo, useState } from "react";
+import RoleModal from "./RoleModal";
 
 type Role = {
   roleName: string;
@@ -24,6 +25,11 @@ type Role = {
 
 const RoleCard = () => {
   const [tableData, setTableData] = useState<Role[]>(data);
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleRoleAdded = (newRole) => {
+    setTableData([...tableData, newRole]);
+  };
 
   // Define the columns with custom renderers for actions
   const columns = useMemo<MRT_ColumnDef<Role>[]>(
@@ -95,7 +101,7 @@ const RoleCard = () => {
         variant="contained"
         color="warning"
         sx={{ mb: 2 }}
-        onClick={() => alert("Add Role Clicked")}
+        onClick={() => setOpenModal(true)}
       >
         Add Role
       </Button>
@@ -141,6 +147,12 @@ const RoleCard = () => {
             </Tooltip>
           </Box>
         )}
+      />
+
+      <RoleModal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        onRoleAdded={handleRoleAdded}
       />
     </Box>
   );
