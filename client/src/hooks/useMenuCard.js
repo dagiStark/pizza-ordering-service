@@ -1,49 +1,54 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useAuthContext } from "../context/AuthContext"; // Import your auth context for authUser
 
 const useMenuCard = () => {
-  const { authUser } = useAuthContext(); // Fetch logged-in user data
   const [loading, setLoading] = useState(false);
 
-  const uploadPizza = async ({ name, price, toppings, image }) => {
+  const addMenuItem = async ({ name, price, toppings, image }) => {
     setLoading(true);
     try {
-      const restaurantId = authUser?.restaurantId; // Extract restaurantId from the logged-in user
+      // Retrieve user data from localStorage
+      const user = JSON.parse(localStorage.getItem("user"));
 
-      if (!restaurantId) {
-        throw new Error("Restaurant ID not found.");
+      if (!user || !user.restaurantId) {
+        throw new Error("Restaurant ID not found in localStorage");
       }
 
+      const restaurantId = user.restaurantId; // Extract restaurantId
+
+      console.log("Restaurant ID: ", restaurantId); // Log to ensure it's being retrieved correctly
+
+      // Create FormData object to handle image file and other data
       const formData = new FormData();
       formData.append("name", name);
       formData.append("price", price);
       formData.append("restaurantId", restaurantId);
-      formData.append("topping", JSON.stringify(toppings));
-
+      formData.append("topping", JSON.stringify(toppings)); // Append toppings as JSON string
       if (image) {
-        formData.append("image", image); // Add image to form data
+        formData.append("image", image); // Append image if available
       }
 
+      // Send the data to the server
       const res = await fetch("/api/pizza/upload-pizza", {
         method: "POST",
-        body: formData, // Send as form data
+        body: formData,
       });
 
       const data = await res.json();
-      if (data.error) {
-        throw new Error(data.error);
+      if (!res.ok) {
+        throw new Error(data.message || "Something went wrong");
       }
 
       toast.success("Pizza added successfully!");
     } catch (error) {
-      toast.error(error.message);
+      console.error("Error adding pizza: ", error);
+      toast.error(error.message || "Failed to add pizza");
     } finally {
       setLoading(false);
     }
   };
 
-  return { uploadPizza, loading };
+  return { loading, addMenuItem };
 };
 
 export default useMenuCard;

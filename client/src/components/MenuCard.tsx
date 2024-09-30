@@ -10,8 +10,31 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import UploadIcon from "@mui/icons-material/Upload";
 import { styled } from "@mui/material/styles";
+import { useState } from "react";
+import useMenuCard from "../hooks/useMenuCard"; // Import the custom hook
 
 const MenuCard = () => {
+  const { uploadPizza, loading } = useMenuCard();
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [toppings, setToppings] = useState([]);
+  const [image, setImage] = useState(null);
+
+  const handleToppingChange = (event) => {
+    const { value, checked } = event.target;
+    setToppings((prev) =>
+      checked ? [...prev, value] : prev.filter((topping) => topping !== value)
+    );
+  };
+
+  const handleImageChange = (event) => {
+    setImage(event.target.files[0]);
+  };
+
+  const handleSubmit = () => {
+    uploadPizza({ name, price, toppings, image });
+  };
+
   return (
     <Box
       sx={{
@@ -31,6 +54,8 @@ const MenuCard = () => {
         type="text"
         margin="normal"
         variant="outlined"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
       />
 
       <Box sx={{ mb: 2 }}>
@@ -40,11 +65,20 @@ const MenuCard = () => {
           direction="row"
           sx={{ flexWrap: "wrap", gap: 1 }} // Add gap for spacing and enable wrapping
         >
-          <FormControlLabel control={<Checkbox />} label="Mozzarella" />
-          <FormControlLabel control={<Checkbox />} label="Tomato" />
-          <FormControlLabel control={<Checkbox />} label="Bell Peppers" />
-          <FormControlLabel control={<Checkbox />} label="Onions" />
-          <FormControlLabel control={<Checkbox />} label="Olives" />
+          {["Mozzarella", "Tomato", "Bell Peppers", "Onions", "Olives"].map(
+            (topping) => (
+              <FormControlLabel
+                key={topping}
+                control={
+                  <Checkbox
+                    value={topping}
+                    onChange={handleToppingChange}
+                  />
+                }
+                label={topping}
+              />
+            )
+          )}
         </Stack>
         <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
           <AddIcon sx={{ color: "#FF8100", marginRight: 1 }} />
@@ -60,6 +94,8 @@ const MenuCard = () => {
         type="text"
         margin="normal"
         variant="outlined"
+        value={price}
+        onChange={(e) => setPrice(e.target.value)}
       />
 
       <Button
@@ -76,11 +112,7 @@ const MenuCard = () => {
       >
         <UploadIcon sx={{ marginRight: 1 }} />
         Upload Pizza Photo
-        <VisuallyHiddenInput
-          type="file"
-          onChange={(event) => console.log(event.target.files)}
-          multiple
-        />
+        <VisuallyHiddenInput type="file" onChange={handleImageChange} />
       </Button>
 
       <Button
@@ -91,8 +123,10 @@ const MenuCard = () => {
             backgroundColor: "#FF8100", // Keep hover color same as the button
           },
         }}
+        onClick={handleSubmit}
+        disabled={loading}
       >
-        Submit
+        {loading ? "Adding..." : "Submit"}
       </Button>
     </Box>
   );
