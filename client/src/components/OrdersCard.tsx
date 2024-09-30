@@ -8,7 +8,6 @@ import {
   Tooltip,
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import DownloadIcon from "@mui/icons-material/Download";
 import {
   MaterialReactTable,
   MRT_ColumnDef,
@@ -87,12 +86,16 @@ const OrdersCard = () => {
             sx={{
               backgroundColor:
                 cell.getValue<string>() === "Preparing"
-                  ? "#FF8100"
+                  ? "#FFA500"
                   : cell.getValue<string>() === "Ready"
-                  ? "#28a745"
-                  : "#28a745",
-              color: "#fff",
+                  ? "#008000"
+                  : "#008000",
+              color: "#ffffff",
               borderRadius: 2,
+              fontSize: "12px", // Make the font size smaller
+              padding: "1px 5px", // Add a small padding
+              Width: "80px", // Optional: Set a small minimum width
+              height: "32px",
             }}
           >
             <MenuItem value="Preparing">Preparing</MenuItem>
@@ -121,13 +124,11 @@ const OrdersCard = () => {
         columns={columns}
         data={tableData}
         renderTopToolbarCustomActions={() => (
-          <Tooltip title="Export to CSV">
-            <IconButton onClick={() => alert("Export to CSV")}>
-              <DownloadIcon />
-            </IconButton>
-          </Tooltip>
+          <Typography fontWeight="bold" fontSize="18px" color="#7a7676">
+            Packages
+          </Typography>
         )}
-        enableRowActions
+        enableRowActions={false} // Disable row actions to remove the actions column
         enableStickyHeader
       />
     </Box>

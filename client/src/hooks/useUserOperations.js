@@ -31,8 +31,10 @@ const useUserOperations = () => {
       confirmPassword,
       location,
       phoneNo,
+      role,
       restaurantId,
     } = userDetails;
+
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
       return false;
@@ -40,7 +42,7 @@ const useUserOperations = () => {
 
     setLoading(true);
     try {
-      const res = await fetch("api/auth/sign-up", {
+      const res = await fetch("api/user/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -50,6 +52,7 @@ const useUserOperations = () => {
           confirmPassword,
           location,
           phoneNo,
+          role,
           restaurantId,
         }),
       });
@@ -58,7 +61,9 @@ const useUserOperations = () => {
       if (data.error) {
         throw new Error(data.error);
       }
+      // Add user to the existing list of users
       setUsers((prevUsers) => [...prevUsers, data]);
+
       toast.success("User added successfully");
     } catch (error) {
       toast.error(error.message);

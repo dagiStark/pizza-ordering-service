@@ -35,7 +35,7 @@ function About() {
               alignItems: "flex-start",
               width: { xs: "100%", md: "60%", lg: "40%" },
               gap: "20px",
-              paddingLeft: "60px",
+              paddingLeft: { md: "60px" },
             }}
           >
             <Typography
@@ -95,11 +95,11 @@ function About() {
                           backgroundColor: "#e0780c",
                         },
                         borderRadius: "50%",
-                        padding: "20px", // Adjust padding for proper alignment
-                        marginRight: "-4px", // Adds space between icon and the border
+                        padding: { md: "20px" },
+                        marginRight: { xs: "-6px", md: "-4px" },
                       }}
                     >
-                      <SearchIcon sx={{ fontSize: "30px" }} />{" "}
+                      <SearchIcon sx={{ fontSize: { md: "30px" } }} />{" "}
                       {/* Adjust icon size if needed */}
                     </IconButton>
                   </InputAdornment>
@@ -116,10 +116,11 @@ function About() {
           <Box
             sx={{
               position: "absolute",
-              zIndex: 1,
+              zIndex: { md: 1 },
               right: { md: "22%" },
               top: { md: 5 },
               rotate: "-150deg",
+              width: { xs: "10px" },
             }}
           >
             <img src={Image1} alt="pizza leaf" />
@@ -127,8 +128,10 @@ function About() {
           <Box
             sx={{
               position: "absolute",
-              right: { md: "15%" },
-              bottom: { md: 10 },
+              right: { md: "28%" },
+              bottom: { md: 10, xs: 1 },
+              zIndex: { xs: -1, md: 0 },
+              width: { xs: "10px" },
             }}
           >
             <img src={Image1} alt="pizza leaf" />

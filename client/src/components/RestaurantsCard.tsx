@@ -9,15 +9,14 @@ function RestaurantsCard() {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: "28px",
+        padding: {xs: "10px",md: "28px"},
         borderRadius: "16px",
         backgroundColor: "#fff",
         boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
         maxWidth: "100%",
-        minWidth: { md: "500px" },
+        minWidth: {xs: "300px", md: "500px" },
         transition: "0.3s ease", // Transition for shrinking on mobile
-        "@media (max-width: 768px)": {
-          flexDirection: "column", // Column layout on mobile
+        "@media (max-width: 900px)": {
           alignItems: "center", // Center content on mobile
           gap: "16px", // Add some spacing between elements on mobile
           width: "100%", // Full width on mobile
@@ -49,15 +48,15 @@ function RestaurantsCard() {
             src={Ellipse}
             alt="Azmera Pizza"
             sx={{
-              width: 50,
-              height: 50,
+              width: { xs: 25, md: 50 },
+              height: { xs: 25, md: 50 },
               borderRadius: "50%",
             }}
           />
           {/* Restaurant Info */}
           <Typography
             sx={{
-              fontSize: "18px",
+              fontSize: { xs: "10px", md: "18px" },
               fontWeight: "bold",
               color: "#000",
             }}
@@ -68,11 +67,11 @@ function RestaurantsCard() {
         <Box>
           <Typography
             sx={{
-              fontSize: "14px",
+              fontSize: { xs: "7px", md: "14px" },
               color: "rgba(0, 0, 0, 0.5)",
-              maxWidth: "300px", // Limit text width
+              maxWidth: { md: "300px" }, // Limit text width
               "@media (max-width: 768px)": {
-                textAlign: "center", // Center text on mobile
+                textAlign: "flex-start", // Center text on mobile
               },
             }}
           >
@@ -88,7 +87,7 @@ function RestaurantsCard() {
           display: "flex",
           alignItems: "center",
           backgroundColor: "#F0FAF6",
-          padding: "16px",
+          padding: {xs: "8px",md: "16px"},
           borderRadius: "12px",
           "@media (max-width: 768px)": {
             justifyContent: "center", // Center the icon and text on mobile
@@ -97,8 +96,8 @@ function RestaurantsCard() {
       >
         <Box
           sx={{
-            width: { xs: "20px", md: "80px" },
-            height: { xs: "20px", md: "80px" },
+            width: { xs: "40px", md: "80px" },
+            height: { xs: "40px", md: "80px" },
 
             backgroundColor: "rgba(234, 129, 0, 0.20)",
             borderRadius: "50%",
@@ -121,12 +120,12 @@ function RestaurantsCard() {
           sx={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
+            alignItems: "flex-start",
           }}
         >
           <Typography
             sx={{
-              fontSize: { md: "10px" },
+              fontSize: { xs: "10px", md: "10px" },
               color: "rgba(0, 0, 0, 0.6)",
               whiteSpace: "nowrap", // Prevent text from breaking into multiple lines
               "@media (max-width: 768px)": {
@@ -138,7 +137,7 @@ function RestaurantsCard() {
           </Typography>
           <Typography
             sx={{
-              fontSize: { md: "60px" },
+              fontSize: { xs:"30px", md: "60px" },
               fontWeight: "bold",
               color: "#FF8100",
               whiteSpace: "nowrap", // Prevent "2K" from breaking

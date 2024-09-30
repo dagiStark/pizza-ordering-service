@@ -9,8 +9,8 @@ const UserModal = ({ open, onClose, onSubmit }) => {
     confirmPassword: "",
     location: "",
     phoneNo: "",
-    restaurantId: "",
     role: "",
+    restaurantId: "",
   });
 
   const handleChange = (e) => {
@@ -38,12 +38,16 @@ const UserModal = ({ open, onClose, onSubmit }) => {
           gap: 2,
           width: 400,
           p: 4,
-          margin: "auto",
-          marginTop: "10%",
           bgcolor: "background.paper",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)", // Center the modal
+          borderRadius: 2,
+          boxShadow: 24, // Add shadow for better visibility
         }}
       >
-        <Typography variant="h6">Add New User</Typography>
+        <Typography variant="h6" align="center">Add New User</Typography>
         <TextField
           name="fullName"
           label="Full Name"

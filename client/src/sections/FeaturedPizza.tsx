@@ -35,7 +35,7 @@ function FeaturedPizza() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          mt: 2,
+          mt: 1,
           overflow: "hidden",
         }}
       >
@@ -47,7 +47,7 @@ function FeaturedPizza() {
               height: "20px",
               borderRadius: "50%",
               backgroundColor: currentIndex === index ? "#FF8100" : "#E0E0E0",
-              margin: "0 10px",
+              margin: { xs: "0 10px", md: "0 10px" },
               transition: "background-color 0.3s ease",
             }}
           />
@@ -61,7 +61,7 @@ function FeaturedPizza() {
       <Box
         sx={{
           display: "flex",
-          padding: "65px 87px 110px 87px",
+          padding: { xs: "5px", md: "65px 87px 110px 87px" },
           justifyContent: "center",
           alignItems: "center",
           alignSelf: "stretch",
@@ -81,7 +81,7 @@ function FeaturedPizza() {
               alignSelf: "stretch",
               color: "rgba(0, 0, 0, 0.50)",
               fontFamily: "Inter",
-              fontSize: { xs: "40px", md: "50px" },
+              fontSize: { xs: "30px", md: "50px" },
               fontStyle: "normal",
               fontWeight: 500,
               lineHeight: "150%", // 75px
@@ -94,7 +94,7 @@ function FeaturedPizza() {
             sx={{
               position: "relative",
               width: "100%",
-              height: "400px", // Adjust height as per content
+              height: { xs: "170px", md: "420px" }, // Adjust height as per content
               overflow: "hidden",
             }}
           >
@@ -107,7 +107,7 @@ function FeaturedPizza() {
             ))}
           </Box>
 
-          {/* Render the dots below the animated cards */}
+          {/* Rendered dots below the animated cards */}
           {renderDots()}
         </Box>
       </Box>

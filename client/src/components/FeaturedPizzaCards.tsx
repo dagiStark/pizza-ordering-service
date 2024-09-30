@@ -6,14 +6,16 @@ const FirstCard = () => {
     <Box
       sx={{
         display: "flex",
-        flexDirection: { xs: "column", md: "row" },
+        flexDirection: { xs: "row", md: "row" },
         alignItems: "center",
         justifyContent: "space-between",
         backgroundColor: "#3E3E3E",
-        borderRadius: "35px",
-        paddingLeft: "4rem",
-        margin: "1rem 0",
+        borderRadius: { xs: "15px", md: "35px" },
+        paddingLeft: { xs: "1rem", md: "4rem" },
+        paddingTop: { xs: "1rem" },
+        margin: { xs: "0.4rem 0", md: "1rem 0" },
         boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)",
+        overflow: "hidden",
       }}
     >
       {/* Left Section (Text) */}
@@ -21,15 +23,28 @@ const FirstCard = () => {
         sx={{
           flex: 1,
           color: "#fff",
-          textAlign: { xs: "center", md: "left" },
-          marginBottom: { xs: "1.5rem", md: "0" },
+          textAlign: { xs: "flex-start", md: "left" },
+          marginBottom: { xs: "1rem", md: "0" },
         }}
       >
-        <Typography variant="h4" sx={{ fontWeight: "bold", mb: "0.5rem" }}>
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: "bold",
+            mb: { xs: "0.1rem", md: "0.5rem" },
+            fontSize: { xs: "15px", md: "40px" },
+          }}
+        >
           Make Your First Order <br /> and Get{" "}
           <span style={{ color: "#FF8100" }}>50% Off</span>
         </Typography>
-        <Typography sx={{ color: "#ccc", mb: "1.5rem" }}>
+        <Typography
+          sx={{
+            color: "#ccc",
+            mb: { xs: "1rem", md: "1.5rem" },
+            fontSize: { xs: "5px", md: "20px" },
+          }}
+        >
           In publishing and graphic design, Lorem ipsum is a placeholder text
           commonly used to demonstrate the visual form of a document or a
           typeface without.
@@ -40,11 +55,12 @@ const FirstCard = () => {
             backgroundColor: "#FF8100",
             color: "#fff",
             fontWeight: "bold",
-            padding: "0.75rem 1.5rem",
+            padding: { xs: "0.5rem 1rem", md: "0.75rem 1.5rem" },
             borderRadius: "50px",
             "&:hover": {
               backgroundColor: "#E67600",
             },
+            fontSize: { xs: "10px", md: "25px" },
           }}
         >
           Order Now
@@ -56,7 +72,9 @@ const FirstCard = () => {
         sx={{
           flex: 1,
           display: "flex",
-          justifyContent: { xs: "center", md: "flex-end" },
+          justifyContent: { xs: "flex-end", md: "flex-end" },
+          transform: { xs: "scale(1.4)", md: "scale(1.1)" },
+          paddingRight: { xs: "-20px", md: "20px" },
         }}
       >
         <img
@@ -78,14 +96,17 @@ const SecondCard = () => {
     <Box
       sx={{
         display: "flex",
-        flexDirection: { xs: "column", md: "row" },
+        flexDirection: { xs: "row", md: "row" },
         alignItems: "center",
         justifyContent: "space-between",
-        backgroundColor: "#50482B",
-        borderRadius: "35px",
-        paddingLeft: "4rem",
-        margin: "1rem 0",
+        backgroundColor: "#3E3E3E",
+        borderRadius: { xs: "15px", md: "35px" },
+
+        paddingLeft: { xs: "1rem", md: "4rem" },
+        paddingTop: { xs: "1rem" },
+        margin: { xs: "0.4rem 0", md: "1rem 0" },
         boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)",
+        overflow: "hidden",
       }}
     >
       {/* Left Section (Text) */}
@@ -93,15 +114,28 @@ const SecondCard = () => {
         sx={{
           flex: 1,
           color: "#fff",
-          textAlign: { xs: "center", md: "left" },
-          marginBottom: { xs: "1.5rem", md: "0" },
+          textAlign: { xs: "flex-start", md: "left" },
+          marginBottom: { xs: "1rem", md: "0" },
         }}
       >
-        <Typography variant="h4" sx={{ fontWeight: "bold", mb: "0.5rem" }}>
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: "bold",
+            mb: { xs: "0.1rem", md: "0.5rem" },
+            fontSize: { xs: "15px", md: "40px" },
+          }}
+        >
           Make Your First Order <br /> and Get{" "}
           <span style={{ color: "#FF8100" }}>50% Off</span>
         </Typography>
-        <Typography sx={{ color: "#ccc", mb: "1.5rem" }}>
+        <Typography
+          sx={{
+            color: "#ccc",
+            mb: { xs: "1rem", md: "1.5rem" },
+            fontSize: { xs: "5px", md: "20px" },
+          }}
+        >
           In publishing and graphic design, Lorem ipsum is a placeholder text
           commonly used to demonstrate the visual form of a document or a
           typeface without.
@@ -112,11 +146,12 @@ const SecondCard = () => {
             backgroundColor: "#FF8100",
             color: "#fff",
             fontWeight: "bold",
-            padding: "0.75rem 1.5rem",
+            padding: { xs: "0.5rem 1rem", md: "0.75rem 1.5rem" },
             borderRadius: "50px",
             "&:hover": {
               backgroundColor: "#E67600",
             },
+            fontSize: { xs: "10px", md: "25px" },
           }}
         >
           Order Now
@@ -128,7 +163,9 @@ const SecondCard = () => {
         sx={{
           flex: 1,
           display: "flex",
-          justifyContent: { xs: "center", md: "flex-end" },
+          justifyContent: { xs: "flex-end", md: "flex-end" },
+          transform: { xs: "scale(1.4)", md: "scale(1.1)" },
+          paddingRight: { xs: "-20px", md: "20px" },
         }}
       >
         <img
@@ -152,14 +189,17 @@ const ThirdCard = () => {
     <Box
       sx={{
         display: "flex",
-        flexDirection: { xs: "column", md: "row" },
+        flexDirection: { xs: "row", md: "row" },
         alignItems: "center",
         justifyContent: "space-between",
-        backgroundColor: "#296D60",
-        borderRadius: "35px",
-        paddingLeft: "4rem",
-        margin: "1rem 0",
+        backgroundColor: "#3E3E3E",
+        borderRadius: { xs: "15px", md: "35px" },
+
+        paddingLeft: { xs: "1rem", md: "4rem" },
+        paddingTop: { xs: "1rem" },
+        margin: { xs: "0.4rem 0", md: "1rem 0" },
         boxShadow: "0 8px 16px rgba(0, 0, 0, 0.1)",
+        overflow: "hidden",
       }}
     >
       {/* Left Section (Text) */}
@@ -167,15 +207,28 @@ const ThirdCard = () => {
         sx={{
           flex: 1,
           color: "#fff",
-          textAlign: { xs: "center", md: "left" },
-          marginBottom: { xs: "1.5rem", md: "0" },
+          textAlign: { xs: "flex-start", md: "left" },
+          marginBottom: { xs: "1rem", md: "0" },
         }}
       >
-        <Typography variant="h4" sx={{ fontWeight: "bold", mb: "0.5rem" }}>
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: "bold",
+            mb: { xs: "0.1rem", md: "0.5rem" },
+            fontSize: { xs: "15px", md: "40px" },
+          }}
+        >
           Make Your First Order <br /> and Get{" "}
           <span style={{ color: "#FF8100" }}>50% Off</span>
         </Typography>
-        <Typography sx={{ color: "#ccc", mb: "1.5rem" }}>
+        <Typography
+          sx={{
+            color: "#ccc",
+            mb: { xs: "1rem", md: "1.5rem" },
+            fontSize: { xs: "5px", md: "20px" },
+          }}
+        >
           In publishing and graphic design, Lorem ipsum is a placeholder text
           commonly used to demonstrate the visual form of a document or a
           typeface without.
@@ -186,11 +239,12 @@ const ThirdCard = () => {
             backgroundColor: "#FF8100",
             color: "#fff",
             fontWeight: "bold",
-            padding: "0.75rem 1.5rem",
+            padding: { xs: "0.5rem 1rem", md: "0.75rem 1.5rem" },
             borderRadius: "50px",
             "&:hover": {
               backgroundColor: "#E67600",
             },
+            fontSize: { xs: "10px", md: "25px" },
           }}
         >
           Order Now
@@ -202,7 +256,9 @@ const ThirdCard = () => {
         sx={{
           flex: 1,
           display: "flex",
-          justifyContent: { xs: "center", md: "flex-end" },
+          justifyContent: { xs: "flex-end", md: "flex-end" },
+          transform: { xs: "scale(1.4)", md: "scale(1.1)" },
+          paddingRight: { xs: "-20px", md: "20px" },
         }}
       >
         <img

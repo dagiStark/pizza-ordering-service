@@ -10,6 +10,10 @@ import NotesIcon from "@mui/icons-material/Notes";
 import LogoutIcon from "@mui/icons-material/Logout";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LocalPizzaIcon from "@mui/icons-material/LocalPizza";
+import GradingIcon from "@mui/icons-material/Grading";
+
+import PersonIcon from "@mui/icons-material/Person";
 import { EmojiPizza } from "../assets";
 import OrdersCard from "../components/OrdersCard";
 import MenuCard from "../components/MenuCard";
@@ -19,7 +23,6 @@ import { useState } from "react";
 
 function Dashboard() {
   const [selected, setSelected] = useState("Orders");
-  
 
   const renderContent = () => {
     switch (selected) {
@@ -46,7 +49,7 @@ function Dashboard() {
           display: "flex",
           flexDirection: "column",
           height: "100vh",
-          gap: "50px"
+          gap: "50px",
         }}
       >
         <Box>
@@ -68,32 +71,44 @@ function Dashboard() {
             marginBottom="20px"
             justifyContent={"center"}
             sx={{
-              backgroundColor: "#FFEAD9", // Light beige background for Pizza
+              backgroundColor: "#FFEA", // Light beige background for Pizza
+              minHeight: "100px",
             }}
           >
             <img
               src={EmojiPizza}
               alt="pizza"
-              style={{ width: "40px", marginRight: "10px" }}
+              style={{ width: "60px", marginRight: "10px" }}
             />
           </Box>
 
-          <Stack
-            spacing={2}
-            display={"flex"}
-            flexDirection={"column"}
-            marginLeft={"10%"}
-          >
+          <Stack spacing={1} display={"flex"} flexDirection={"column"}>
             <Box
               display="flex"
               alignItems="center"
-              sx={{ cursor: "pointer" }}
+              sx={{
+                cursor: "pointer",
+                background:
+                  selected === "Orders"
+                    ? "rgba(255, 129, 0, 0.40)"
+                    : "transparent",
+                minHeight: "40px",
+                paddingLeft: "20%",
+              }}
               onClick={() => setSelected("Orders")}
             >
-              <NotesIcon sx={{ marginRight: "10px" }} />
+              <GradingIcon
+                sx={{
+                  marginRight: "10px",
+                  color:
+                    selected === "Orders" ? "#FF8100" : "rgba(0, 0, 0, 0.75)",
+                }}
+              />
               <Typography
                 fontWeight="bold"
-                color={selected === "Orders" ? "#FF5A1F" : "black"}
+                color={
+                  selected === "Orders" ? "#FF8100" : "rgba(0, 0, 0, 0.75)"
+                }
               >
                 Orders
               </Typography>
@@ -101,13 +116,30 @@ function Dashboard() {
             <Box
               display="flex"
               alignItems="center"
-              sx={{ cursor: "pointer" }}
+              sx={{
+                cursor: "pointer",
+                background:
+                  selected === "Add Menu"
+                    ? "rgba(255, 129, 0, 0.40)"
+                    : "transparent",
+                minHeight: "40px",
+                paddingLeft: "20%",
+              }}
               onClick={() => setSelected("Add Menu")}
             >
-              <NotesIcon sx={{ marginRight: "10px" }} />
+              <LocalPizzaIcon
+                sx={{
+                  marginRight: "10px",
+                  rotate: "35deg",
+                  color:
+                    selected === "Add Menu" ? "#FF8100" : "rgba(0, 0, 0, 0.75)",
+                }}
+              />
               <Typography
                 fontWeight="bold"
-                color={selected === "Add Menu" ? "#FF5A1F" : "black"}
+                color={
+                  selected === "Add Menu" ? "#FF8100" : "rgba(0, 0, 0, 0.75)"
+                }
               >
                 Add Menu
               </Typography>
@@ -115,13 +147,27 @@ function Dashboard() {
             <Box
               display="flex"
               alignItems="center"
-              sx={{ cursor: "pointer" }}
+              sx={{
+                cursor: "pointer",
+                background:
+                  selected === "Role"
+                    ? "rgba(255, 129, 0, 0.40)"
+                    : "transparent",
+                minHeight: "40px",
+                paddingLeft: "20%",
+              }}
               onClick={() => setSelected("Role")}
             >
-              <NotesIcon sx={{ marginRight: "10px" }} />
+              <PersonIcon
+                sx={{
+                  marginRight: "10px",
+                  color:
+                    selected === "Role" ? "#FF8100" : "rgba(0, 0, 0, 0.75)",
+                }}
+              />
               <Typography
                 fontWeight="bold"
-                color={selected === "Role" ? "#FF5A1F" : "black"}
+                color={selected === "Role" ? "#FF8100" : "rgba(0, 0, 0, 0.75)"}
               >
                 Role
               </Typography>
@@ -129,13 +175,27 @@ function Dashboard() {
             <Box
               display="flex"
               alignItems="center"
-              sx={{ cursor: "pointer" }}
+              sx={{
+                cursor: "pointer",
+                background:
+                  selected === "User"
+                    ? "rgba(255, 129, 0, 0.40)"
+                    : "transparent",
+                minHeight: "40px",
+                paddingLeft: "20%",
+              }}
               onClick={() => setSelected("User")}
             >
-              <NotesIcon sx={{ marginRight: "10px" }} />
+              <AccountCircleIcon
+                sx={{
+                  marginRight: "10px",
+                  color:
+                    selected === "User" ? "#FF8100" : "rgba(0, 0, 0, 0.75)",
+                }}
+              />
               <Typography
                 fontWeight="bold"
-                color={selected === "User" ? "#FF5A1F" : "black"}
+                color={selected === "User" ? "#FF8100" : "rgba(0, 0, 0, 0.75)"}
               >
                 User
               </Typography>
@@ -143,20 +203,34 @@ function Dashboard() {
           </Stack>
         </Box>
 
-        <Box display="flex" alignItems="center" color="red" marginBottom="20px">
+        <Box
+          display="flex"
+          alignItems="center"
+          color="red"
+          marginBottom="20px"
+          sx={{
+            alignSelf: "center",
+          }}
+        >
           <LogoutIcon sx={{ marginRight: "10px" }} />
           <Typography fontWeight="bold">Logout</Typography>
         </Box>
       </Box>
 
       {/* main content */}
-      <Box sx={{ flex: 1, padding: "20px" }}>
+
+      <Box sx={{ flex: 1, padding: "20px", background: "#F8F8F8" }}>
         {/* top bar */}
         <Box
           display="flex"
           justifyContent="space-between"
           alignItems="center"
           marginBottom="20px"
+          sx={{
+            background: "#FFFFFF",
+            padding: "6px",
+            borderRadius: "7px",
+          }}
         >
           <Typography variant="h4">{selected}</Typography>
           <Box display="flex" alignItems="center">

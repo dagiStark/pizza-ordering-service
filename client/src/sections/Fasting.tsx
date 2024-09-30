@@ -7,12 +7,13 @@ function Fasting() {
       <Box
         sx={{
           display: "flex",
-          padding: "65px 87px 110px 87px",
+          padding: { xs: "5px", md: "65px 87px 110px 87px" },
           justifyContent: "center",
           alignItems: "center",
           alignSelf: "stretch",
           background: "#FFF8F1",
           overflow: "hidden",
+          mt: 6,
         }}
       >
         <Box
@@ -20,7 +21,7 @@ function Fasting() {
             display: "flex",
             width: "1266px",
             flexDirection: "column",
-            alignItems: "flex-start",
+            alignItems: "center",
             gap: "25px",
           }}
         >
@@ -29,10 +30,11 @@ function Fasting() {
               alignSelf: "stretch",
               color: "rgba(0, 0, 0, 0.50)",
               fontFamily: "Inter",
-              fontSize: { xs: "40px", md: "50px" },
+              fontSize: { xs: "30px", md: "50px" },
               fontStyle: "normal",
               fontWeight: 500,
               lineHeight: "150%", // 75px
+              textAlign: "flex-start"
             }}
           >
             Fastings
