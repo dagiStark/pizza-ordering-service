@@ -7,6 +7,7 @@ const createRole = async (req, res) => {
     const newRole = await models.Role.create({
       roleName,
       permissions,
+      active: true,
     });
 
     // Respond with the created role
@@ -22,9 +23,32 @@ const createRole = async (req, res) => {
   }
 };
 
-
 const getRole = async (req, res) => {
+  try {
+    const roles = await models.Role.findAll();
 
-}
+    res.status(200).json(roles);
+  } catch (error) {
+    console.error("Error fetching roles:", error);
+    res.status(500).json({ message: "Failed to fetch roles" });
+  }
+};
 
-module.exports = { createRole, getRole };
+const deleteRole = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const role = await models.Role.findByPk(id);
+    if (!role) {
+      return res.status(404).json({ message: "Role not found" });
+    }
+
+    await role.destroy(); // Delete the role
+    res.status(200).json({ message: "Role deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting role:", error);
+    res.status(500).json({ message: "Failed to delete role" });
+  }
+};
+
+module.exports = { createRole, getRole, deleteRole };

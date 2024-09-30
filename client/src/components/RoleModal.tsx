@@ -24,7 +24,6 @@ const RoleModal = ({ open, onClose, onRoleAdded }) => {
     createRoles: false,
   });
 
-  // Handle checkbox changes
   const handlePermissionChange = (event) => {
     const { name, checked } = event.target;
     setPermissions((prevPermissions) => ({
@@ -33,7 +32,6 @@ const RoleModal = ({ open, onClose, onRoleAdded }) => {
     }));
   };
 
-  // Handle form submission
   const handleSubmit = async () => {
     const selectedPermissions = Object.keys(permissions).filter(
       (permission) => permissions[permission]
@@ -45,9 +43,9 @@ const RoleModal = ({ open, onClose, onRoleAdded }) => {
     };
 
     try {
-      await addRole(newRole); // Send role to backend
-      onRoleAdded(newRole); // Update table after adding
-      onClose(); // Close modal
+      await addRole(newRole);
+      onRoleAdded(newRole);
+      onClose();
     } catch (error) {
       console.error("Failed to add role", error);
     }
@@ -64,69 +62,22 @@ const RoleModal = ({ open, onClose, onRoleAdded }) => {
           onChange={(e) => setRoleName(e.target.value)}
           margin="normal"
         />
-
         <Typography>Permissions</Typography>
         <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={permissions.updateOrderStatus}
-                  onChange={handlePermissionChange}
-                  name="updateOrderStatus"
-                />
-              }
-              label="Update Order Status"
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={permissions.seeOrders}
-                  onChange={handlePermissionChange}
-                  name="seeOrders"
-                />
-              }
-              label="See Orders"
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={permissions.addUsers}
-                  onChange={handlePermissionChange}
-                  name="addUsers"
-                />
-              }
-              label="Add Users"
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={permissions.seeCustomers}
-                  onChange={handlePermissionChange}
-                  name="seeCustomers"
-                />
-              }
-              label="See Customers"
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={permissions.createRoles}
-                  onChange={handlePermissionChange}
-                  name="createRoles"
-                />
-              }
-              label="Create Roles"
-            />
-          </Grid>
+          {Object.keys(permissions).map((permission) => (
+            <Grid item xs={6} key={permission}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={permissions[permission]}
+                    onChange={handlePermissionChange}
+                    name={permission}
+                  />
+                }
+                label={permission.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
+              />
+            </Grid>
+          ))}
         </Grid>
       </DialogContent>
       <DialogActions>

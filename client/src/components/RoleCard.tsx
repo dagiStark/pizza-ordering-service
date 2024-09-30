@@ -5,6 +5,7 @@ import {
   Switch,
   Tooltip,
   Typography,
+  CircularProgress,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -16,87 +17,101 @@ import ViewColumnIcon from "@mui/icons-material/ViewColumn";
 import { MaterialReactTable, type MRT_ColumnDef } from "material-react-table";
 import { useMemo, useState } from "react";
 import RoleModal from "./RoleModal";
+import useFetchRoles from "../hooks/useFetchRoles"; // Custom hook to fetch roles
+import toast from "react-hot-toast"; // Optional for success/failure notifications
 
-type Role = {
+// Define a TypeScript interface for the Role
+interface Role {
+  id: string;
   roleName: string;
   createdAt: string;
   active: boolean;
-};
+}
 
 const RoleCard = () => {
-  const [tableData, setTableData] = useState<Role[]>(data);
+  const { roles, loading, fetchRoles } = useFetchRoles(); // Custom hook for fetching roles
   const [openModal, setOpenModal] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
-  const handleRoleAdded = (newRole) => {
-    setTableData([...tableData, newRole]);
+  // Handle role addition
+  const handleRoleAdded = (newRole: Role) => {
+    fetchRoles(); // Refetch the roles after adding a new role
   };
 
   // Define the columns with custom renderers for actions
-  const columns = useMemo<MRT_ColumnDef<Role>[]>(
-    () => [
-      {
-        accessorKey: "roleName", // Access role name
-        header: "Role Name",
-        size: 150,
-        Cell: ({ cell }) => <Typography>{cell.getValue<string>()}</Typography>,
-      },
-      {
-        accessorKey: "createdAt", // Access creation date
-        header: "Created at",
-        size: 150,
-      },
-      {
-        accessorKey: "active", // Custom actions column
-        header: "Actions",
-        size: 200,
-        Cell: ({ row }) => (
-          <Box display="flex" alignItems="center">
-            {/* Switch for active/inactive status */}
-            <Switch
-              checked={row.original.active}
-              onChange={(e) => handleStatusChange(row.index, e.target.checked)}
-              color="success"
-            />
-            <Typography>
-              {row.original.active ? "Active" : "Inactive"}
-            </Typography>
+  const columns = useMemo<MRT_ColumnDef<Role>[]>(() => [
+    {
+      accessorKey: "roleName",
+      header: "Role Name",
+      size: 150,
+      Cell: ({ cell }) => <Typography>{cell.getValue<string>()}</Typography>,
+    },
+    {
+      accessorKey: "createdAt",
+      header: "Created at",
+      size: 150,
+    },
+    {
+      accessorKey: "active",
+      header: "Actions",
+      size: 200,
+      Cell: ({ row }) => (
+        <Box display="flex" alignItems="center">
+          <Switch
+            checked={row.original.active}
+            onChange={(e) => handleStatusChange(row.index, e.target.checked)}
+            color="success"
+          />
+          <Typography>{row.original.active ? "Active" : "Inactive"}</Typography>
+          <Tooltip title="View">
+            <IconButton>
+              <VisibilityIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Delete">
+            <IconButton onClick={() => handleDelete(row.index, row.original.id)}>
+              <DeleteIcon />
+            </IconButton>
+          </Tooltip>
+        </Box>
+      ),
+    },
+  ], [roles]);
 
-            {/* View icon */}
-            <Tooltip title="View">
-              <IconButton>
-                <VisibilityIcon />
-              </IconButton>
-            </Tooltip>
-
-            {/* Delete icon */}
-            <Tooltip title="Delete">
-              <IconButton onClick={() => handleDelete(row.index)}>
-                <DeleteIcon />
-              </IconButton>
-            </Tooltip>
-          </Box>
-        ),
-      },
-    ],
-    []
-  );
-
-  // Handle status change for switch
   const handleStatusChange = (index: number, isActive: boolean) => {
-    const updatedData = [...tableData];
-    updatedData[index].active = isActive;
-    setTableData(updatedData);
+    const updatedRoles = [...roles];
+    updatedRoles[index].active = isActive;
+    // Update the state and optionally the backend
   };
 
-  // Handle delete action
-  const handleDelete = (index: number) => {
-    const updatedData = tableData.filter((_, i) => i !== index);
-    setTableData(updatedData);
+  const handleDelete = async (index: number, roleId: string) => {
+    setDeleteLoading(true);
+    try {
+      const response = await fetch(`/api/role/delete/${roleId}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete role");
+      }
+
+      const updatedRoles = roles.filter((_, i) => i !== index);
+      fetchRoles(); // Refetch roles after delete
+      toast.success("Role deleted successfully");
+    } catch (error) {
+      console.error("Failed to delete role:", error);
+      toast.error("Failed to delete role");
+    } finally {
+      setDeleteLoading(false);
+    }
   };
+
+  if (loading || deleteLoading) {
+    return <CircularProgress />;
+  }
 
   return (
     <Box>
-      {/* Add Role Button */}
       <Button
         variant="contained"
         color="warning"
@@ -108,38 +123,29 @@ const RoleCard = () => {
 
       <MaterialReactTable
         columns={columns}
-        data={tableData}
+        data={roles}
         renderTopToolbarCustomActions={() => (
           <Box display="flex" alignItems="center">
-            {/* Refresh Button */}
             <Tooltip title="Refresh">
-              <IconButton>
+              <IconButton onClick={fetchRoles}>
                 <RefreshIcon />
               </IconButton>
             </Tooltip>
-
-            {/* Search Button */}
             <Tooltip title="Search">
               <IconButton>
                 <SearchIcon />
               </IconButton>
             </Tooltip>
-
-            {/* Download Button */}
             <Tooltip title="Download CSV">
               <IconButton>
                 <DownloadIcon />
               </IconButton>
             </Tooltip>
-
-            {/* Filter List Button */}
             <Tooltip title="Filter">
               <IconButton>
                 <FilterListIcon />
               </IconButton>
             </Tooltip>
-
-            {/* View Column Button */}
             <Tooltip title="View Columns">
               <IconButton>
                 <ViewColumnIcon />
@@ -159,21 +165,3 @@ const RoleCard = () => {
 };
 
 export default RoleCard;
-
-const data: Role[] = [
-  {
-    roleName: "Kitchen Manager",
-    createdAt: "8/14/24",
-    active: true,
-  },
-  {
-    roleName: "Cashier",
-    createdAt: "8/14/24",
-    active: true,
-  },
-  {
-    roleName: "Branch Manager",
-    createdAt: "8/14/24",
-    active: true,
-  },
-];

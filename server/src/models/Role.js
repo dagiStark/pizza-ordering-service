@@ -1,7 +1,7 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  const Role = sequelize.define('Role', {
+  const Role = sequelize.define("Role", {
     roleName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -10,6 +10,10 @@ module.exports = (sequelize) => {
     permissions: {
       type: DataTypes.ARRAY(DataTypes.STRING), // Array of strings to store permissions
       allowNull: false,
+    },
+    active: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
     },
   });
 

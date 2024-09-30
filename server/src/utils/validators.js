@@ -59,6 +59,7 @@ const roleSchema = z.object({
   permissions: z
     .array(z.string().min(1, { message: "Permission must be a valid string" }))
     .nonempty({ message: "Permissions array cannot be empty" }),
+  active: z.boolean(),
 });
 
 const orderSchema = z.object({
