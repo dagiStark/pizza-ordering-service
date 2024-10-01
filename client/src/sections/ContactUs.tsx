@@ -4,7 +4,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import { EmojiPizza } from "../assets";
+import  EmojiPizza  from "../assets/EmojiPizza.png";
 
 function ContactUs() {
   return (

@@ -10,7 +10,7 @@ import HotWheelPizzas from "./HotWheelPizzas.png";
 import PizzaDeliver from "./PizzaDeliver.png";
 import Ellipse from "./Ellipse.png";
 
-export {
+export  {
   Logo,
   Image1,
   Image2,
