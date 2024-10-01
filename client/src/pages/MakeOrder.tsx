@@ -10,8 +10,8 @@ import {
 import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-
 import { Image2, Image6 } from "../assets";
+import useOrder from "../hooks/useOrder"; // Adjust the path as necessary
 
 const pizzaImages = [
   { src: Image2, name: "Margherita" },
@@ -21,7 +21,22 @@ const pizzaImages = [
 const MakeOrder = () => {
   const [selectedPizza, setSelectedPizza] = useState(pizzaImages[0]);
   const [quantity, setQuantity] = useState(1);
-  const [price, setPrice] = useState(150);
+  const [price] = useState(150);
+  const [toppings, setToppings] = useState({
+    mozzarella: true,
+    tomato: true,
+    bellPeppers: true,
+    onions: false,
+    olives: false,
+  });
+
+  const { order } = useOrder(); // Use the order hook
+  const user = localStorage.getItem("user");
+  const customerNo = user ? JSON.parse(user).phoneNo : null;
+
+  if (!customerNo) {
+    console.error("Customer number is not available.");
+  }
 
   const handleImageClick = (image) => {
     setSelectedPizza(image);
@@ -29,6 +44,27 @@ const MakeOrder = () => {
 
   const handleIncrease = () => setQuantity(quantity + 1);
   const handleDecrease = () => quantity > 1 && setQuantity(quantity - 1);
+
+  const handleToppingChange = (event) => {
+    const { name, checked } = event.target;
+    setToppings((prev) => ({
+      ...prev,
+      [name]: checked,
+    }));
+  };
+
+  const handleOrder = () => {
+    const selectedToppings = Object.entries(toppings)
+      .filter(([_, value]) => value)
+      .map(([key]) => key);
+
+    order({
+      name: selectedPizza.name,
+      toppings: selectedToppings,
+      quantity,
+      customerNo,
+    });
+  };
 
   return (
     <Box
@@ -116,8 +152,6 @@ const MakeOrder = () => {
 
       {/* Pizza Details */}
       <Box sx={{ alignItems: "flex-start", display: "flex" }}>
-        {" "}
-        {/* Center align text */}
         <Stack spacing={2}>
           <Typography variant="h1" fontWeight={"bold"}>
             {selectedPizza.name}
@@ -128,7 +162,9 @@ const MakeOrder = () => {
             <FormControlLabel
               control={
                 <Checkbox
-                  defaultChecked
+                  checked={toppings.mozzarella}
+                  onChange={handleToppingChange}
+                  name="mozzarella"
                   sx={{
                     color: "#FF8100",
                     "&.Mui-checked": { color: "#FF8100" },
@@ -140,7 +176,9 @@ const MakeOrder = () => {
             <FormControlLabel
               control={
                 <Checkbox
-                  defaultChecked
+                  checked={toppings.tomato}
+                  onChange={handleToppingChange}
+                  name="tomato"
                   sx={{
                     color: "#FF8100",
                     "&.Mui-checked": { color: "#FF8100" },
@@ -152,7 +190,9 @@ const MakeOrder = () => {
             <FormControlLabel
               control={
                 <Checkbox
-                  defaultChecked
+                  checked={toppings.bellPeppers}
+                  onChange={handleToppingChange}
+                  name="bellPeppers"
                   sx={{
                     color: "#FF8100",
                     "&.Mui-checked": { color: "#FF8100" },
@@ -164,6 +204,9 @@ const MakeOrder = () => {
             <FormControlLabel
               control={
                 <Checkbox
+                  checked={toppings.onions}
+                  onChange={handleToppingChange}
+                  name="onions"
                   sx={{
                     color: "#FF8100",
                     "&.Mui-checked": { color: "#FF8100" },
@@ -175,6 +218,9 @@ const MakeOrder = () => {
             <FormControlLabel
               control={
                 <Checkbox
+                  checked={toppings.olives}
+                  onChange={handleToppingChange}
+                  name="olives"
                   sx={{
                     color: "#FF8100",
                     "&.Mui-checked": { color: "#FF8100" },
@@ -200,7 +246,7 @@ const MakeOrder = () => {
             </IconButton>
             <Typography variant="h4" sx={{ fontWeight: "bold" }}>
               {quantity}
-            </Typography>{" "}
+            </Typography>
             <IconButton
               onClick={handleIncrease}
               sx={{
@@ -225,6 +271,7 @@ const MakeOrder = () => {
             color="warning"
             size="large"
             endIcon={<AddIcon />}
+            onClick={handleOrder} // Call handleOrder on button click
             sx={{ width: "fit-content", display: "flex" }} // Center the button
           >
             Order

@@ -2,45 +2,50 @@ const { models } = require("../models");
 
 const createOrder = async (req, res) => {
   try {
-    const { customerId, pizzaId, restaurantId, status } = req.body;
+    const {
+      name,
+      toppings = [],
+      quantity,
+      customerNo,
+      status = "Preparing",
+    } = req.body;
 
-    // Check if customer, pizza, and restaurant exist
-    const customer = await models.User.findByPk(customerId);
-    const pizza = await models.Pizza.findByPk(pizzaId);
-    const restaurant = await models.Restaurant.findByPk(restaurantId);
-
-    if (!customer) {
-      return res.status(404).json({ message: "Customer not found" });
+    if (!name || !quantity || !customerNo) {
+      return res
+        .status(400)
+        .json({ error: "Name, quantity, and customerNo are required." });
     }
 
-    if (!pizza) {
-      return res.status(404).json({ message: "Pizza not found" });
-    }
-
-    if (!restaurant) {
-      return res.status(404).json({ message: "Restaurant not found" });
-    }
-
-    // Create new order
     const newOrder = await models.Order.create({
-      customerId,
-      pizzaId,
-      restaurantId,
-      status: status || "Preparing", // Default status if not provided
+      name,
+      toppings,
+      quantity,
+      customerNo,
+      status,
     });
 
-    // Respond with the created order
     res.status(201).json({
-      message: "Order created successfully",
-      order: newOrder,
+      id: newOrder.id,
+      name: newOrder.name,
+      toppings: newOrder.toppings,
+      quantity: newOrder.quantity,
+      customerNo: newOrder.customerNo,
+      status: newOrder.status,
     });
   } catch (error) {
-    // Handle any errors that occur
-    res.status(500).json({
-      message: "Error while creating order",
-      error: error.message,
-    });
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 
-module.exports = { createOrder };
+const getOrder = async (req, res) => {
+  try {
+    const orders = await models.Order.findAll();
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error("Error fetching Orders:", error);
+    res.status(500).json({ message: "Failed to Orders roles" });
+  }
+};
+
+module.exports = { createOrder, getOrder };

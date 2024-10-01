@@ -2,14 +2,26 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   const Order = sequelize.define("Order", {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    toppings: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: true,
+    },
+    quantity: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    customerNo: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     status: {
       type: DataTypes.ENUM("Preparing", "Ready", "Delivered"),
       defaultValue: "Preparing",
     },
-    customerId: { type: DataTypes.INTEGER },
-    pizzaId: { type: DataTypes.INTEGER },
-    restaurantId: { type: DataTypes.INTEGER },
-    quantity: { type: DataTypes.INTEGER }
   });
 
   Order.associate = (models) => {

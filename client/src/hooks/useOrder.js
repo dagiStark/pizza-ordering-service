@@ -3,33 +3,49 @@ import toast from "react-hot-toast";
 
 const useOrder = () => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
-  const order = async ({ customerId, pizzaId, restaurantId, status }) => {
+  const order = async ({ name, toppings, quantity, customerNo }) => {
     setLoading(true);
+    setError(null);
+    setSuccess(null);
+
     try {
-      const res = await fetch("api/order/create-order", {
+      const response = await fetch("/api/order/create-order", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
-          customerId,
-          pizzaId,
-          restaurantId,
-          status
+          name,
+          toppings,
+          quantity,
+          customerNo,
         }),
       });
 
-      const data = await res.json();
-      if (data.error) {
-        throw new Error(data.error);
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to place the order");
       }
-    } catch (error) {
-      toast.error(error.message);
+      
+      setSuccess(data.message); 
+      toast.success("Order placed successfully!");
+    } catch (err) {
+      setError(err.message);
+      toast.error(err.message);
     } finally {
       setLoading(false);
     }
   };
 
-  return { loading, order };
+  return {
+    order,
+    loading,
+    error,
+    success,
+  };
 };
 
 export default useOrder;

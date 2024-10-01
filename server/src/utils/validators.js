@@ -61,23 +61,14 @@ const roleSchema = z.object({
 });
 
 const orderSchema = z.object({
-  status: z.enum(["Preparing", "Ready", "Delivered"]).optional(), // Default is "Preparing"
-  customerId: z.coerce
-    .number()
-    .int("Customer ID must be an integer")
-    .positive("Customer ID must be positive"),
-  pizzaId: z.coerce
-    .number()
-    .int("Pizza ID must be an integer")
-    .positive("Pizza ID must be positive"),
-  restaurantId: z.coerce
-    .number()
-    .int("Restaurant ID must be an integer")
-    .positive("Restaurant ID must be positive"),
+  name: z.string().min(1, "Pizza name is required"),
+  toppings: z.array(z.string()).optional(),
   quantity: z.coerce
     .number()
-    .int("quantity must be an integer")
-    .positive("quantity must be positive"),
+    .int("Quantity must be an integer")
+    .positive("Quantity must be positive"),
+  customerNo: z.string().min(1, "Customer number is required"),
+  status: z.enum(["Preparing", "Ready", "Delivered"]).optional(),
 });
 
 module.exports = {
