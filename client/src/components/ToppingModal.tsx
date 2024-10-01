@@ -2,6 +2,8 @@
 import { Box, Modal, Typography, Button } from "@mui/material";
 
 const ToppingModal = ({ open, onClose, order }) => {
+  if (!order) return null; // If order is null, return nothing
+
   return (
     <Modal open={open} onClose={onClose}>
       <Box

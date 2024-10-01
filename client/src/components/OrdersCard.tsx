@@ -8,18 +8,14 @@ import {
   Tooltip,
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import {
-  MaterialReactTable,
-  MRT_ColumnDef,
-  MRT_ToggleDensePaddingButton,
-  MRT_ToggleFiltersButton,
-} from "material-react-table";
+import { MaterialReactTable, MRT_ColumnDef } from "material-react-table";
 import { useMemo, useState } from "react";
 import { Image2 } from "../assets";
+import ToppingModal from "./ToppingModal"; // Import the ToppingModal component
 
 type Packages = {
   name: string;
-  topping: string;
+  topping: string[];
   quantity: number;
   phoneNo: string;
   createdAt: string;
@@ -28,6 +24,8 @@ type Packages = {
 
 const OrdersCard = () => {
   const [tableData, setTableData] = useState<Packages[]>(data);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState<Packages | null>(null);
 
   // Define columns with custom renderers for the topping and status
   const columns = useMemo<MRT_ColumnDef<Packages>[]>(
@@ -53,9 +51,13 @@ const OrdersCard = () => {
         accessorKey: "topping",
         header: "Topping",
         size: 200,
-        Cell: ({ cell }) => (
+        Cell: ({ row }) => (
           <Box display="flex" alignItems="center">
-            <VisibilityIcon sx={{ color: "#FF8100", marginRight: 1 }} />
+            <Tooltip title="View Toppings">
+              <IconButton onClick={() => handleToppingClick(row.original)}>
+                <VisibilityIcon sx={{ color: "#FF8100", marginRight: 1 }} />
+              </IconButton>
+            </Tooltip>
             <Typography sx={{ color: "#FF8100" }}>Toppings</Typography>
           </Box>
         ),
@@ -92,9 +94,8 @@ const OrdersCard = () => {
                   : "#008000",
               color: "#ffffff",
               borderRadius: 2,
-              fontSize: "12px", // Make the font size smaller
-              padding: "1px 5px", // Add a small padding
-              Width: "80px", // Optional: Set a small minimum width
+              fontSize: "12px",
+              padding: "1px 5px",
               height: "32px",
             }}
           >
@@ -107,6 +108,12 @@ const OrdersCard = () => {
     ],
     []
   );
+
+  // Handle topping icon click to open the modal
+  const handleToppingClick = (order: Packages) => {
+    setSelectedOrder(order);
+    setModalOpen(true);
+  };
 
   // Handle status change
   const handleStatusChange = (
@@ -128,8 +135,15 @@ const OrdersCard = () => {
             Packages
           </Typography>
         )}
-        enableRowActions={false} // Disable row actions to remove the actions column
+        enableRowActions={false}
         enableStickyHeader
+      />
+
+      {/* ToppingModal to show order details */}
+      <ToppingModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        order={selectedOrder}
       />
     </Box>
   );
@@ -140,7 +154,7 @@ export default OrdersCard;
 const data: Packages[] = [
   {
     name: "Pizza",
-    topping: "Toppings",
+    topping: ["Cheese", "Olives", "Mushrooms"], // Example toppings
     quantity: 4,
     phoneNo: "+251 1523654789",
     createdAt: "2:44 PM 8/14/24",
@@ -148,7 +162,7 @@ const data: Packages[] = [
   },
   {
     name: "Pizza",
-    topping: "Toppings",
+    topping: ["Pepperoni", "Onions"], // Example toppings
     quantity: 3,
     phoneNo: "+251 1523654789",
     createdAt: "2:44 PM 8/14/24",
@@ -156,7 +170,7 @@ const data: Packages[] = [
   },
   {
     name: "Pizza",
-    topping: "Toppings",
+    topping: ["Bell Peppers"], // Example toppings
     quantity: 1,
     phoneNo: "+251 1523654789",
     createdAt: "2:44 PM 8/14/24",
@@ -164,7 +178,7 @@ const data: Packages[] = [
   },
   {
     name: "Pizza",
-    topping: "Toppings",
+    topping: ["Spinach", "Cheese"], // Example toppings
     quantity: 6,
     phoneNo: "+251 1523654789",
     createdAt: "2:44 PM 8/14/24",
@@ -172,7 +186,7 @@ const data: Packages[] = [
   },
   {
     name: "Pizza",
-    topping: "Toppings",
+    topping: ["Tomato", "Basil"], // Example toppings
     quantity: 2,
     phoneNo: "+251 1523654789",
     createdAt: "2:44 PM 8/14/24",
@@ -180,7 +194,7 @@ const data: Packages[] = [
   },
   {
     name: "Pizza",
-    topping: "Toppings",
+    topping: ["Olives"], // Example toppings
     quantity: 1,
     phoneNo: "+251 1523654789",
     createdAt: "2:44 PM 8/14/24",
