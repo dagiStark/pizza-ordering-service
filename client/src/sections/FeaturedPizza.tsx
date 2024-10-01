@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import { useTransition, animated } from "@react-spring/web";
 import {
   FirstCard,

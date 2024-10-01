@@ -1,12 +1,5 @@
-import {
-  Box,
-  Typography,
-  Button,
-  Avatar,
-  Link as LinkBase,
-} from "@mui/material";
-import { Link } from "react-router-dom";
-import { Image2, Ellipse } from "../assets";
+import { Box, Typography } from "@mui/material";
+import { Image2 } from "../assets";
 
 const PizzaCard = () => {
   return (

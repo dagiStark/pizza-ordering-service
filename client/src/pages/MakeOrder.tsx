@@ -11,7 +11,7 @@ import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { Image2, Image6 } from "../assets";
-import useOrder from "../hooks/useOrder"; // Adjust the path as necessary
+import useOrder from "../hooks/useOrder";
 
 const pizzaImages = [
   { src: Image2, name: "Margherita" },

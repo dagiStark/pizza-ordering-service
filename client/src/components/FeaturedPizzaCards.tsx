@@ -1,5 +1,5 @@
 import { Box, Typography, Button } from "@mui/material";
-import { Image2, vippng1, Image4, Image5 } from "../assets";
+import {  vippng1, Image4, Image5 } from "../assets";
 
 const FirstCard = () => {
   return (

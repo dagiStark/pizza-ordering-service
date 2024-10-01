@@ -1,4 +1,4 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import PizzaCard from "../components/PizzaCard";
 
 function Fasting() {
@@ -34,13 +34,24 @@ function Fasting() {
               fontStyle: "normal",
               fontWeight: 500,
               lineHeight: "150%", // 75px
-              textAlign: "flex-start"
+              textAlign: "flex-start",
             }}
           >
             Fastings
           </Typography>
 
-          <PizzaCard />
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "25px",
+            }}
+          >
+            <PizzaCard />
+            <PizzaCard />
+            <PizzaCard />
+            <PizzaCard />
+          </Box>
         </Box>
       </Box>
     </section>

@@ -1,10 +1,4 @@
-import {
-  Box,
-  Typography,
-  Button,
-  Avatar,
-  Link as LinkBase,
-} from "@mui/material";
+import { Box, Typography, Avatar, Link as LinkBase } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Image2, Ellipse } from "../assets";
 

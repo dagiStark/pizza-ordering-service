@@ -1,5 +1,4 @@
-import { Box, Typography, Button } from "@mui/material";
-import PizzaCard from "../components/PizzaCard";
+import { Box, Typography } from "@mui/material";
 import OrderedPizzaCard from "../components/OrderedPizzaCard";
 
 function Orders() {

@@ -1,13 +1,25 @@
-import { useState, createContext, useContext } from "react";
+import React, { useState, createContext, useContext, ReactNode } from "react";
 import PropTypes from "prop-types";
+import { AuthUser } from "../types/types";
 
-const AuthContext = createContext();
+interface AuthContextType {
+  authUser: AuthUser | null;
+  setAuthUser: React.Dispatch<React.SetStateAction<AuthUser | null>>; 
+}
 
-export const useAuthContext = () => useContext(AuthContext);
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthContextProvider = ({ children }) => {
-  const [authUser, setAuthUser] = useState(
-    JSON.parse(localStorage.getItem("user")) || null
+export const useAuthContext = () => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuthContext must be used within an AuthContextProvider');
+  }
+  return context;
+};
+
+export const AuthContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [authUser, setAuthUser] = useState<AuthUser | null>(
+    JSON.parse(localStorage.getItem("user") || 'null') 
   );
 
   return (

@@ -24,7 +24,7 @@ import useLogout from "../hooks/useLogout";
 
 function Dashboard() {
   const [selected, setSelected] = useState("Orders");
-  const { loading, logout } = useLogout();
+  const {  logout } = useLogout();
 
   const renderContent = () => {
     switch (selected) {

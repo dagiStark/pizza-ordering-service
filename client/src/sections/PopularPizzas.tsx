@@ -1,4 +1,4 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import PizzaCard from "../components/PizzaCard";
 
 function PopularPizzas() {
@@ -40,8 +40,21 @@ function PopularPizzas() {
           >
             Popular pizzas
           </Typography>
+          <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "25px",
 
-          <PizzaCard />
+          }}
+          >
+            <PizzaCard />
+            <PizzaCard />
+            <PizzaCard />
+            <PizzaCard />
+            <PizzaCard />
+            <PizzaCard />
+          </Box>
         </Box>
       </Box>
     </section>

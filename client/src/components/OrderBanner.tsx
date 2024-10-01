@@ -1,5 +1,4 @@
 import { Box, Typography, Button } from "@mui/material";
-import { vippng1 } from "../assets";
 
 function OrderBanner() {
   return (
