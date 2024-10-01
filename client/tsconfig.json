@@ -5,8 +5,14 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
-    "target": "ES6", // or ES6/ES2015, depending on your project
-    "module": "CommonJS", // or ESNext, based on your setup
-    "strict": true
+    "target": "ES6",               // Target ECMAScript 6
+    "module": "CommonJS",           // CommonJS for Node.js compatibility
+    "strict": true,                 // Enable strict mode
+    "moduleResolution": "node",     // Resolve modules like Node.js
+    "esModuleInterop": true,        // Enable ES module interop
+    "allowJs": true,                // Allow JavaScript files to be imported
+    "resolveJsonModule": true,      // Allow importing .json files
+    "skipLibCheck": true,           // Skip type checking of declaration files
+    "forceConsistentCasingInFileNames": true
   }
 }
