@@ -47,9 +47,7 @@ const pizzaSchema = z.object({
     .number()
     .positive("Price must be a positive number")
     .optional(),
-  image: z
-    .instanceof(Buffer, { message: "Image must be a valid Buffer" })
-    .optional(),
+  image: z.string().optional(), // Just checks if it's present
   topping: z.array(z.string().min(1, "Topping name is required")).optional(),
 });
 

@@ -11,6 +11,7 @@ const useMenuCard = () => {
       const user = JSON.parse(localStorage.getItem("user"));
 
       if (!user || !user.restaurantId) {
+        console.log(user);
         throw new Error("Restaurant ID not found in localStorage");
       }
 
@@ -23,7 +24,9 @@ const useMenuCard = () => {
       formData.append("name", name);
       formData.append("price", price);
       formData.append("restaurantId", restaurantId);
-      formData.append("topping", JSON.stringify(toppings)); // Append toppings as JSON string
+      toppings.forEach((topping) => {
+        formData.append("topping[]", topping);
+      });
       if (image) {
         formData.append("image", image); // Append image if available
       }

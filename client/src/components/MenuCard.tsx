@@ -14,7 +14,7 @@ import { useState } from "react";
 import useMenuCard from "../hooks/useMenuCard"; // Import the custom hook
 
 const MenuCard = () => {
-  const { uploadPizza, loading } = useMenuCard();
+  const { addMenuItem, loading } = useMenuCard();
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [toppings, setToppings] = useState([]);
@@ -32,7 +32,8 @@ const MenuCard = () => {
   };
 
   const handleSubmit = () => {
-    uploadPizza({ name, price, toppings, image });
+    const priceValue = parseFloat(price);
+    addMenuItem({ name, price: priceValue, toppings, image });
   };
 
   return (
@@ -70,10 +71,7 @@ const MenuCard = () => {
               <FormControlLabel
                 key={topping}
                 control={
-                  <Checkbox
-                    value={topping}
-                    onChange={handleToppingChange}
-                  />
+                  <Checkbox value={topping} onChange={handleToppingChange} />
                 }
                 label={topping}
               />

@@ -133,6 +133,7 @@ const register = async (req, res) => {
         name: user.name,
         email: user.email,
         role: user.role,
+        restaurantId: user.restaurantId
       },
       message: "Restaurant and super admin created successfully!",
     });
@@ -158,12 +159,7 @@ const login = async (req, res) => {
     }
 
     generateTokenAndSetCookie(user.id, res);
-    res.status(200).json({
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-    });
+    res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ Error: "Internal server error" });
   }
