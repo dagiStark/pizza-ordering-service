@@ -11,7 +11,6 @@ import { MaterialReactTable, type MRT_ColumnDef } from "material-react-table";
 import { useMemo, useState } from "react";
 import useUserOperations from "../hooks/useUserOperations"; // Import the custom hook
 import UserModal from "../components/UserModal"; // Import the UserModal component for adding users
-import RefreshIcon from "@mui/icons-material/Refresh";
 import useAddUser from "../hooks/useAddUser";
 
 type Person = {
@@ -106,13 +105,6 @@ const UserCard = () => {
       >
         Add User
       </Button>
-
-      {/* Refresh Button */}
-      <Tooltip title="Refresh">
-        <IconButton onClick={() => window.location.reload()}>
-          <RefreshIcon />
-        </IconButton>
-      </Tooltip>
 
       {/* Material React Table */}
       <MaterialReactTable columns={columns} data={users} isLoading={loading} />

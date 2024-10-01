@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 
 const useAddUser = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false); // Initialize loading as false
 
   const addUser = async (userDetails) => {
     const {
@@ -21,9 +21,10 @@ const useAddUser = () => {
       return false;
     }
 
-    setLoading(true);
+    setLoading(true); // Set loading to true at the start
     try {
-      const res = await fetch("api/user/add", {
+      const res = await fetch("/api/user/add", {
+        // Use relative path
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -34,20 +35,20 @@ const useAddUser = () => {
           location,
           phoneNo,
           role,
-          restaurantId,
+          restaurantId: Number(restaurantId), // Ensure restaurantId is a number
         }),
       });
 
       const data = await res.json();
-      if (data.error) {
-        throw new Error(data.error);
+      if (!res.ok) {
+        // Check if response is not ok
+        throw new Error(data.error || "Something went wrong");
       }
-
       toast.success("User added successfully");
     } catch (error) {
       toast.error(error.message);
     } finally {
-      setLoading(false);
+      setLoading(false); // Set loading to false after processing
     }
   };
 
