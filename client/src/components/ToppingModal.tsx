@@ -1,4 +1,3 @@
-// ToppingModal.js
 import { Box, Modal, Typography, Button } from "@mui/material";
 
 const ToppingModal = ({ open, onClose, order }) => {
@@ -8,12 +7,12 @@ const ToppingModal = ({ open, onClose, order }) => {
     <Modal open={open} onClose={onClose}>
       <Box
         sx={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
           width: 400,
-          bgcolor: 'background.paper',
+          bgcolor: "background.paper",
           boxShadow: 24,
           p: 4,
           borderRadius: 2,
@@ -26,7 +25,10 @@ const ToppingModal = ({ open, onClose, order }) => {
           <strong>Name:</strong> {order.name}
         </Typography>
         <Typography variant="body1">
-          <strong>Toppings:</strong> {order.topping.join(", ")}
+          <strong>Toppings:</strong>{" "}
+          {Array.isArray(order.toppings) && order.toppings.length > 0
+            ? order.toppings.join(", ")
+            : "No toppings"}
         </Typography>
         <Typography variant="body1">
           <strong>Quantity:</strong> {order.quantity}

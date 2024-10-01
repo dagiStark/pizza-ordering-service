@@ -1,6 +1,5 @@
 import {
   Box,
-  Chip,
   MenuItem,
   Select,
   Typography,
@@ -12,18 +11,19 @@ import { MaterialReactTable, MRT_ColumnDef } from "material-react-table";
 import { useMemo, useState } from "react";
 import { Image2 } from "../assets";
 import ToppingModal from "./ToppingModal"; // Import the ToppingModal component
+import useGetOrders from "../hooks/useGetOrders"; // Import the custom hook
 
 type Packages = {
   name: string;
   topping: string[];
   quantity: number;
-  phoneNo: string;
+  customerNo: string;
   createdAt: string;
   status: string;
 };
 
 const OrdersCard = () => {
-  const [tableData, setTableData] = useState<Packages[]>(data);
+  const { orders, loading, error } = useGetOrders(); // Use the custom hook to get orders
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState<Packages | null>(null);
 
@@ -68,7 +68,7 @@ const OrdersCard = () => {
         size: 100,
       },
       {
-        accessorKey: "phoneNo",
+        accessorKey: "customerNo",
         header: "Customer No",
         size: 200,
       },
@@ -120,16 +120,19 @@ const OrdersCard = () => {
     event: React.ChangeEvent<{ value: unknown }>,
     rowIndex: number
   ) => {
-    const updatedData = [...tableData];
+    const updatedData = [...orders];
     updatedData[rowIndex].status = event.target.value as string;
-    setTableData(updatedData);
+    // Assuming you send a request to the backend to update the status
   };
+
+  if (loading) return <Typography>Loading...</Typography>;
+  if (error) return <Typography>Error: {error}</Typography>;
 
   return (
     <Box>
       <MaterialReactTable
         columns={columns}
-        data={tableData}
+        data={orders}
         renderTopToolbarCustomActions={() => (
           <Typography fontWeight="bold" fontSize="18px" color="#7a7676">
             Packages
@@ -150,54 +153,3 @@ const OrdersCard = () => {
 };
 
 export default OrdersCard;
-
-const data: Packages[] = [
-  {
-    name: "Pizza",
-    topping: ["Cheese", "Olives", "Mushrooms"], // Example toppings
-    quantity: 4,
-    phoneNo: "+251 1523654789",
-    createdAt: "2:44 PM 8/14/24",
-    status: "Preparing",
-  },
-  {
-    name: "Pizza",
-    topping: ["Pepperoni", "Onions"], // Example toppings
-    quantity: 3,
-    phoneNo: "+251 1523654789",
-    createdAt: "2:44 PM 8/14/24",
-    status: "Preparing",
-  },
-  {
-    name: "Pizza",
-    topping: ["Bell Peppers"], // Example toppings
-    quantity: 1,
-    phoneNo: "+251 1523654789",
-    createdAt: "2:44 PM 8/14/24",
-    status: "Ready",
-  },
-  {
-    name: "Pizza",
-    topping: ["Spinach", "Cheese"], // Example toppings
-    quantity: 6,
-    phoneNo: "+251 1523654789",
-    createdAt: "2:44 PM 8/14/24",
-    status: "Preparing",
-  },
-  {
-    name: "Pizza",
-    topping: ["Tomato", "Basil"], // Example toppings
-    quantity: 2,
-    phoneNo: "+251 1523654789",
-    createdAt: "2:44 PM 8/14/24",
-    status: "Ready",
-  },
-  {
-    name: "Pizza",
-    topping: ["Olives"], // Example toppings
-    quantity: 1,
-    phoneNo: "+251 1523654789",
-    createdAt: "2:44 PM 8/14/24",
-    status: "Delivered",
-  },
-];
