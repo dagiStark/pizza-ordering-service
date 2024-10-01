@@ -20,9 +20,11 @@ import MenuCard from "../components/MenuCard";
 import RoleCard from "../components/RoleCard";
 import UserCard from "../components/UserCard";
 import { useState } from "react";
+import useLogout from "../hooks/useLogout";
 
 function Dashboard() {
   const [selected, setSelected] = useState("Orders");
+  const { loading, logout } = useLogout();
 
   const renderContent = () => {
     switch (selected) {
@@ -37,6 +39,9 @@ function Dashboard() {
       default:
         return <OrdersCard />;
     }
+  };
+  const handleLogout = async () => {
+    await logout(); // Call the logout function from the hook
   };
 
   return (
@@ -211,6 +216,7 @@ function Dashboard() {
           sx={{
             alignSelf: "center",
           }}
+          onClick={handleLogout}
         >
           <LogoutIcon sx={{ marginRight: "10px" }} />
           <Typography fontWeight="bold">Logout</Typography>

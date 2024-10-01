@@ -10,12 +10,14 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { MaterialReactTable, MRT_ColumnDef } from "material-react-table";
 import { useMemo, useState } from "react";
 import { Image2 } from "../assets";
-import ToppingModal from "./ToppingModal"; // Import the ToppingModal component
-import useGetOrders from "../hooks/useGetOrders"; // Import the custom hook
+import ToppingModal from "./ToppingModal";
+import useGetOrders from "../hooks/useGetOrders";
+import updateOrderStatus from "../hooks/useUpdateOrderStatus";
 
 type Packages = {
+  id: number; 
   name: string;
-  topping: string[];
+  toppings: string[];
   quantity: number;
   customerNo: string;
   createdAt: string;
@@ -23,106 +25,132 @@ type Packages = {
 };
 
 const OrdersCard = () => {
-  const { orders, loading, error } = useGetOrders(); // Use the custom hook to get orders
+  const { orders, loading, error, setOrders } = useGetOrders();
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState<Packages | null>(null);
 
-  // Define columns with custom renderers for the topping and status
-  const columns = useMemo<MRT_ColumnDef<Packages>[]>(
-    () => [
-      {
-        accessorKey: "name",
-        header: "Name",
-        size: 150,
-        Cell: ({ cell }) => (
-          <Box display="flex" alignItems="center">
-            <img
-              src={Image2}
-              alt="pizza"
-              width={20}
-              height={20}
-              style={{ borderRadius: "50%", marginRight: 8 }}
-            />
-            {cell.getValue<string>()}
-          </Box>
-        ),
-      },
-      {
-        accessorKey: "topping",
-        header: "Topping",
-        size: 200,
-        Cell: ({ row }) => (
-          <Box display="flex" alignItems="center">
-            <Tooltip title="View Toppings">
-              <IconButton onClick={() => handleToppingClick(row.original)}>
-                <VisibilityIcon sx={{ color: "#FF8100", marginRight: 1 }} />
-              </IconButton>
-            </Tooltip>
-            <Typography sx={{ color: "#FF8100" }}>Toppings</Typography>
-          </Box>
-        ),
-      },
-      {
-        accessorKey: "quantity",
-        header: "Quantity",
-        size: 100,
-      },
-      {
-        accessorKey: "customerNo",
-        header: "Customer No",
-        size: 200,
-      },
-      {
-        accessorKey: "createdAt",
-        header: "Created At",
-        size: 200,
-      },
-      {
-        accessorKey: "status",
-        header: "Status",
-        size: 150,
-        Cell: ({ cell, row }) => (
-          <Select
-            value={cell.getValue<string>()}
-            onChange={(e) => handleStatusChange(e, row.index)}
-            sx={{
-              backgroundColor:
-                cell.getValue<string>() === "Preparing"
-                  ? "#FFA500"
-                  : cell.getValue<string>() === "Ready"
-                  ? "#008000"
-                  : "#008000",
-              color: "#ffffff",
-              borderRadius: 2,
-              fontSize: "12px",
-              padding: "1px 5px",
-              height: "32px",
-            }}
-          >
-            <MenuItem value="Preparing">Preparing</MenuItem>
-            <MenuItem value="Ready">Ready</MenuItem>
-            <MenuItem value="Delivered">Delivered</MenuItem>
-          </Select>
-        ),
-      },
-    ],
-    []
-  );
+  const columns = useMemo<MRT_ColumnDef<Packages>[]>(() => [
+    {
+      accessorKey: "name",
+      header: "Name",
+      size: 150,
+      Cell: ({ cell }) => (
+        <Box display="flex" alignItems="center">
+          <img
+            src={Image2}
+            alt="pizza"
+            width={20}
+            height={20}
+            style={{ borderRadius: "50%", marginRight: 8 }}
+          />
+          {cell.getValue<string>()}
+        </Box>
+      ),
+    },
+    {
+      accessorKey: "toppings",
+      header: "Topping",
+      size: 200,
+      Cell: ({ row }) => (
+        <Box display="flex" alignItems="center">
+          <Tooltip title="View Toppings">
+            <IconButton onClick={() => handleToppingClick(row.original)}>
+              <VisibilityIcon sx={{ color: "#FF8100", marginRight: 1 }} />
+            </IconButton>
+          </Tooltip>
+          <Typography sx={{ color: "#FF8100" }}>Toppings</Typography>
+        </Box>
+      ),
+    },
+    {
+      accessorKey: "quantity",
+      header: "Quantity",
+      size: 100,
+    },
+    {
+      accessorKey: "customerNo",
+      header: "Customer No",
+      size: 200,
+    },
+    {
+      accessorKey: "createdAt",
+      header: "Created At",
+      size: 200,
+    },
+    {
+      accessorKey: "status",
+      header: "Status",
+      size: 150,
+      Cell: ({ cell, row }) => (
+        <Select
+          value={cell.getValue<string>()}
+          onChange={(e) => handleStatusChange(e, row.original.id)}
+          sx={{
+            backgroundColor:
+              cell.getValue<string>() === "Preparing"
+                ? "#FFA500"
+                : cell.getValue<string>() === "Ready"
+                ? "#008000"
+                : "#008000",
+            color: "#ffffff",
+            borderRadius: 2,
+            fontSize: "12px",
+            padding: "1px 5px",
+            height: "32px",
+          }}
+        >
+          <MenuItem value="Preparing">Preparing</MenuItem>
+          <MenuItem value="Ready">Ready</MenuItem>
+          <MenuItem value="Delivered">Delivered</MenuItem>
+        </Select>
+      ),
+    },
+  ], []);
 
-  // Handle topping icon click to open the modal
   const handleToppingClick = (order: Packages) => {
     setSelectedOrder(order);
     setModalOpen(true);
   };
 
-  // Handle status change
-  const handleStatusChange = (
+  const handleStatusChange = async (
     event: React.ChangeEvent<{ value: unknown }>,
-    rowIndex: number
+    orderId: number
   ) => {
-    const updatedData = [...orders];
-    updatedData[rowIndex].status = event.target.value as string;
-    // Assuming you send a request to the backend to update the status
+    console.log("Orders array:", orders);
+    console.log("orderId:", orderId);
+
+    const newStatus = event.target.value as string;
+
+    // Check if orders are available
+    if (!orders.length) {
+      console.error("No orders available");
+      return;
+    }
+
+    // Find the order by id
+    const orderIndex = orders.findIndex(order => order.id === orderId);
+    if (orderIndex === -1) {
+      console.error("Order not found");
+      return;
+    }
+
+    const order = orders[orderIndex];
+    console.log("Order found:", order);
+
+    // Optimistically update the status in the UI
+    const updatedOrders = [...orders];
+    updatedOrders[orderIndex].status = newStatus;
+    setOrders(updatedOrders);
+
+    // Send update request to the API
+    try {
+      await updateOrderStatus(orderId, newStatus);
+    } catch (err) {
+      console.error("Error updating order status:", err);
+      // Revert the optimistic update if the API call fails
+      updatedOrders[orderIndex].status = order.status; // revert to previous status
+      setOrders(updatedOrders);
+    }
   };
 
   if (loading) return <Typography>Loading...</Typography>;

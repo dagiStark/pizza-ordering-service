@@ -48,4 +48,26 @@ const getOrder = async (req, res) => {
   }
 };
 
-module.exports = { createOrder, getOrder };
+const updateOrder = async (req, res) => {
+  const { id } = req.params; // Order ID from the URL
+  const { status } = req.body; // New status from the request body
+
+  try {
+    const order = await models.Order.findByPk(id); // Find the order by primary key
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+
+    // Update the order status
+    order.status = status;
+    await order.save(); // Save the changes to the database
+
+    res.json(order); // Return the updated order
+  } catch (error) {
+    console.error("Failed to update order:", error);
+    res.status(500).json({ message: "Failed to update order" });
+  }
+};
+
+
+module.exports = { createOrder, getOrder, updateOrder };

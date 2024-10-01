@@ -43,12 +43,15 @@ function App() {
           <Route
             path="/dashboard"
             element={
-              authUser &&
-              (authUser.role !== "customer" ? (
-                <Dashboard />
+              authUser ? (
+                authUser.role !== "customer" ? (
+                  <Dashboard />
+                ) : (
+                  <Navigate to={"/"} />
+                )
               ) : (
-                <Navigate to={"/"} />
-              ))
+                <Navigate to={"/sign-up"} />
+              )
             }
           />
           <Route

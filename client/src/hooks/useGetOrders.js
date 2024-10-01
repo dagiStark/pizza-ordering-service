@@ -13,7 +13,7 @@ const useGetOrders = () => {
           throw new Error("Failed to fetch orders");
         }
         const data = await response.json();
-        setOrders(data);
+        setOrders(data); // Ensure data includes the 'id'
       } catch (err) {
         setError(err.message);
       } finally {
@@ -24,7 +24,7 @@ const useGetOrders = () => {
     fetchOrders();
   }, []);
 
-  return { orders, loading, error };
+  return { orders, loading, error, setOrders };
 };
 
 export default useGetOrders;
