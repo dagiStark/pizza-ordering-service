@@ -17,7 +17,13 @@ const errorHandler = require("./src/middlewares/errorHandler.js"); // Global err
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: "",
+    methods: ["POST", "GET", "DELETE", "PATCH", "PUT"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(morgan("dev")); // Logger for HTTP requests
 // app.use(abilityMiddleware); // Apply CASL authorization abilities
@@ -28,6 +34,9 @@ app.use("/pizza", pizzaRoutes);
 app.use("/role", roleRoutes);
 app.use("/order", orderRoutes);
 app.use("/user", userRoutes);
+app.get("/", (req, res) => {
+  res.send("Hello");
+});
 
 // Global error handling middleware
 app.use(errorHandler);
