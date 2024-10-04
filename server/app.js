@@ -19,14 +19,13 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: "",
+    origin: "https://pizza-ordering-service-client.vercel.app/",
     methods: ["POST", "GET", "DELETE", "PATCH", "PUT"],
     credentials: true,
   })
 );
 app.use(express.json());
 app.use(morgan("dev")); // Logger for HTTP requests
-// app.use(abilityMiddleware); // Apply CASL authorization abilities
 
 // Routes
 app.use("/auth", authRoutes);
