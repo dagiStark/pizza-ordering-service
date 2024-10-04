@@ -5,11 +5,8 @@ const morgan = require("morgan");
 
 const { sequelize } = require("./src/models/index.js"); // Sequelize instance for PostgreSQL connection
 
-const authRoutes = require("./src/routes/authRoutes");
-const pizzaRoutes = require("./src/routes/pizzaRoutes");
-const roleRoutes = require("./src/routes/roleRoutes");
-const orderRoutes = require("./src/routes/orderRoutes");
-const userRoutes = require("./src/routes/userRoutes");
+const api = require("./src/routes/api");
+
 
 // const { abilityMiddleware } = require("./middlewares/authorization"); // CASL middleware for role-based actions
 const errorHandler = require("./src/middlewares/errorHandler.js"); // Global error handling middleware
@@ -28,11 +25,7 @@ app.use(express.json());
 app.use(morgan("dev")); // Logger for HTTP requests
 
 // Routes
-app.use("/auth", authRoutes);
-app.use("/pizza", pizzaRoutes);
-app.use("/role", roleRoutes);
-app.use("/order", orderRoutes);
-app.use("/user", userRoutes);
+app.use("/api", api);
 app.get("/", (req, res) => {
   res.send("Hello");
 });
