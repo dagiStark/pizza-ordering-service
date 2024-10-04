@@ -1,4 +1,3 @@
-import Logo from "./Logo.png";
 import Image1 from "./Image1.png";
 import Image2 from "./Image2.png";
 import Image4 from "./Image4.png";
@@ -11,7 +10,6 @@ import PizzaDeliver from "./PizzaDeliver.png";
 import Ellipse from "./Ellipse.png";
 
 export  {
-  Logo,
   Image1,
   Image2,
   Image4,
