@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://pizza-ordering-service-api.vercel.app", // Your backend server
+        target: "http://localhost:5000", // Your backend server
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""), // Optional, if you want to remove `/api` from the request path
       },

@@ -7,29 +7,19 @@ import {
   Tooltip,
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { MaterialReactTable, MRT_ColumnDef } from "material-react-table";
+import { MaterialReactTable } from "material-react-table"; // Removed MRT_ColumnDef import
 import { useMemo, useState } from "react";
 import { Image2 } from "../assets";
 import ToppingModal from "./ToppingModal";
 import useGetOrders from "../hooks/useGetOrders";
 import updateOrderStatus from "../hooks/useUpdateOrderStatus";
 
-type Packages = {
-  id: number; 
-  name: string;
-  toppings: string[];
-  quantity: number;
-  customerNo: string;
-  createdAt: string;
-  status: string;
-};
-
 const OrdersCard = () => {
   const { orders, loading, error, setOrders } = useGetOrders();
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedOrder, setSelectedOrder] = useState<Packages | null>(null);
+  const [selectedOrder, setSelectedOrder] = useState(null); // Removed Packages type
 
-  const columns = useMemo<MRT_ColumnDef<Packages>[]>(() => [
+  const columns = useMemo(() => [
     {
       accessorKey: "name",
       header: "Name",
@@ -43,7 +33,7 @@ const OrdersCard = () => {
             height={20}
             style={{ borderRadius: "50%", marginRight: 8 }}
           />
-          {cell.getValue<string>()}
+          {cell.getValue()}
         </Box>
       ),
     },
@@ -83,13 +73,13 @@ const OrdersCard = () => {
       size: 150,
       Cell: ({ cell, row }) => (
         <Select
-          value={cell.getValue<string>()}
+          value={cell.getValue()}
           onChange={(e) => handleStatusChange(e, row.original.id)}
           sx={{
             backgroundColor:
-              cell.getValue<string>() === "Preparing"
+              cell.getValue() === "Preparing"
                 ? "#FFA500"
-                : cell.getValue<string>() === "Ready"
+                : cell.getValue() === "Ready"
                 ? "#008000"
                 : "#008000",
             color: "#ffffff",
@@ -107,19 +97,16 @@ const OrdersCard = () => {
     },
   ], []);
 
-  const handleToppingClick = (order: Packages) => {
+  const handleToppingClick = (order) => { // Removed Packages type
     setSelectedOrder(order);
     setModalOpen(true);
   };
 
-  const handleStatusChange = async (
-    event: React.ChangeEvent<{ value: unknown }>,
-    orderId: number
-  ) => {
+  const handleStatusChange = async (event, orderId) => { // Removed React.ChangeEvent
     console.log("Orders array:", orders);
     console.log("orderId:", orderId);
 
-    const newStatus = event.target.value as string;
+    const newStatus = event.target.value; // Removed type assertion
 
     // Check if orders are available
     if (!orders.length) {

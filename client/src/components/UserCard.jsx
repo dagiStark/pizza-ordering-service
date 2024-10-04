@@ -7,26 +7,18 @@ import {
   Typography,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { MaterialReactTable, type MRT_ColumnDef } from "material-react-table";
+import { MaterialReactTable } from "material-react-table";
 import { useMemo, useState } from "react";
 import useUserOperations from "../hooks/useUserOperations"; // Import the custom hook
 import UserModal from "../components/UserModal"; // Import the UserModal component for adding users
 import useAddUser from "../hooks/useAddUser";
-
-type Person = {
-  id: string;
-  fullName: string;
-  phoneNo: string;
-  email: string;
-  active: boolean;
-};
 
 const UserCard = () => {
   const { users, deleteUser } = useUserOperations();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { addUser, loading } = useAddUser();
 
-  const columns = useMemo<MRT_ColumnDef<Person>[]>(
+  const columns = useMemo(
     () => [
       {
         accessorKey: "fullName", // Access name
@@ -75,7 +67,7 @@ const UserCard = () => {
   );
 
   // Handle status change for switch (this can be expanded with a backend call if necessary)
-  const handleStatusChange = (userId: string, isActive: boolean) => {
+  const handleStatusChange = (userId, isActive) => {
     // Optional: Update the user's active status with a backend call
   };
 
@@ -89,7 +81,7 @@ const UserCard = () => {
   };
 
   // Handle adding user from modal form submission
-  const handleAddUser = (userDetails: Omit<Person, "id">) => {
+  const handleAddUser = (userDetails) => {
     addUser(userDetails); // Add user using the custom hook
     handleAddUserModalClose(); // Close modal after adding
   };

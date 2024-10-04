@@ -14,19 +14,11 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import ViewColumnIcon from "@mui/icons-material/ViewColumn";
-import { MaterialReactTable, type MRT_ColumnDef } from "material-react-table";
+import { MaterialReactTable } from "material-react-table";
 import { useMemo, useState } from "react";
 import RoleModal from "./RoleModal";
 import useFetchRoles from "../hooks/useFetchRoles"; // Custom hook to fetch roles
 import toast from "react-hot-toast"; // Optional for success/failure notifications
-
-// Define a TypeScript interface for the Role
-interface Role {
-  id: string;
-  roleName: string;
-  createdAt: string;
-  active: boolean;
-}
 
 const RoleCard = () => {
   const { roles, loading, fetchRoles } = useFetchRoles(); // Custom hook for fetching roles
@@ -34,17 +26,17 @@ const RoleCard = () => {
   const [deleteLoading, setDeleteLoading] = useState(false);
 
   // Handle role addition
-  const handleRoleAdded = (newRole: Role) => {
+  const handleRoleAdded = (newRole) => {
     fetchRoles(); // Refetch the roles after adding a new role
   };
 
   // Define the columns with custom renderers for actions
-  const columns = useMemo<MRT_ColumnDef<Role>[]>(() => [
+  const columns = useMemo(() => [
     {
       accessorKey: "roleName",
       header: "Role Name",
       size: 150,
-      Cell: ({ cell }) => <Typography>{cell.getValue<string>()}</Typography>,
+      Cell: ({ cell }) => <Typography>{cell.getValue()}</Typography>,
     },
     {
       accessorKey: "createdAt",
@@ -78,13 +70,13 @@ const RoleCard = () => {
     },
   ], [roles]);
 
-  const handleStatusChange = (index: number, isActive: boolean) => {
+  const handleStatusChange = (index, isActive) => {
     const updatedRoles = [...roles];
     updatedRoles[index].active = isActive;
     // Update the state and optionally the backend
   };
 
-  const handleDelete = async (index: number, roleId: string) => {
+  const handleDelete = async (index, roleId) => {
     setDeleteLoading(true);
     try {
       const response = await fetch(`/api/role/delete/${roleId}`, {
