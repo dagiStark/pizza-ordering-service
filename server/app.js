@@ -11,7 +11,9 @@ const errorHandler = require("./src/middlewares/errorHandler.js"); // Global err
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  
+}));
 app.use(express.json());
 app.use(morgan("dev")); // Logger for HTTP requests
 
