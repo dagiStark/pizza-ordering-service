@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import path from 'path';
+import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://pizza-ordering-service-api.vercel.app/", // Your backend server
+        target: "https://pizza-ordering-service-api.vercel.app/api/", // Your backend server
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""), // Optional, if you want to remove `/api` from the request path
       },
@@ -16,7 +16,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@assets': path.resolve(__dirname, './src/assets'), // Use absolute paths
+      "@assets": path.resolve(__dirname, "./src/assets"), // Use absolute paths
     },
   },
 });
