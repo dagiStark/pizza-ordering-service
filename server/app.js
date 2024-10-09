@@ -15,7 +15,6 @@ app.use(
   cors({
     origin: "https://pizza-ordering-service-client.vercel.app/",
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true, // Allow credentials (e.g., cookies, authorization headers)
     optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
   })
