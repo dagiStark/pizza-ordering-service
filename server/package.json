@@ -13,7 +13,6 @@
   "description": "",
   "dependencies": {
     "@casl/ability": "^6.7.1",
-    "@sequelize/postgres": "^7.0.0-alpha.42",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
@@ -30,5 +29,8 @@
   "devDependencies": {
     "jest": "^29.7.0",
     "nodemon": "^3.1.7"
+  },
+  "engines": {
+    "node": "18.x"
   }
 }
