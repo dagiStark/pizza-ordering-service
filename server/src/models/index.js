@@ -8,7 +8,14 @@ const sequelize = new Sequelize(
   process.env.DB_PASS,
   {
     host: process.env.DB_HOST,
+    port: process.env.DB_PORT || 5432, // Include port
     dialect: "postgres",
+    dialectOptions: {
+      ssl: {
+        require: true, // Supabase requires SSL
+        rejectUnauthorized: false, // Necessary for Supabase SSL
+      },
+    },
   }
 );
 
