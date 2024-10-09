@@ -7,20 +7,13 @@ const { sequelize } = require("./src/models/index.js"); // Sequelize instance fo
 
 const api = require("./src/routes/api");
 
-
 // const { abilityMiddleware } = require("./middlewares/authorization"); // CASL middleware for role-based actions
 const errorHandler = require("./src/middlewares/errorHandler.js"); // Global error handling middleware
 
 const app = express();
 
 // Middleware
-app.use(
-  cors({
-    origin: "https://pizza-ordering-service-client.vercel.app/",
-    methods: ["POST", "GET", "DELETE", "PATCH", "PUT"],
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(express.json());
 app.use(morgan("dev")); // Logger for HTTP requests
 
