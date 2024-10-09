@@ -7,7 +7,6 @@ const { sequelize } = require("./src/models/index.js"); // Sequelize instance fo
 
 const api = require("./src/routes/api");
 
-// const { abilityMiddleware } = require("./middlewares/authorization"); // CASL middleware for role-based actions
 const errorHandler = require("./src/middlewares/errorHandler.js"); // Global error handling middleware
 
 const app = express();
