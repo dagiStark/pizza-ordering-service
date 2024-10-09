@@ -6,7 +6,6 @@ const morgan = require("morgan");
 const { sequelize } = require("./src/models/index.js"); // Sequelize instance for PostgreSQL connection
 
 const api = require("./src/routes/api");
-
 const errorHandler = require("./src/middlewares/errorHandler.js"); // Global error handling middleware
 
 const app = express();
@@ -25,22 +24,16 @@ app.get("/", (req, res) => {
 // Global error handling middleware
 app.use(errorHandler);
 
-// Connect to PostgreSQL and start server
-const PORT = process.env.PORT || 5000;
-
+// Connect to PostgreSQL
 sequelize
   .authenticate()
   .then(() => {
     console.log("Database connected...");
     return sequelize.sync(); // Sync Sequelize models with the database
   })
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
-    });
-  })
   .catch((error) => {
     console.error("Unable to connect to the database:", error);
   });
 
+// Export the app instead of listening on a port
 module.exports = app;
