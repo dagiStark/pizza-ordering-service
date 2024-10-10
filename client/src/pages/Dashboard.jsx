@@ -21,10 +21,12 @@ import RoleCard from "../components/RoleCard";
 import UserCard from "../components/UserCard";
 import { useState } from "react";
 import useLogout from "../hooks/useLogout";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const [selected, setSelected] = useState("Orders");
-  const {  logout } = useLogout();
+  const { logout } = useLogout();
+  const navigate = useNavigate();
 
   const renderContent = () => {
     switch (selected) {
@@ -41,7 +43,8 @@ function Dashboard() {
     }
   };
   const handleLogout = async () => {
-    await logout(); // Call the logout function from the hook
+    await logout();
+    navigate("/");
   };
 
   return (
@@ -215,6 +218,7 @@ function Dashboard() {
           marginBottom="20px"
           sx={{
             alignSelf: "center",
+            cursor: "pointer",
           }}
           onClick={handleLogout}
         >
