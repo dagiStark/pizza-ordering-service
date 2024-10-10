@@ -41,7 +41,7 @@ function About() {
             <Typography
               sx={{
                 fontFamily: "Inter",
-                fontSize: { xs: "50px", md: "140px" }, // Responsive font size
+                fontSize: { xs: "50px", sm: "90px", md: "110px", lg: "120px" }, 
                 fontStyle: "normal",
                 fontWeight: 700,
                 lineHeight: "150%", // 225px
