@@ -32,7 +32,7 @@ const useMenuCard = () => {
       }
 
       // Send the data to the server
-      const res = await fetch("/api/pizza/upload-pizza", {
+      const res = await fetch("https://pizza-ordering-service-api.vercel.app/api/pizza/upload-pizza", {
         method: "POST",
         body: formData,
       });

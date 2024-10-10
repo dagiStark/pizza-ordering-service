@@ -7,7 +7,7 @@ const useAddRole = () => {
   const addRole = async ({ roleName, permissions, active = true }) => {
     setLoading(true);
     try {
-      const res = await fetch("/api/role/create-role", {
+      const res = await fetch("https://pizza-ordering-service-api.vercel.app/api/role/create-role", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

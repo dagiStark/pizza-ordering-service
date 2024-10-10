@@ -8,7 +8,7 @@ const useFetchRoles = () => {
   const fetchRoles = async () => {
     setLoading(true);
     try {
-      const response = await fetch("/api/role/get-roles");
+      const response = await fetch("https://pizza-ordering-service-api.vercel.app/api/role/get-roles");
       const data = await response.json(); // Remove TypeScript type definition
 
       if (!response.ok) {

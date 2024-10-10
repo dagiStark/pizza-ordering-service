@@ -9,7 +9,7 @@ const useUpdateOrderStatus = () => {
     setError(null);
 
     try {
-      const response = await fetch(`/api/order/update-order/${orderId}`, {
+      const response = await fetch(`https://pizza-ordering-service-api.vercel.app/api/order/update-order/${orderId}`, {
         method: "PATCH", // PATCH to update part of the resource
         headers: {
           "Content-Type": "application/json",

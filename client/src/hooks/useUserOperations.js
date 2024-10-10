@@ -9,7 +9,7 @@ const useUserOperations = () => {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const res = await fetch("/api/user/get-users");
+      const res = await fetch("https://pizza-ordering-service-api.vercel.app/api/user/get-users");
       const data = await res.json();
       if (!res.ok) {
         throw new Error(data.message || "Failed to fetch users");

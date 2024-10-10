@@ -8,7 +8,7 @@ const useGetOrders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await fetch("api/order/get-order");
+        const response = await fetch("https://pizza-ordering-service-api.vercel.app/api/order/get-order");
         if (!response.ok) {
           throw new Error("Failed to fetch orders");
         }

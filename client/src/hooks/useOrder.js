@@ -12,7 +12,7 @@ const useOrder = () => {
     setSuccess(null);
 
     try {
-      const response = await fetch("/api/order/create-order", {
+      const response = await fetch("https://pizza-ordering-service-api.vercel.app/api/order/create-order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

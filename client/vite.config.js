@@ -5,15 +5,6 @@ import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  server: {
-    proxy: {
-      "/api": {
-        target: "https://pizza-ordering-service-api.vercel.app/api", // Your backend server
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""), // Optional, if you want to remove `/api` from the request path
-      },
-    },
-  },
   resolve: {
     alias: {
       "@assets": path.resolve(__dirname, "./src/assets"), // Use absolute paths

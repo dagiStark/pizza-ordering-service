@@ -23,7 +23,7 @@ const useAddUser = () => {
 
     setLoading(true); // Set loading to true at the start
     try {
-      const res = await fetch("/api/user/add", {
+      const res = await fetch("https://pizza-ordering-service-api.vercel.app/api/user/add", {
         // Use relative path
         method: "POST",
         headers: { "Content-Type": "application/json" },
